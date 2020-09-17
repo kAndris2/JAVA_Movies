@@ -8,7 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MoviesApplication implements CommandLineRunner {
+public class MoviesApplication {//implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(MoviesApplication.class, args);
@@ -17,8 +17,10 @@ public class MoviesApplication implements CommandLineRunner {
     @Autowired
     private UserRepository userRepository;
 
+    /*
     @Override
     public void run(String...args) throws Exception {
         this.userRepository.save(new ProfileModel(0, "Alfonz", System.currentTimeMillis()));
     }
+     */
 }

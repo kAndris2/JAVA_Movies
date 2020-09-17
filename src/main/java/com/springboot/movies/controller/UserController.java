@@ -20,6 +20,7 @@ public class UserController {
 
     @GetMapping("users")
     public List <ProfileModel> getUsers() {
+        this.userRepository.save(new ProfileModel(0, "Alfonz", System.currentTimeMillis()));
         return this.userRepository.findAll();
     }
 }
