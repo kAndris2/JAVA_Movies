@@ -1,5 +1,6 @@
 package com.springboot.movies.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.springboot.movies.database.IDAO;
@@ -18,9 +19,11 @@ public class UserController {
 
     IDAO idao = new IDAO();
 
+    public UserController() throws SQLException {
+    }
+
     @GetMapping("users")
     public List<ProfileModel> getUsers() {
-        idao.put();
         return idao.getProfiles();
     }
     /*

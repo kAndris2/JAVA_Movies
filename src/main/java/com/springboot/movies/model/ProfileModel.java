@@ -16,8 +16,9 @@ public class ProfileModel {
     //@Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
+    private String email;
+    private String password;
     private Long registrationDate;
 
     /*
@@ -30,9 +31,11 @@ public class ProfileModel {
 
     //public ProfileModel() {}
 
-    public ProfileModel(Integer id, String name, Long registration) {
+    public ProfileModel(Integer id, String name, String email, String password, Long registration) {
         this.id = id;
         this.name = name;
+        this.email = email;
+        this.password = password;
         this.registrationDate = registration;
     }
 
