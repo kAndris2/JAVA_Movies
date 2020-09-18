@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<ProfileModel, Integer>{
+public interface UserRepository { //extends JpaRepository<ProfileModel, Integer> {
     /*
     private List<ProfileModel> profiles = new ArrayList<>();
 
