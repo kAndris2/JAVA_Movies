@@ -7,12 +7,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+/*
 @Entity
 @Table(name = "users")
+ */
 public class ProfileModel {
 
-    @Id
+    //@Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -27,7 +28,7 @@ public class ProfileModel {
     private List<RateModel> ratings = new ArrayList<>();
      */
 
-    public ProfileModel() {}
+    //public ProfileModel() {}
 
     public ProfileModel(Integer id, String name, Long registration) {
         this.id = id;
