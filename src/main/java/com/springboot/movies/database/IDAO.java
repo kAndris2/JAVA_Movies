@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IDAO {
+    final String URL = "jdbc:postgresql://localhost:5432/MoviesDB";
+    final String USER = "postgres";
+    final String PASSWORD = "admin";
+
     List<ProfileModel> profiles = new ArrayList<>();
 
     public IDAO() throws SQLException {
@@ -26,12 +30,41 @@ public class IDAO {
                 .orElse(null);
     }
 
-    void loadFiles() throws SQLException {
-        String url = "jdbc:postgresql://localhost:5432/MoviesDB";
-        String user = "postgres";
-        String password = "admin";
+    public void createProfile(ProfileModel profile) throws SQLException {
+        int id = -1;
+        long milis = System.currentTimeMillis();
+        String sqlstr = String.format("INSERT INTO profiles " +
+                        "(name, email, password, registration_date) " +
+                        "VALUES " +
+                        "(?, ?, ?, ?) " +
+                        "RETURNING id"
+                ,profile.getName(), profile.getEmail(), profile.getPassword(), milis);
+        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+            PreparedStatement pst = con.prepareStatement(sqlstr)) {
+                pst.setString(1, profile.getName());
+                pst.setLong(4, milis);
+                pst.setString(2, profile.getEmail());
+                pst.setString(3, profile.getPassword());
+                //
+                try (ResultSet rs = pst.executeQuery()) {
+                    while (rs.next()) {
+                        id = rs.getInt(1);
+                    }
+                }
+        }
+        profiles.add(
+                new ProfileModel(
+                        id,
+                        profile.getName(),
+                        profile.getEmail(),
+                        profile.getPassword(),
+                        milis
+                )
+        );
+    }
 
-        try (Connection con = DriverManager.getConnection(url, user, password)) {
+    void loadFiles() throws SQLException {
+        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD)) {
             //-GET USERS
             try (PreparedStatement pst = con.prepareStatement("SELECT * FROM profiles")) {
                 try (ResultSet rs = pst.executeQuery()) {
@@ -46,6 +79,8 @@ public class IDAO {
                                         rs.getLong(3)
                                 )
                         );
+                        String str = String.format("User: %s added!", rs.getString(2));
+                        System.out.println(str);
                     }
                 }
             }

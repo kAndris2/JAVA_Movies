@@ -7,10 +7,7 @@ import com.springboot.movies.database.IDAO;
 import com.springboot.movies.model.ProfileModel;
 import com.springboot.movies.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -25,6 +22,11 @@ public class UserController {
     @GetMapping("users")
     public List<ProfileModel> getUsers() {
         return idao.getProfiles();
+    }
+
+    @PostMapping("add_user")
+    void createUser(@RequestBody ProfileModel profile) throws SQLException {
+        idao.createProfile(profile);
     }
     /*
     @Autowired
