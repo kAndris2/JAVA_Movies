@@ -1,0 +1,5 @@
+#translate:hover{
+    color:black !important;
+    background-color: white !important;
+    transition: linear .1s !important;
+}
