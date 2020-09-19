@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { faBell, faPlus, faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './Nav.css';
+import MovieDetail from "./MovieDetail";
 
 class Navbar extends Component {
     render() {
@@ -9,7 +10,7 @@ class Navbar extends Component {
             <React.Fragment>
                 <nav className="navbar navbar-expand-sm navbar-dark" style={{backgroundColor:"#032541", fontWeight:"bold", padding:".75rem .75rem"}}>
                     <div className="container" style={{maxWidth:"1300px", paddingLeft:"40px", paddingRight:"40px"}}>
-                        <a className="navbar-brand" href="#"><img src={require("../static/img/logo.png")} width={154} height={20}/> </a>
+                        <a className="navbar-brand" style={{paddingTop:"0"}} href="/"><img src={require("../static/img/logo.png")} width={154} height={20}/> </a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false"
                                 aria-label="Toggle navigation">
@@ -17,16 +18,16 @@ class Navbar extends Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarsExample07">
                             <ul className="navbar-nav mr-auto">
-                                <li className="nav-item active">
-                                    <a className="nav-link" href="#">Movies</a>
+                                <li className="nav-item px-2 active">
+                                    <a className="nav-link" href="/movie/test">Movies</a>
                                 </li>
-                                <li className="nav-item active">
+                                <li className="nav-item px-2 active">
                                     <a className="nav-link" href="#">TV Shows</a>
                                 </li>
-                                <li className="nav-item active">
+                                <li className="nav-item px-2 active">
                                     <a className="nav-link" href="#">People</a>
                                 </li>
-                                <li className="nav-item active">
+                                <li className="nav-item px-2 active">
                                     <a className="nav-link" href="#">More</a>
                                 </li>
                             </ul>
