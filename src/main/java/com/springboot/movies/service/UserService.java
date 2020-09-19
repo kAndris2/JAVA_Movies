@@ -7,23 +7,31 @@ import com.springboot.movies.model.UserModel;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserService extends IDAO {
+public class UserService {
 
-    UserDataService uds = new UserDataService();
+    IDAO idao = IDAO.getInstance();
+    UserDataService uds = new UserDataService(idao);
 
     public UserService() throws SQLException {
     }
 
-    public List<UserModel> getAllUser() { return users; }
+    public List<UserModel> getAllUser() { return idao.getUsers(); }
 
     public void addUser(UserModel user) throws SQLException {
-        users.add(
-                uds.createProfile(user)
+        idao.getUsers().add(
+                uds.createUser(user)
         );
     }
 
+    public void deleteUser(Integer userId) throws SQLException {
+        idao.getUsers().remove(
+                getUserById(userId)
+        );
+        uds.deleteUser(userId);
+    }
+
     UserModel getUserById(Integer id) {
-        return users.stream()
+        return idao.getUsers().stream()
                 .filter(p -> id.equals(p.getId()))
                 .findAny()
                 .orElse(null);

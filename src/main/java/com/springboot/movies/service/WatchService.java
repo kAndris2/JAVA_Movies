@@ -8,17 +8,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WatchService extends IDAO {
+public class WatchService {
 
-    WatchDataService wds = new WatchDataService();
+    IDAO idao = IDAO.getInstance();
+    WatchDataService wds = new WatchDataService(idao);
 
     public WatchService() throws SQLException {
     }
 
-    public List<WatchModel> getWatchList() { return watchList; }
+    public List<WatchModel> getWatchList() { return idao.getWatchList(); }
 
     WatchModel getWatchById(Integer id) {
-        return watchList.stream()
+        return idao.getWatchList().stream()
                 .filter(w -> id.equals(w.getId()))
                 .findAny()
                 .orElse(null);
@@ -27,7 +28,7 @@ public class WatchService extends IDAO {
     public List<WatchModel> getUserWatchList(Integer userId) {
         List<WatchModel> result = new ArrayList<>();
 
-        for (WatchModel watch : watchList) {
+        for (WatchModel watch : idao.getWatchList()) {
             if (userId.equals(watch.getId()))
                 result.add(watch);
         }
@@ -35,7 +36,7 @@ public class WatchService extends IDAO {
     }
 
     public void addWatch(Integer userId, Integer movieId) throws SQLException {
-        watchList.add(
+        idao.getWatchList().add(
             wds.createWatch(userId, movieId)
         );
     }
@@ -44,7 +45,7 @@ public class WatchService extends IDAO {
         for (WatchModel watch : getWatchList()) {
             if (pid.equals(watch.getProfile_id()) && mid.equals(watch.getMovie_id())) {
                 wds.removeWatchFromDb(watch.getId());
-                watchList.remove(watch);
+                idao.getWatchList().remove(watch);
                 break;
             }
         }
@@ -54,7 +55,7 @@ public class WatchService extends IDAO {
         for (WatchModel watch : getWatchList()) {
             if (pid.equals(watch.getProfile_id())) {
                 wds.removeWatchFromDb(watch.getId());
-                watchList.remove(watch);
+                idao.getWatchList().remove(watch);
             }
         }
     }

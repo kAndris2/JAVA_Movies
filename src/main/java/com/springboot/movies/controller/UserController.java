@@ -16,16 +16,20 @@ public class UserController {
 
     UserService us = new UserService();
 
-    public UserController() throws SQLException {
-    }
+    public UserController() throws SQLException { }
 
     @GetMapping("users")
-    public List<UserModel> getUsers() {
+    List<UserModel> getUsers() {
         return us.getAllUser();
     }
 
     @PostMapping("add_user")
     void createUser(@RequestBody UserModel user) throws SQLException {
         us.addUser(user);
+    }
+
+    @DeleteMapping("delete_user/{userId}")
+    void deleteUser(@PathVariable(value = "userId") Integer userId) throws SQLException {
+        us.deleteUser(userId);
     }
 }

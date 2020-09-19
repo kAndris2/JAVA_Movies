@@ -1,24 +1,29 @@
 package com.springboot.movies.dataservice;
 
+import com.springboot.movies.database.IDAO;
 import com.springboot.movies.model.UserModel;
 import com.springboot.movies.service.UserService;
 
 import java.sql.*;
 
-public class UserDataService extends UserService {
+public class UserDataService {
 
-    public UserDataService() throws SQLException {
+    final String TABLE = "users";
+    IDAO idao;
+
+    public UserDataService(IDAO idao) throws SQLException {
+        this.idao = idao;
     }
 
-    public UserModel createProfile(UserModel user) throws SQLException {
+    public UserModel createUser(UserModel user) throws SQLException {
         int id = -1;
         long milis = System.currentTimeMillis();
-        String sqlstr = String.format("INSERT INTO profiles " +
+        String sqlstr = String.format("INSERT INTO %s " +
                         "(name, email, password, registration_date) " +
                         "VALUES " +
                         "(?, ?, ?, ?) " +
-                        "RETURNING id");
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+                        "RETURNING id", TABLE);
+        try (Connection con = DriverManager.getConnection(idao.URL, idao.USER, idao.PASSWORD);
              PreparedStatement pst = con.prepareStatement(sqlstr)) {
             pst.setString(1, user.getName());
             pst.setLong(4, milis);
@@ -39,5 +44,13 @@ public class UserDataService extends UserService {
                         user.getPassword(),
                         milis
                 );
+    }
+
+    public void deleteUser(Integer userId) throws SQLException {
+        String sqlstr = String.format("DELETE FROM %s WHERE id = %d", TABLE, userId);
+        try (Connection con = DriverManager.getConnection(idao.URL, idao.USER, idao.PASSWORD);
+             PreparedStatement pst = con.prepareStatement(sqlstr)) {
+            pst.executeQuery();
+        }
     }
 }

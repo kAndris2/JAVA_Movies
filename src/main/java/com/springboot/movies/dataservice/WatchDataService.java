@@ -5,19 +5,23 @@ import com.springboot.movies.model.WatchModel;
 
 import java.sql.*;
 
-public class WatchDataService extends IDAO {
+public class WatchDataService {
 
-    public WatchDataService() throws SQLException {
+    final String TABLE = "watchlists";
+    IDAO idao;
+
+    public WatchDataService(IDAO idao) throws SQLException {
+        this.idao = idao;
     }
 
     public WatchModel createWatch(Integer pid, Integer mid) throws SQLException {
         int id = -1;
-        String sqlstr = String.format("INSERT INTO watchlist " +
+        String sqlstr = String.format("INSERT INTO %s " +
                 "(profile_id, movie_id) " +
                 "VALUES " +
                 "(?, ?) " +
-                "RETURNING id");
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+                "RETURNING id", TABLE);
+        try (Connection con = DriverManager.getConnection(idao.URL, idao.USER, idao.PASSWORD);
              PreparedStatement pst = con.prepareStatement(sqlstr)) {
             pst.setInt(1, pid);
             pst.setInt(2, mid);
@@ -32,8 +36,8 @@ public class WatchDataService extends IDAO {
     }
 
     public void removeWatchFromDb(Integer wid) throws SQLException {
-        String sqlstr = String.format("DELETE FROM watchlist WHERE id = %d", wid);
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+        String sqlstr = String.format("DELETE FROM %s WHERE id = %d", TABLE, wid);
+        try (Connection con = DriverManager.getConnection(idao.URL, idao.USER, idao.PASSWORD);
              PreparedStatement pst = con.prepareStatement(sqlstr)) {
             pst.executeQuery();
         }
