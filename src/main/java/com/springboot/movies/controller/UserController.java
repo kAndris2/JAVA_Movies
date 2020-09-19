@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.springboot.movies.database.IDAO;
-import com.springboot.movies.model.ProfileModel;
-import com.springboot.movies.repository.UserRepository;
+import com.springboot.movies.model.UserModel;
+import com.springboot.movies.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,27 +14,22 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/")
 public class UserController {
 
-    IDAO idao = new IDAO();
+    UserService us = new UserService();
 
-    public UserController() throws SQLException {
-    }
+    public UserController() throws SQLException { }
 
     @GetMapping("users")
-    public List<ProfileModel> getUsers() {
-        return idao.getProfiles();
+    List<UserModel> getUsers() {
+        return us.getAllUser();
     }
 
     @PostMapping("add_user")
-    void createUser(@RequestBody ProfileModel profile) throws SQLException {
-        idao.createProfile(profile);
+    void createUser(@RequestBody UserModel user) throws SQLException {
+        us.addUser(user);
     }
-    /*
-    @Autowired
-    private UserRepository userRepository;
 
-    @GetMapping("users")
-    public List <ProfileModel> getUsers() {
-        return this.userRepository.findAll();
+    @DeleteMapping("delete_user/{userId}")
+    void deleteUser(@PathVariable(value = "userId") Integer userId) throws SQLException {
+        us.deleteUser(userId);
     }
-     */
 }
