@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import './App.css';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import Navbar from "./components/Navbar";
 
 class App extends Component {
   state = {
@@ -35,8 +36,9 @@ class App extends Component {
 //details :https://api.themoviedb.org/3/movie/337401?api_key=04a30d5152c77afe4a81783d17e20316&language=hu-HU
     return (
         <div className="App">
+          <Navbar></Navbar>
           <div id="cards_landscape_wrap-2">
-            <div className="container">
+            <div className="container" style={{maxWidth:"1300px", paddingLeft: "40px", paddingRight: "40px", paddingTop: "30px", paddingBottom: "30px"}}>
               <div className="row">
                 {movies.map(movie =>
                     <div key={movie.id} className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
@@ -49,7 +51,7 @@ class App extends Component {
                             <div className="text-container">
                               <h6>{movie.title}</h6>
                               <p>{movie.release_date}</p>
-                              <div style={{ width: "15%" , position:"absolute", top: "410px"}}>
+                              <div style={{ width: "15%" , position:"absolute", top: "445px"}}>
                                 <CircularProgressbar
                                   value={movie.vote_average}
                                   maxValue={10}
@@ -72,26 +74,6 @@ class App extends Component {
                       </a>
                     </div>
                 )}
-              </div>
-            </div>
-          </div>
-
-          <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered" role="document">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                  ...
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" className="btn btn-primary">Save changes</button>
-                </div>
               </div>
             </div>
           </div>
