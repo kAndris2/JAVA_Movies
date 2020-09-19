@@ -9,25 +9,24 @@ class App extends Component {
     isLoading: true,
     movies: [],
     image_pre: "https://image.tmdb.org/t/p/w500",
-    test: []
   };
 
   async componentDidMount() {
     const response = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=04a30d5152c77afe4a81783d17e20316&language=hu-HU&page=1&region=HU');
     const movie = await response.json();
 
-    const resp = await fetch('/api/users');
-    const user = await  resp.json();
+    /*const resp = await fetch('/api/users');
+    const user = await  resp.json();*/
 
     /*let movies = [...this.state.movies];
     movies.push(movie);
 
     this.setState({ movies });*/
-    this.setState({movies: movie.results,test: user, isLoading: false });
+    this.setState({movies: movie.results, isLoading: false });
   }
 
   render() {
-    const {movies, isLoading, image_pre,test} = this.state;
+    const {movies, isLoading, image_pre} = this.state;
 
     if (isLoading) {
       return <p>Loading...</p>;
@@ -66,7 +65,6 @@ class App extends Component {
                                     backgroundColor: '#0A1D34',
                                   })}
                                 />
-                                {console.log(test)}
                               </div>
                             </div>
                           </div>
