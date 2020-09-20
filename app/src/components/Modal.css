@@ -1,0 +1,10 @@
+.my-modal {
+    width: 1280px !important;/* Occupy the 90% of the screen width */
+    max-width: 1280px !important;
+    top: 20%;
+    margin:0;
+}
+.my-modal #modal-body{
+    padding:0;
+    height: 720px;
+}
