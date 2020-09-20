@@ -1,22 +1,31 @@
-import React, { Component } from "react";
+import React, {Component, useState} from "react";
 import moment from "moment";
 import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
 import '../cards.css';
 import {faCircle, faPlus} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ReactPlayer from "react-player";
+import * as ReactBootstrap from "react-bootstrap";
+import './Modal.css';
+
 
 class MovieDetail extends Component {
     state = {
         isLoading: true,
+        showHide : false,
+
         image_post: "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces",
         image_pre: "https://image.tmdb.org/t/p/w500",
+        video_pre: "https://youtube.com/watch?v=",
 
         genres: [],
         companies: [],
         movie: [],
 
         credits:[],
-        certificates: []
+        certificates: [],
+
+        videos:[]
     };
 
     async componentDidMount() {
@@ -24,7 +33,7 @@ class MovieDetail extends Component {
         const response = await fetch('https://api.themoviedb.org/3/movie/'+ this.props.movie_id +'?api_key=04a30d5152c77afe4a81783d17e20316&language=hu-HU');
         const movie = await response.json();
 
-        //main characters and accors
+        //main characters and actors
         const cresp = await fetch('https://api.themoviedb.org/3/movie/'+ this.props.movie_id +'/credits?api_key=04a30d5152c77afe4a81783d17e20316');
         const creds = await cresp.json();
 
@@ -32,7 +41,11 @@ class MovieDetail extends Component {
         const certification = await fetch('https://api.themoviedb.org/3/movie/'+ this.props.movie_id +'/release_dates?api_key=04a30d5152c77afe4a81783d17e20316');
         const cert = await certification.json();
 
-        this.setState({movie: movie, genres:movie.genres, companies: movie.production_companies,credits:creds.cast, certificates:cert.results ,isLoading: false });
+        //Movie videos, trailers
+        const trailers = await fetch('https://api.themoviedb.org/3/movie/'+ this.props.movie_id +'/videos?api_key=04a30d5152c77afe4a81783d17e20316&language=hu-HU');
+        const vids = await trailers.json();
+
+        this.setState({movie: movie, genres:movie.genres, companies: movie.production_companies,credits:creds.cast, certificates:cert.results ,isLoading: false ,videos:vids.results});
     }
 
     minutesToHours(num)
@@ -42,8 +55,11 @@ class MovieDetail extends Component {
         return hours + "h " + minutes +"m";
     }
 
+    handleModalShowHide() {
+        this.setState({ showHide: !this.state.showHide })
+    }
     render() {
-        const {movie, genres, companies, isLoading, image_pre,image_post,credits, certificates} = this.state;
+        const {movie, genres, companies, isLoading, image_pre,image_post,credits, certificates, showHide,videos, video_pre} = this.state;
 
         if (isLoading) {
             return <p>Loading...</p>;
@@ -61,11 +77,6 @@ class MovieDetail extends Component {
                                             <div className="image-box">
                                                 <img style={{position: "relative"}} src={image_pre + movie.poster_path} alt="" />
                                             </div>
-                                           {/* <div className="text-container">
-                                                <h6>{movie.title}</h6>
-                                                <p className="text-muted">{moment(movie.release_date).format("MMM D, YYYY")}</p>
-
-                                            </div>*/}
                                         </div>
                                     </div>
                                 </div>
@@ -107,6 +118,9 @@ class MovieDetail extends Component {
 
                                     <div>
                                         <h3>Overview</h3>
+                                        <button className="btn btn-primary" onClick={() => this.handleModalShowHide()}>
+                                            Launch Trailer
+                                        </button>
                                         <p>
                                             {movie.overview}
                                         </p>
@@ -114,6 +128,21 @@ class MovieDetail extends Component {
                                 </div>
                             </div>
                         </div>
+
+                        <ReactBootstrap.Modal show={showHide} dialogClassName={"my-modal"}>
+                            {/*<ReactBootstrap.Modal.Header closeButton>
+                                <ReactBootstrap.Modal.Title>Trailer</ReactBootstrap.Modal.Title>
+                            </ReactBootstrap.Modal.Header>*/}
+                            <ReactBootstrap.Modal.Body id="modal-body">
+                                <ReactPlayer controls="true" width="1280px" height="720px" url={video_pre + videos[0].key} />
+                            </ReactBootstrap.Modal.Body>
+                            <ReactBootstrap.Modal.Footer>
+                                <button className="btn btn-secondary" onClick={() => this.handleModalShowHide()}>
+                                    Close
+                                </button>
+                            </ReactBootstrap.Modal.Footer>
+                        </ReactBootstrap.Modal>
+
                     </div>
                 </div>
                 <div className="container" style={{maxWidth: "1300px", padding: "30px 40px"}}>
@@ -121,8 +150,9 @@ class MovieDetail extends Component {
                         <h4>Top Billed Cast</h4>
                         <div id="cards_landscape_wrap-2">
                             <div className="container" style={{maxWidth:"1300px", paddingLeft: "40px", paddingRight: "40px", paddingTop: "30px", paddingBottom: "30px"}}>
-                                <div className="row">
-                                    {credits.map(credit =>
+                                <div className="row flex-row flex-nowrap">
+                                    {credits.map((credit, index) =>
+                                        index < 6 ?
                                         <div key={credit.id} className="col-xs-3 col-sm-3 col-md-3 col-lg-2">
                                             <div className="card-flyer">
                                                 <div className="text-box">
@@ -135,7 +165,7 @@ class MovieDetail extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> : ""
                                     )}
                                 </div>
                             </div>
