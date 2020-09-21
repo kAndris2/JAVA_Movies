@@ -13,6 +13,7 @@ import {
 
 import Main from "./components/Main";
 import ActorsProfile from "./components/ActorsProfile";
+import Registration from "./components/auth/Registration";
 
 class App extends Component {
   state = {
@@ -51,6 +52,10 @@ class App extends Component {
                     movies={movies}
                     image_pre={image_pre}>
                 </Main>
+              </Route>
+
+              <Route exact path={"/register"}>
+                <Registration></Registration>
               </Route>
 
               <Route exact path={"/movie/"+this.getId()}>
