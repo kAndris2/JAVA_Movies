@@ -25,15 +25,12 @@ public class UserService {
 
     public void deleteUser(Integer userId) throws SQLException {
         idao.getUsers().remove(
-                getUserById(userId)
+                idao.getUserById(userId)
         );
         uds.deleteUser(userId);
     }
 
-    UserModel getUserById(Integer id) {
-        return idao.getUsers().stream()
-                .filter(p -> id.equals(p.getId()))
-                .findAny()
-                .orElse(null);
+    public UserModel getUserById(Integer id) {
+        return idao.getUserById(id);
     }
 }

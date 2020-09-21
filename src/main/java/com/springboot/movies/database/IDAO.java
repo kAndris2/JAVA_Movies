@@ -18,14 +18,16 @@ public final class IDAO {
     final public String WATCHLIST_TABLE = "watchlists";
     final public String FAVORITE_TABLE = "favorites";
     final public String FRIEND_TABLE = "friends";
+    final public String FRIEND_REQUEST_TABLE = "friend_requests";
     final public String RATING_TABLE = "ratings";
 
     List<UserModel> users = new ArrayList<>();
     List<ImageModel> pictures = new ArrayList<>();
     List<WatchModel> watchList = new ArrayList<>();
     List<FavoriteModel> favorites = new ArrayList<>();
-    List<UserModel> friendList = new ArrayList<>();
-    List<RateModel> ratings = new ArrayList<>();
+    List<FriendsModel> friendList = new ArrayList<>();
+    List<FriendRequestModel> friendRequests = new ArrayList<>();
+    List<RatingModel> ratings = new ArrayList<>();
 
     public IDAO() throws SQLException {
         loadFiles();
@@ -42,23 +44,12 @@ public final class IDAO {
     public List<ImageModel> getPictures() { return pictures; }
     public List<WatchModel> getWatchList()  { return watchList; }
     public List<FavoriteModel> getFavorites() { return favorites; }
-    public List<UserModel> getFriendList() { return friendList; }
-    public List<RateModel> getRatings() { return ratings; }
-
-    //-Profile Methods--------------------------------------------------------------------------------------------------
-    //-Watchlist Methods------------------------------------------------------------------------------------------------
-    //-Favorites Methods------------------------------------------------------------------------------------------------
-    //-Friendlist Methods-----------------------------------------------------------------------------------------------
-    public void addToFriendList(UserModel profile) { friendList.add(profile); }
-    public void removeFromFriendList(UserModel user) { friendList.remove(user); }
-    public void resetFriendList() { friendList.clear(); }
-
-    //-Rating Methods---------------------------------------------------------------------------------------------------
-    public void addToRatings(RateModel rate) { ratings.add(rate); }
-    public void removeFromRatings(RateModel rate) { ratings.remove(rate); }
-    public void resetRatings() { ratings.clear(); }
+    public List<FriendsModel> getFriendList() { return friendList; }
+    public List<FriendRequestModel> getFriendRequests() { return friendRequests; }
+    public List<RatingModel> getRatings() { return ratings; }
 
     //-Picture Methods--------------------------------------------------------------------------------------------------
+    /*
     public void addToPictures(ImageModel image) { pictures.add(image); }
     public void removeFromPictures(ImageModel image) { pictures.remove(image); }
     public void resetPictures() { pictures.clear(); }
@@ -66,6 +57,14 @@ public final class IDAO {
         if (pictures.size() >= 1)
             return pictures.get(pictures.size() - 1);
         throw new IllegalAccessException();
+    }
+     */
+
+    public UserModel getUserById(Integer id) {
+        return getUsers().stream()
+                .filter(p -> id.equals(p.getId()))
+                .findAny()
+                .orElse(null);
     }
 
     void loadFiles() throws SQLException {
@@ -85,6 +84,88 @@ public final class IDAO {
                                         rs.getString(4),
                                         rs.getString(5),
                                         rs.getLong(3)
+                                )
+                        );
+                    }
+                }
+            }
+            //-GET RATINGS
+            sqlstr = String.format("SELECT * FROM %s", RATING_TABLE);
+            try (PreparedStatement pst = con.prepareStatement(sqlstr)) {
+                try (ResultSet rs = pst.executeQuery()) {
+
+                    while (rs.next()) {
+                        ratings.add(
+                            new RatingModel(
+                                    rs.getInt(1),
+                                    rs.getInt(2),
+                                    rs.getInt(3),
+                                    rs.getInt(4),
+                                    rs.getLong(5)
+                            )
+                        );
+                    }
+                }
+            }
+            //-GET WATCHLISTS
+            sqlstr = String.format("SELECT * FROM %s", WATCHLIST_TABLE);
+            try (PreparedStatement pst = con.prepareStatement(sqlstr)) {
+                try (ResultSet rs = pst.executeQuery()) {
+
+                    while (rs.next()) {
+                        watchList.add(
+                                new WatchModel(
+                                        rs.getInt(1),
+                                        rs.getInt(2),
+                                        rs.getInt(3)
+                                )
+                        );
+                    }
+                }
+            }
+            //-GET FAVORITES
+            sqlstr = String.format("SELECT * FROM %s", FAVORITE_TABLE);
+            try (PreparedStatement pst = con.prepareStatement(sqlstr)) {
+                try (ResultSet rs = pst.executeQuery()) {
+
+                    while (rs.next()) {
+                        favorites.add(
+                                new FavoriteModel(
+                                        rs.getInt(1),
+                                        rs.getInt(2),
+                                        rs.getInt(3)
+                                )
+                        );
+                    }
+                }
+            }
+            //-GET FRIENDS
+            sqlstr = String.format("SELECT * FROM %s", FRIEND_TABLE);
+            try (PreparedStatement pst = con.prepareStatement(sqlstr)) {
+                try (ResultSet rs = pst.executeQuery()) {
+
+                    while (rs.next()) {
+                        friendList.add(
+                                new FriendsModel(
+                                        rs.getInt(1),
+                                        rs.getInt(2),
+                                        rs.getInt(3)
+                                )
+                        );
+                    }
+                }
+            }
+            //-GET FRIEND-REQUESTS
+            sqlstr = String.format("SELECT * FROM %s", FRIEND_REQUEST_TABLE);
+            try (PreparedStatement pst = con.prepareStatement(sqlstr)) {
+                try (ResultSet rs = pst.executeQuery()) {
+
+                    while (rs.next()) {
+                        friendRequests.add(
+                                new FriendRequestModel(
+                                        rs.getInt(1),
+                                        rs.getInt(2),
+                                        rs.getInt(3)
                                 )
                         );
                     }

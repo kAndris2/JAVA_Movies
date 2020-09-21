@@ -19,7 +19,7 @@ public class WatchController {
     }
 
     @GetMapping("watchlist/{userId}")
-    List<WatchModel> getUsers(@PathVariable(value = "userId") Integer userId) {
+    List<WatchModel> getWatchlist(@PathVariable(value = "userId") Integer userId) {
         return ws.getUserWatchList(userId);
     }
 

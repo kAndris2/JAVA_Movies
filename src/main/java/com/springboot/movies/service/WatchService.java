@@ -16,8 +16,6 @@ public class WatchService {
     public WatchService() throws SQLException {
     }
 
-    public List<WatchModel> getWatchList() { return idao.getWatchList(); }
-
     WatchModel getWatchById(Integer id) {
         return idao.getWatchList().stream()
                 .filter(w -> id.equals(w.getId()))
@@ -41,9 +39,9 @@ public class WatchService {
         );
     }
 
-    public void removeWatch(Integer pid, Integer mid) throws SQLException {
-        for (WatchModel watch : getWatchList()) {
-            if (pid.equals(watch.getProfile_id()) && mid.equals(watch.getMovie_id())) {
+    public void removeWatch(Integer uid, Integer mid) throws SQLException {
+        for (WatchModel watch : idao.getWatchList()) {
+            if (uid.equals(watch.getUserId()) && mid.equals(watch.getMovieId())) {
                 wds.removeWatchFromDb(watch.getId());
                 idao.getWatchList().remove(watch);
                 break;
@@ -51,9 +49,9 @@ public class WatchService {
         }
     }
 
-    public void resetWatchList(Integer pid) throws SQLException {
-        for (WatchModel watch : getWatchList()) {
-            if (pid.equals(watch.getProfile_id())) {
+    public void resetWatchList(Integer uid) throws SQLException {
+        for (WatchModel watch : idao.getWatchList()) {
+            if (uid.equals(watch.getUserId())) {
                 wds.removeWatchFromDb(watch.getId());
                 idao.getWatchList().remove(watch);
             }

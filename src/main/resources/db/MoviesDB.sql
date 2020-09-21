@@ -46,6 +46,13 @@ CREATE TABLE public.friends
     user_id_2 int not null
 );
 
+CREATE TABLE public.friend_requests
+(
+    id serial not null,
+    user_from int not null,
+    user_to int not null
+);
+
 --ADD PRIMARY KEY...........................................................................................
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
@@ -65,6 +72,9 @@ ALTER TABLE ONLY public.favorites
 ALTER TABLE ONLY public.friends
     ADD CONSTRAINT friends_pkey PRIMARY KEY (id);
 
+ALTER TABLE ONLY public.friend_requests
+    ADD CONSTRAINT friend_requests_pkey PRIMARY KEY (id);
+
 --ADD FOREIGN KEY...........................................................................................
 ALTER TABLE ONLY public.ratings
     ADD CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
@@ -82,3 +92,8 @@ ALTER TABLE ONLY public.friends
     ADD CONSTRAINT user_id_1 FOREIGN KEY (user_id_1) REFERENCES public.users(id) ON DELETE CASCADE;
 ALTER TABLE ONLY public.friends
     ADD CONSTRAINT user_id_2 FOREIGN KEY (user_id_2) REFERENCES public.users(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY public.friend_requests
+    ADD CONSTRAINT user_from FOREIGN KEY (user_from) REFERENCES public.users(id) ON DELETE CASCADE;
+ALTER TABLE ONLY public.friend_requests
+    ADD CONSTRAINT user_to FOREIGN KEY (user_to) REFERENCES public.users(id) ON DELETE CASCADE;

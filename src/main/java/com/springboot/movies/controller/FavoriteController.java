@@ -16,9 +16,9 @@ public class FavoriteController {
 
     public FavoriteController() throws SQLException { }
 
-    @GetMapping("favorites")
-    List<FavoriteModel> getFavorites() {
-        return fs.getFavorites();
+    @GetMapping("favorites/{userId}")
+    List<FavoriteModel> getFavoritesByUserId(@PathVariable(value = "userId") Integer userId) {
+        return fs.getFavoritesByUserId(userId);
     }
 
     @PostMapping("add_favorite")

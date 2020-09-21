@@ -6,6 +6,7 @@ import java.util.List;
 import com.springboot.movies.database.IDAO;
 import com.springboot.movies.model.UserModel;
 import com.springboot.movies.service.UserService;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,11 @@ public class UserController {
     @GetMapping("users")
     List<UserModel> getUsers() {
         return us.getAllUser();
+    }
+
+    @GetMapping("user/{userId}")
+    UserModel getUser(@PathVariable(value = "userId") Integer userId) {
+        return us.getUserById(userId);
     }
 
     @PostMapping("add_user")

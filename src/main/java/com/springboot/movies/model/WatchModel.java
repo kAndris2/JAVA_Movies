@@ -2,16 +2,16 @@ package com.springboot.movies.model;
 
 public class WatchModel {
     Integer id;
-    Integer profile_id;
-    Integer movie_id;
+    Integer userId;
+    Integer movieId;
 
-    public WatchModel(Integer id, Integer pid, Integer mid) {
+    public WatchModel(Integer id, Integer uid, Integer mid) {
         this.id = id;
-        this.profile_id = pid;
-        this.movie_id = mid;
+        this.userId = uid;
+        this.movieId = mid;
     }
 
     public Integer getId() { return id; }
-    public Integer getProfile_id() { return profile_id; }
-    public Integer getMovie_id() { return movie_id; }
+    public Integer getUserId() { return userId; }
+    public Integer getMovieId() { return movieId; }
 }
