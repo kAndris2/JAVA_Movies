@@ -1,8 +1,8 @@
-import React, {Component, useState} from "react";
+import React, {Component} from "react";
 import moment from "moment";
 import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
 import '../cards.css';
-import {faCircle, faPlus} from "@fortawesome/free-solid-svg-icons";
+import {faCircle, faPlus, faTimes} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPlayer from "react-player";
 import * as ReactBootstrap from "react-bootstrap";
@@ -130,17 +130,19 @@ class MovieDetail extends Component {
                         </div>
 
                         <ReactBootstrap.Modal show={showHide} dialogClassName={"my-modal"}>
-                            {/*<ReactBootstrap.Modal.Header closeButton>
-                                <ReactBootstrap.Modal.Title>Trailer</ReactBootstrap.Modal.Title>
-                            </ReactBootstrap.Modal.Header>*/}
+                            <ReactBootstrap.Modal.Header id="modal-header">
+                                <div className="text-right">
+                                    <button className="close-button" onClick={() => this.handleModalShowHide()}>
+                                        <FontAwesomeIcon icon={faTimes} style={{color:"#fff"}} size="lg"/>
+                                    </button>
+                                </div>
+                            </ReactBootstrap.Modal.Header>
                             <ReactBootstrap.Modal.Body id="modal-body">
                                 <ReactPlayer controls="true" width="1280px" height="720px" url={video_pre + videos[0].key} />
                             </ReactBootstrap.Modal.Body>
-                            <ReactBootstrap.Modal.Footer>
-                                <button className="btn btn-secondary" onClick={() => this.handleModalShowHide()}>
-                                    Close
-                                </button>
-                            </ReactBootstrap.Modal.Footer>
+                            {/*<ReactBootstrap.Modal.Footer>
+
+                            </ReactBootstrap.Modal.Footer>*/}
                         </ReactBootstrap.Modal>
 
                     </div>
@@ -154,17 +156,19 @@ class MovieDetail extends Component {
                                     {credits.map((credit, index) =>
                                         index < 6 ?
                                         <div key={credit.id} className="col-xs-3 col-sm-3 col-md-3 col-lg-2">
-                                            <div className="card-flyer">
-                                                <div className="text-box">
-                                                    <div className="image-box">
-                                                        <img src={image_pre + credit.profile_path} alt="" />
-                                                    </div>
-                                                    <div className="text-container">
-                                                        <h6>{credit.name}</h6>
-                                                        <p className="text-muted">{credit.character}</p>
+                                            <a href={"/person/"+credit.id}>
+                                                <div className="card-flyer">
+                                                    <div className="text-box">
+                                                        <div className="image-box">
+                                                            <img src={image_pre + credit.profile_path} alt="" />
+                                                        </div>
+                                                        <div className="text-container">
+                                                            <h6>{credit.name}</h6>
+                                                            <p className="text-muted">{credit.character}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div> : ""
                                     )}
                                 </div>

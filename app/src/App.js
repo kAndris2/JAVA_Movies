@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 
 import Main from "./components/Main";
+import ActorsProfile from "./components/ActorsProfile";
 
 class App extends Component {
   state = {
@@ -58,6 +59,11 @@ class App extends Component {
                 </MovieDetail>
               </Route>
 
+              <Route exact path={"/person/"+this.getId()}>
+                <ActorsProfile
+                    person_id={this.getId()}>
+                </ActorsProfile>
+              </Route>
             </Switch>
           </Router>
 
