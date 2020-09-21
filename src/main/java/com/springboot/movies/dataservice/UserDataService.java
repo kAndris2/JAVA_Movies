@@ -7,8 +7,6 @@ import com.springboot.movies.service.UserService;
 import java.sql.*;
 
 public class UserDataService {
-
-    final String TABLE = "users";
     IDAO idao;
 
     public UserDataService(IDAO idao) throws SQLException {
@@ -22,7 +20,7 @@ public class UserDataService {
                         "(name, email, password, registration_date) " +
                         "VALUES " +
                         "(?, ?, ?, ?) " +
-                        "RETURNING id", TABLE);
+                        "RETURNING id", idao.USER_TABLE);
         try (Connection con = DriverManager.getConnection(idao.URL, idao.USER, idao.PASSWORD);
              PreparedStatement pst = con.prepareStatement(sqlstr)) {
             pst.setString(1, user.getName());
@@ -47,7 +45,7 @@ public class UserDataService {
     }
 
     public void deleteUser(Integer userId) throws SQLException {
-        String sqlstr = String.format("DELETE FROM %s WHERE id = %d", TABLE, userId);
+        String sqlstr = String.format("DELETE FROM %s WHERE id = %d", idao.USER_TABLE, userId);
         try (Connection con = DriverManager.getConnection(idao.URL, idao.USER, idao.PASSWORD);
              PreparedStatement pst = con.prepareStatement(sqlstr)) {
             pst.executeQuery();

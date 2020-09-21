@@ -1,9 +1,6 @@
 package com.springboot.movies.database;
 
-import com.springboot.movies.model.ImageModel;
-import com.springboot.movies.model.UserModel;
-import com.springboot.movies.model.RateModel;
-import com.springboot.movies.model.WatchModel;
+import com.springboot.movies.model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -26,7 +23,7 @@ public final class IDAO {
     List<UserModel> users = new ArrayList<>();
     List<ImageModel> pictures = new ArrayList<>();
     List<WatchModel> watchList = new ArrayList<>();
-    List<Integer> favorites = new ArrayList<>();
+    List<FavoriteModel> favorites = new ArrayList<>();
     List<UserModel> friendList = new ArrayList<>();
     List<RateModel> ratings = new ArrayList<>();
 
@@ -44,17 +41,13 @@ public final class IDAO {
     public List<UserModel> getUsers() { return users; }
     public List<ImageModel> getPictures() { return pictures; }
     public List<WatchModel> getWatchList()  { return watchList; }
-    public List<Integer> getFavorites() { return favorites; }
+    public List<FavoriteModel> getFavorites() { return favorites; }
     public List<UserModel> getFriendList() { return friendList; }
     public List<RateModel> getRatings() { return ratings; }
 
     //-Profile Methods--------------------------------------------------------------------------------------------------
     //-Watchlist Methods------------------------------------------------------------------------------------------------
     //-Favorites Methods------------------------------------------------------------------------------------------------
-    public void addToFavorites(Integer movieID) { favorites.add(movieID); }
-    public void removeFromFavorites(Integer movieID) { favorites.remove(movieID); }
-    public void resetFavorites() { favorites.clear(); }
-
     //-Friendlist Methods-----------------------------------------------------------------------------------------------
     public void addToFriendList(UserModel profile) { friendList.add(profile); }
     public void removeFromFriendList(UserModel user) { friendList.remove(user); }

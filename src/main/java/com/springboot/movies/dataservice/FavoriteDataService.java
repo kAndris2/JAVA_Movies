@@ -1,28 +1,28 @@
 package com.springboot.movies.dataservice;
 
 import com.springboot.movies.database.IDAO;
-import com.springboot.movies.model.WatchModel;
+import com.springboot.movies.model.FavoriteModel;
 
 import java.sql.*;
 
-public class WatchDataService {
+public class FavoriteDataService {
     IDAO idao;
 
-    public WatchDataService(IDAO idao) throws SQLException {
+    public FavoriteDataService(IDAO idao) {
         this.idao = idao;
     }
 
-    public WatchModel createWatch(Integer pid, Integer mid) throws SQLException {
+    public FavoriteModel createFavorite(FavoriteModel favorite) throws SQLException {
         int id = -1;
         String sqlstr = String.format("INSERT INTO %s " +
-                "(profile_id, movie_id) " +
+                "(user_id, movie_id) " +
                 "VALUES " +
                 "(?, ?) " +
-                "RETURNING id", idao.WATCHLIST_TABLE);
+                "RETURNING id", idao.FAVORITE_TABLE);
         try (Connection con = DriverManager.getConnection(idao.URL, idao.USER, idao.PASSWORD);
              PreparedStatement pst = con.prepareStatement(sqlstr)) {
-            pst.setInt(1, pid);
-            pst.setInt(2, mid);
+            pst.setInt(1, favorite.getUserId());
+            pst.setInt(2, favorite.getMovieId());
             //
             try (ResultSet rs = pst.executeQuery()) {
                 while (rs.next()) {
@@ -30,11 +30,16 @@ public class WatchDataService {
                 }
             }
         }
-        return new WatchModel(id, pid, mid);
+        return
+                new FavoriteModel(
+                        id,
+                        favorite.getUserId(),
+                        favorite.getMovieId()
+                );
     }
 
-    public void removeWatchFromDb(Integer wid) throws SQLException {
-        String sqlstr = String.format("DELETE FROM %s WHERE id = %d", idao.WATCHLIST_TABLE, wid);
+    public void removeFavoriteFromDb(Integer fid) throws SQLException {
+        String sqlstr = String.format("DELETE FROM %s WHERE id = %d", idao.FAVORITE_TABLE, fid);
         try (Connection con = DriverManager.getConnection(idao.URL, idao.USER, idao.PASSWORD);
              PreparedStatement pst = con.prepareStatement(sqlstr)) {
             pst.executeQuery();
