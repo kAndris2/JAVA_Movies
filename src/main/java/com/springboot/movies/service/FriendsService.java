@@ -18,15 +18,22 @@ public class FriendsService {
     public FriendsService() throws SQLException {
     }
 
-    //Akkor is dobja vissza ha ban ilyen request!!!!!!!!
     public Boolean validateRequest(Integer from, Integer to) throws SQLException {
         List<UserModel> friends = getFriendsOfUser(from);
 
-        if (!friends.contains(idao.getUserById(to))) {
+        if (!friends.contains(idao.getUserById(to)) || !IsAnExistRequest(from, to)) {
             idao.getFriendRequests().add(
                     fds.createFriendRequest(from, to)
             );
             return true;
+        }
+        return false;
+    }
+
+    Boolean IsAnExistRequest(Integer uid1, Integer uid2) {
+        for (FriendRequestModel request : idao.getFriendRequests()) {
+            if (request.getUsers().contains(uid1) && request.getUsers().contains(uid2))
+                return true;
         }
         return false;
     }
@@ -69,6 +76,23 @@ public class FriendsService {
 
         fds.removeFriendRequestFromDb(frm.getId());
         idao.getFriendRequests().remove(frm);
+    }
+
+    public List<UserModel> getFriendRequests(Integer uid) {
+        List<UserModel> users = new ArrayList<>();
+
+        for (FriendRequestModel request : idao.getFriendRequests()) {
+            if (request.getUsers().contains(uid)) {
+                int id = request.getUsers().stream()
+                        .filter(u -> u != uid)
+                        .findFirst()
+                        .orElse(null);
+                users.add(
+                        idao.getUserById(id)
+                );
+            }
+        }
+        return users;
     }
 
     FriendRequestModel getFriendRequestByUsers(Integer who, Integer whose) {

@@ -19,4 +19,10 @@ public class FriendRequestModel {
     public Integer getFrom() { return from; }
 
     public Integer getTo() { return to; }
+
+    public List<Integer> getUsers() {
+        return Arrays.asList(
+                new Integer[] { from, to }
+        );
+    }
 }

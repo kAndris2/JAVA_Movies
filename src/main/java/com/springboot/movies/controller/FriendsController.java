@@ -27,6 +27,11 @@ public class FriendsController {
         return fs.getFriendsOfUser(userId);
     }
 
+    @GetMapping("friend_requests/{userId}")
+    List<UserModel> getFriendRequests(@PathVariable(value = "userId") Integer userId) {
+        return fs.getFriendRequests(userId);
+    }
+
     @PutMapping("accept_friend_request/{who}/{whose}")
     void acceptFriendRequest(@PathVariable(value = "who") Integer who, @PathVariable(value = "whose") Integer whose) throws SQLException {
         fs.acceptFriendRequest(who, whose);
