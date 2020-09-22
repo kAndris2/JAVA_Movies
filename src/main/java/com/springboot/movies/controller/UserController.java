@@ -21,6 +21,7 @@ public class UserController {
 
     @GetMapping("users")
     List<UserModel> getUsers() {
+        System.out.println("asd");
         return us.getAllUser();
     }
 
