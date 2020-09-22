@@ -30,4 +30,9 @@ public class FavoriteController {
     void deleteFavorite(@PathVariable(value = "userId") Integer userId, @PathVariable(value = "movieId") Integer movieId) throws SQLException {
         fs.deleteFavorite(userId, movieId);
     }
+
+    @DeleteMapping("reset_favorites/{userId}")
+    void resetFavorites(@PathVariable(value = "userId") Integer userId) throws SQLException {
+        fs.resetFavorites(userId);
+    }
 }

@@ -32,10 +32,7 @@ public class AccountService {
                     register(newUser)
             );
 
-            login(
-                    newUser.getEmail(),
-                    newUser.getPassword()
-            );
+            login(newUser);
         }
 
         return aem;
@@ -47,23 +44,23 @@ public class AccountService {
         return registeredUser;
     }
 
-    public AccountErrorModel login(String email, String password) {
+    public AccountErrorModel login(UserModel user) {
         AccountErrorModel aem = new AccountErrorModel();
-        UserModel loginUser = us.getUserByEmail(email);
+        UserModel loginUser = us.getUserByEmail(user.getEmail());
 
         if (loginUser != null) {
-            if (loginUser.getPassword().equals(password)) {
+            if (loginUser.getPassword().equals(user.getPassword())) {
                 aem.setUser(loginUser);
                 //cookie
             }
             else {
                 aem.setState(false);
-                aem.setPasswordError("Invalid password: " + password);
+                aem.setPasswordError("Invalid password: " + user.getPassword());
             }
         }
         else {
             aem.setState(false);
-            aem.setEmailError("Invalid e-mail address: " + email);
+            aem.setEmailError("Invalid e-mail address: " + user.getEmail());
         }
 
         return aem;

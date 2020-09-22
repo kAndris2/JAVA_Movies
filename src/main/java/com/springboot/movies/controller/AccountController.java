@@ -21,4 +21,14 @@ public class AccountController {
     AccountErrorModel register(@RequestBody UserModel user) throws SQLException {
         return as.validateUser(user);
     }
+
+    @PostMapping("login")
+    AccountErrorModel login(@RequestBody UserModel user) throws SQLException {
+        return as.login(user);
+    }
+
+    @GetMapping("logout")
+    Boolean logout() {
+        return true;
+    }
 }

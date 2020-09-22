@@ -35,12 +35,7 @@ public class UserService {
         return idao.getUserById(id);
     }
 
-    public UserModel findUser(String email, String password) {
-        UserModel user = getUserByEmail(email);
-        return user.getPassword() == password ? user : null;
-    }
-
-    UserModel getUserByEmail(String email) {
+    public UserModel getUserByEmail(String email) {
         return idao.getUsers().stream()
                 .filter(p -> email.equals(p.getEmail()))
                 .findAny()
