@@ -17,6 +17,12 @@ public class UserService {
 
     public List<UserModel> getAllUser() { return idao.getUsers(); }
 
+    public void addUser(UserModel user) throws SQLException {
+        idao.getUsers().add(
+                uds.createUser(user)
+        );
+    }
+
     public void deleteUser(Integer userId) throws SQLException {
         idao.getUsers().remove(
                 idao.getUserById(userId)
