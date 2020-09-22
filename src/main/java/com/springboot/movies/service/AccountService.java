@@ -1,18 +1,14 @@
 package com.springboot.movies.service;
 
 import com.springboot.movies.database.IDAO;
-import com.springboot.movies.dataservice.UserDataService;
 import com.springboot.movies.model.AccountErrorModel;
 import com.springboot.movies.model.UserModel;
-
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AccountService {
     IDAO idao = IDAO.getInstance();
 
-    UserDataService uds = new UserDataService(idao);
+    UserService us = new UserService();
 
     public AccountService() throws SQLException {
     }
@@ -23,7 +19,7 @@ public class AccountService {
         for (UserModel user : idao.getUsers()) {
             if (user.getEmail().equals(newUser.getEmail())) {
                 aem.setState(false);
-                aem.setEmailError("There is an account with that email address: " + newUser.getEmail());
+                aem.setEmailError("There is an account with that e-mail address: " + newUser.getEmail());
             }
             if (user.getName().equals(newUser.getName())) {
                 aem.setState(false);
@@ -32,16 +28,44 @@ public class AccountService {
         }
 
         if (aem.getState()) {
-            register(newUser);
-            //await
+            aem.setUser(
+                    register(newUser)
+            );
+
+            login(
+                    newUser.getEmail(),
+                    newUser.getPassword()
+            );
         }
 
         return aem;
     }
 
-    void register(UserModel user) throws SQLException {
-        idao.getUsers().add(
-                uds.createUser(user)
-        );
+    UserModel register(UserModel user) throws SQLException {
+        UserModel registeredUser = us.getUds().createUser(user);
+        idao.getUsers().add(registeredUser);
+        return registeredUser;
+    }
+
+    public AccountErrorModel login(String email, String password) {
+        AccountErrorModel aem = new AccountErrorModel();
+        UserModel loginUser = us.getUserByEmail(email);
+
+        if (loginUser != null) {
+            if (loginUser.getPassword().equals(password)) {
+                aem.setUser(loginUser);
+                //cookie
+            }
+            else {
+                aem.setState(false);
+                aem.setPasswordError("Invalid password: " + password);
+            }
+        }
+        else {
+            aem.setState(false);
+            aem.setEmailError("Invalid e-mail address: " + email);
+        }
+
+        return aem;
     }
 }
