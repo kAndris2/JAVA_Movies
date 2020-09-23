@@ -4,18 +4,22 @@ import java.util.Date;
 
 public class ImageModel {
     private Integer id;
-    private Date uploadDate;
+    private Long uploadDate;
     private String route;
+    private Integer userId;
 
-    public ImageModel(Integer id, Date date, String route) {
+    public ImageModel(Integer id, Long date, String route, Integer userId) {
         this.id = id;
         this.uploadDate = date;
         this.route = route;
+        this.userId = userId;
     }
 
     public Integer getId() { return this.id; }
 
-    public Date getUploadDate() { return this.uploadDate; }
+    public Long getUploadDate() { return this.uploadDate; }
 
     public String getRoute() { return this.route; }
+
+    public Integer getUserId() { return this.userId; }
 }
