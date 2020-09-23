@@ -3,6 +3,9 @@ package com.springboot.movies.service;
 import com.springboot.movies.database.IDAO;
 import com.springboot.movies.model.AccountErrorModel;
 import com.springboot.movies.model.UserModel;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
 public class AccountService {
@@ -13,7 +16,7 @@ public class AccountService {
     public AccountService() throws SQLException {
     }
 
-    public AccountErrorModel validateUser(UserModel newUser) throws SQLException {
+    public AccountErrorModel validateUser(UserModel newUser, HttpServletResponse response) throws SQLException {
         AccountErrorModel aem = new AccountErrorModel();
 
         for (UserModel user : idao.getUsers()) {
@@ -32,7 +35,7 @@ public class AccountService {
                     register(newUser)
             );
 
-            login(newUser);
+            login(newUser, response);
         }
 
         return aem;
@@ -44,14 +47,16 @@ public class AccountService {
         return registeredUser;
     }
 
-    public AccountErrorModel login(UserModel user) {
+    public AccountErrorModel login(UserModel user, HttpServletResponse response) {
         AccountErrorModel aem = new AccountErrorModel();
         UserModel loginUser = us.getUserByEmail(user.getEmail());
 
         if (loginUser != null) {
             if (loginUser.getPassword().equals(user.getPassword())) {
                 aem.setUser(loginUser);
-                //cookie
+                response.addCookie(
+                        new Cookie("username", user.getName())
+                );
             }
             else {
                 aem.setState(false);
