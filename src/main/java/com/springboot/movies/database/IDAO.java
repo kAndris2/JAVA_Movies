@@ -48,18 +48,6 @@ public final class IDAO {
     public List<FriendRequestModel> getFriendRequests() { return friendRequests; }
     public List<RatingModel> getRatings() { return ratings; }
 
-    //-Picture Methods--------------------------------------------------------------------------------------------------
-    /*
-    public void addToPictures(ImageModel image) { pictures.add(image); }
-    public void removeFromPictures(ImageModel image) { pictures.remove(image); }
-    public void resetPictures() { pictures.clear(); }
-    public ImageModel getProfileImage() throws IllegalAccessException {
-        if (pictures.size() >= 1)
-            return pictures.get(pictures.size() - 1);
-        throw new IllegalAccessException();
-    }
-     */
-
     public UserModel getUserById(Integer id) {
         return getUsers().stream()
                 .filter(p -> id.equals(p.getId()))
@@ -166,6 +154,23 @@ public final class IDAO {
                                         rs.getInt(1),
                                         rs.getInt(2),
                                         rs.getInt(3)
+                                )
+                        );
+                    }
+                }
+            }
+            //-GET PICTURES
+            sqlstr = String.format("SELECT * FROM %s", PICTURE_TABLE);
+            try (PreparedStatement pst = con.prepareStatement(sqlstr)) {
+                try (ResultSet rs = pst.executeQuery()) {
+
+                    while (rs.next()) {
+                        pictures.add(
+                                new ImageModel(
+                                        rs.getInt(1),
+                                        rs.getLong(2),
+                                        rs.getString(3),
+                                        rs.getInt(4)
                                 )
                         );
                     }

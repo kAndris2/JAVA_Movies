@@ -2,7 +2,6 @@ package com.springboot.movies.dataservice;
 
 import com.springboot.movies.database.IDAO;
 import com.springboot.movies.model.ImageModel;
-import com.springboot.movies.model.UserModel;
 
 import java.sql.*;
 
@@ -35,6 +34,22 @@ public class ImageDataService {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return new ImageModel(id, milis, route);
+        return new ImageModel(id, milis, route, userId);
+    }
+
+    public void removeImageFromDb(Integer iid) throws SQLException {
+        String sqlstr = String.format("DELETE FROM %s WHERE id = %d", idao.PICTURE_TABLE, iid);
+        try (Connection con = DriverManager.getConnection(idao.URL, idao.USER, idao.PASSWORD);
+             PreparedStatement pst = con.prepareStatement(sqlstr)) {
+            pst.executeQuery();
+        }
+    }
+
+    public void resetImages(Integer uid) throws SQLException {
+        String sqlstr = String.format("DELETE FROM %s WHERE user_id = %d", idao.PICTURE_TABLE, uid);
+        try (Connection con = DriverManager.getConnection(idao.URL, idao.USER, idao.PASSWORD);
+             PreparedStatement pst = con.prepareStatement(sqlstr)) {
+            pst.executeQuery();
+        }
     }
 }
