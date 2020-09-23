@@ -1,7 +1,5 @@
 package com.springboot.movies.model;
 
-import java.util.Date;
-
 public class ImageModel {
     private Integer id;
     private Long uploadDate;

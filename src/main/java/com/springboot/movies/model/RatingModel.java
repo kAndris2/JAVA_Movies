@@ -1,7 +1,5 @@
 package com.springboot.movies.model;
 
-import java.util.Date;
-
 public class RatingModel {
     private Integer id;
     private Integer userId;

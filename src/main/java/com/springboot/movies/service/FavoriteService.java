@@ -3,7 +3,6 @@ package com.springboot.movies.service;
 import com.springboot.movies.database.IDAO;
 import com.springboot.movies.dataservice.FavoriteDataService;
 import com.springboot.movies.model.FavoriteModel;
-import com.springboot.movies.model.WatchModel;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
