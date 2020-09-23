@@ -4,6 +4,8 @@ public class AccountErrorModel {
     Boolean state = true;
     String emailError;
     String usernameError;
+    String passwordError;
+    UserModel user = null;
 
     public String getEmailError() {
         return emailError;
@@ -27,5 +29,21 @@ public class AccountErrorModel {
 
     public void setState(Boolean state) {
         this.state = state;
+    }
+
+    public String getPasswordError() {
+        return passwordError;
+    }
+
+    public void setPasswordError(String passwordError) {
+        this.passwordError = passwordError;
+    }
+
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 }

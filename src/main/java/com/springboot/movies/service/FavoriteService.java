@@ -44,11 +44,10 @@ public class FavoriteService {
     }
 
     public void resetFavorites(Integer uid) throws SQLException {
+        fds.resetFavorites(uid);
         for (FavoriteModel favorite : idao.getFavorites()) {
-            if (uid.equals(favorite.getUserId())) {
-                fds.removeFavoriteFromDb(favorite.getId());
+            if (uid.equals(favorite.getUserId()))
                 idao.getFavorites().remove(favorite);
-            }
         }
     }
 }

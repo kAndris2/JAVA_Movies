@@ -16,6 +16,7 @@ public class UserService {
     }
 
     public List<UserModel> getAllUser() { return idao.getUsers(); }
+    public UserDataService getUds() { return uds; }
 
     public void addUser(UserModel user) throws SQLException {
         idao.getUsers().add(
@@ -32,5 +33,12 @@ public class UserService {
 
     public UserModel getUserById(Integer id) {
         return idao.getUserById(id);
+    }
+
+    public UserModel getUserByEmail(String email) {
+        return idao.getUsers().stream()
+                .filter(p -> email.equals(p.getEmail()))
+                .findAny()
+                .orElse(null);
     }
 }

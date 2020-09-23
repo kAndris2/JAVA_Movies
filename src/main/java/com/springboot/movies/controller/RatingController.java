@@ -33,6 +33,6 @@ public class RatingController {
 
     @DeleteMapping("reset_rating/{userId}")
     void resetRating(@PathVariable(value = "userId") Integer userId) throws SQLException {
-        rs.resetRating(userId);
+        rs.resetRatings(userId);
     }
 }
