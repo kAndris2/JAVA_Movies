@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import moment from "moment";
 import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
+import { BrowserRouter as Router, Switch,
+    Route,
+    Link,
+    Redirect
+} from "react-router-dom";
+import Registration from "./auth/Registration";
 
 class Main extends Component {
     render() {
@@ -47,6 +53,7 @@ class Main extends Component {
                         </div>
                     </div>
                 </div>
+
             </React.Fragment>
         );
     }

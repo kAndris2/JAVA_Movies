@@ -3,9 +3,7 @@ import './App.css';
 import 'react-circular-progressbar/dist/styles.css';
 import Navbar from "./components/Navbar";
 import MovieDetail from "./components/MovieDetail";
-import {
-  BrowserRouter as Router,
-  Switch,
+import { BrowserRouter as Router, Switch,
   Route,
   Link,
   Redirect
@@ -14,6 +12,8 @@ import {
 import Main from "./components/Main";
 import ActorsProfile from "./components/ActorsProfile";
 import Registration from "./components/auth/Registration";
+import Login from "./components/auth/Login";
+import axios from "axios";
 
 class App extends Component {
   constructor() {
@@ -28,23 +28,45 @@ class App extends Component {
       user: {}
     }
 
-    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   async componentDidMount() {
     const response = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=04a30d5152c77afe4a81783d17e20316&language=hu-HU&page=1&region=HU');
     const movie = await response.json();
     this.setState({movies: movie.results, isLoading: false });
+    this.checkLoginStatus();
+  }
+
+  checkLoginStatus(){
+    axios.get("http://localhost:3000/api/logged_in", {withCredentials: true})
+        .then(response => {
+          if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN"){
+            this.setState({
+              loggedInStatus: "LOGGED_IN",
+              user: response.data.user
+            })
+          }
+          else if (!response.data.logged_in & this.state.loggedInStatus === "LOGGED_IN"){
+            this.setState({
+              loggedInStatus: "NOT_LOGGED_IN",
+              user: {}
+            })
+          }
+        });
   }
 
   getId(){
     let path = window.location.href;
     let id = String(path).split("/")[4];
     return id;
-  }
+  }l
 
-  handleSuccessfulAuth(data){
-    this.props.history.push("/");
+  handleLogin(data){
+    this.setState({
+      loggedInStatus: "LOGGED_IN",
+      user: data.user
+    })
   }
 
   render() {
@@ -63,19 +85,44 @@ class App extends Component {
 
           <Router>
             <Switch>
-              <Route exact path="/">
-                <Main
-                    movies={movies}
-                    image_pre={image_pre}
-                    logged_in_status={loggedInStatus}
-                >
-                </Main>
+              <Route
+                  exact
+                  path="/"
+                  render={props => (
+                      <Main
+                          {... props}
+                          movies={movies}
+                          image_pre={image_pre}
+                          logged_in_status={loggedInStatus}
+                      />
+
+                  )}>
               </Route>
 
-              <Route exact path={"/register"}>
-                <Registration
-                    handleSuccessfulAuth={this.handleSuccessfulAuth}
-                />
+              <Route
+                  exact
+                  path="/register"
+                  render={props => (
+                      <Registration
+                          {...props}
+                          handleLogin={this.handleLogin}
+                          loggedInStatus={this.state.loggedInStatus}
+                      />
+                  )}
+              >
+              </Route>
+
+              <Route
+                  exact
+                  path="/login"
+                  render={props => (
+                      <Login
+                          {...props}
+                          handleLogin={this.handleLogin}
+                          loggedInStatus={this.state.loggedInStatus}
+                      />
+                  )}
+              >
               </Route>
 
               <Route exact path={"/movie/"+this.getId()}>
