@@ -67,6 +67,7 @@ class MovieDetail extends Component {
 
         return (
             <React.Fragment>
+                <p>{this.props.logged_in_status}</p>
                 <div id="cards_landscape_wrap-2" style={{backgroundImage: `url(${image_post + movie.backdrop_path})`, backgroundPosition: "right -200px top", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
                     <div className="details">
                         <div className="container" style={{maxWidth: "1300px", padding: "30px 40px"}}>

@@ -22,18 +22,19 @@ class Registration extends Component {
         const {
             email,
             password,
-            password_confirm,
             username
         } = this.state;
 
         axios.post("http://localhost:3000/api/add_user", {
-            username: username,
+            name: username,
             email: email,
             password: password
         },
             {withCredentials: true}
         ).then(response => {
-            console.log("reg result", response);
+            if (response.data.status === "created"){
+                this.props.handleSuccessfulAuth(response.data);
+            }
         }).catch( error => {
             console.log("reg error", error);
         })
@@ -49,6 +50,14 @@ class Registration extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        value={this.state.username}
+                        onChange={this.handleChange}
+                        required
+                    />
                     <input
                         type="email"
                         name="email"

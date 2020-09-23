@@ -7,6 +7,7 @@ class Main extends Component {
         return (
             <React.Fragment>
                 <div id="cards_landscape_wrap-2">
+                    <p>{this.props.logged_in_status}</p>
                     <div className="container" style={{maxWidth:"1300px", paddingLeft: "40px", paddingRight: "40px", paddingTop: "30px", paddingBottom: "30px"}}>
                         <div className="row">
                             {this.props.movies.map(movie =>
