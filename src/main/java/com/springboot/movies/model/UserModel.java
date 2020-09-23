@@ -1,25 +1,17 @@
 package com.springboot.movies.model;
 
-import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-/*
-@Entity
-@Table(name = "users")
- */
 public class UserModel {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String email;
     private String password;
     private Long registrationDate;
+    private Boolean isLoggedIn = false;
 
     public UserModel(String name, String email, String password) {
         this.name = name;
@@ -52,5 +44,13 @@ public class UserModel {
         DateFormat simple = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
         Date result = new Date(registrationDate);
         return simple.format(result);
+    }
+
+    public Boolean getLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setLoggedIn(Boolean loggedIn) {
+        isLoggedIn = loggedIn;
     }
 }

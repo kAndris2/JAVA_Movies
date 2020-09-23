@@ -55,8 +55,11 @@ public class AccountService {
             if (loginUser.getPassword().equals(user.getPassword())) {
                 aem.setUser(loginUser);
                 response.addCookie(
-                        new Cookie("username", user.getName())
+                        new Cookie("username", loginUser.getName())
                 );
+                //
+                loginUser.setLoggedIn(true);
+                //
             }
             else {
                 aem.setState(false);
@@ -69,5 +72,9 @@ public class AccountService {
         }
 
         return aem;
+    }
+
+    public void logout(UserModel user, HttpServletResponse response) {
+        user.setLoggedIn(false);
     }
 }

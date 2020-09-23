@@ -28,8 +28,8 @@ public class AccountController {
         return as.login(user, response);
     }
 
-    @GetMapping("logout")
-    Boolean logout() {
-        return true;
+    @PostMapping("logout")
+    void logout(@RequestBody UserModel user, HttpServletResponse response) {
+        as.logout(user, response);
     }
 }
