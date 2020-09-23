@@ -3,10 +3,7 @@ package com.springboot.movies.dataservice;
 import com.springboot.movies.database.IDAO;
 import com.springboot.movies.model.FriendRequestModel;
 import com.springboot.movies.model.FriendsModel;
-import com.springboot.movies.model.UserModel;
-
 import java.sql.*;
-import java.util.List;
 
 public class FriendsDataService {
     IDAO idao;

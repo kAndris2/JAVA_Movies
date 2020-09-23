@@ -3,7 +3,6 @@ package com.springboot.movies.service;
 import com.springboot.movies.database.IDAO;
 import com.springboot.movies.dataservice.ImageDataService;
 import com.springboot.movies.model.ImageModel;
-import com.springboot.movies.model.RatingModel;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
