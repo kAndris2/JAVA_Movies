@@ -22,11 +22,11 @@ public class AccountService {
         for (UserModel user : idao.getUsers()) {
             if (user.getEmail().equals(newUser.getEmail())) {
                 aem.setState(false);
-                aem.setEmailError("There is an account with that e-mail address: " + newUser.getEmail());
+                aem.setEmailError("There is an account with that e-mail address");
             }
             if (user.getName().equals(newUser.getName())) {
                 aem.setState(false);
-                aem.setUsernameError("There is an account with that username: " + newUser.getName());
+                aem.setUsernameError("There is an account with that username");
             }
         }
 
@@ -60,12 +60,12 @@ public class AccountService {
             }
             else {
                 aem.setState(false);
-                aem.setPasswordError("Invalid password: " + user.getPassword());
+                aem.setPasswordError("Invalid password");
             }
         }
         else {
             aem.setState(false);
-            aem.setEmailError("Invalid e-mail address: " + user.getEmail());
+            aem.setEmailError("Invalid e-mail address");
         }
 
         return aem;
