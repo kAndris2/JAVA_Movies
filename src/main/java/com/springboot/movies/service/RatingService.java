@@ -42,12 +42,11 @@ public class RatingService {
         }
     }
 
-    public void resetRating(Integer uid) throws SQLException {
+    public void resetRatings(Integer uid) throws SQLException {
+        rds.resetRatings(uid);
         for (RatingModel rating : idao.getRatings()) {
-            if (uid.equals(rating.getUserId())) {
-                rds.removeRatingFromDb(rating.getId());
+            if (uid.equals(rating.getUserId()))
                 idao.getRatings().remove(rating);
-            }
         }
     }
 }

@@ -43,4 +43,12 @@ public class RatingDataService {
             pst.executeQuery();
         }
     }
+
+    public void resetRatings(Integer uid) throws SQLException {
+        String sqlstr = String.format("DELETE FROM %s WHERE user_id = %d", idao.RATING_TABLE, uid);
+        try (Connection con = DriverManager.getConnection(idao.URL, idao.USER, idao.PASSWORD);
+             PreparedStatement pst = con.prepareStatement(sqlstr)) {
+            pst.executeQuery();
+        }
+    }
 }

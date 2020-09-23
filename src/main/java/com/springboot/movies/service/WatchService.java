@@ -43,11 +43,10 @@ public class WatchService {
     }
 
     public void resetWatchList(Integer uid) throws SQLException {
+        wds.resetWatchList(uid);
         for (WatchModel watch : idao.getWatchList()) {
-            if (uid.equals(watch.getUserId())) {
-                wds.removeWatchFromDb(watch.getId());
+            if (uid.equals(watch.getUserId()))
                 idao.getWatchList().remove(watch);
-            }
         }
     }
 }
