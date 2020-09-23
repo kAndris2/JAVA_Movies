@@ -35,6 +35,11 @@ public class ImageController {
         return is.getProfileImage(userId);
     }
 
+    @GetMapping("dominant_color")
+    String getDominantColor(@RequestParam("file") MultipartFile file) throws IOException {
+        return is.getDominantColor(file);
+    }
+
     @DeleteMapping("delete_image/{imageId}")
     void deleteImage(@PathVariable(value = "imageId") Integer imageId) throws SQLException {
         is.deleteImage(imageId);
