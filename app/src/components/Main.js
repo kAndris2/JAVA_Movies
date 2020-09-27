@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch,
 } from "react-router-dom";
 import Registration from "./auth/Registration";
 import Search from "./Search";
+import Popular from "./Popular";
 
 class Main extends Component {
     randomBackdropUrl(){
@@ -23,6 +24,8 @@ class Main extends Component {
             <React.Fragment>
                 <Search
                     bacdrop={this.randomBackdropUrl()}
+                />
+                <Popular
                 />
                 <div id="cards_landscape_wrap-2">
                     {/*<p>{this.props.logged_in_status}</p>*/}
