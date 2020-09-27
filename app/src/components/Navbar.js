@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component, useState} from "react";
 import { faBell, faPlus, faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './Nav.css';
@@ -18,17 +18,38 @@ class Navbar extends Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarsExample07">
                             <ul className="navbar-nav mr-auto">
-                                <li className="nav-item px-2 active">
-                                    <a className="nav-link" href="/movie/test">Movies</a>
+                                <li className="nav-item px-2 active dropdown">
+                                    <a className="nav-link dropdown-toggle"  data-toggle="dropdown" href="#">Movies</a>
+                                    <ul className="dropdown-menu">
+                                        <li><a className="dropdown-item" href="#">Popular</a></li>
+                                        <li><a className="dropdown-item" href="#"> Now Playing </a></li>
+                                        <li><a className="dropdown-item" href="#"> Upcoming </a></li>
+                                        <li><a className="dropdown-item" href="#"> Top Rated </a></li>
+                                    </ul>
                                 </li>
-                                <li className="nav-item px-2 active">
-                                    <a className="nav-link" href="#">TV Shows</a>
+                                <li className="nav-item px-2 active dropdown">
+                                    <a className="nav-link dropdown-toggle"  data-toggle="dropdown" href="#">TV Shows</a>
+                                    <ul className="dropdown-menu">
+                                        <li><a className="dropdown-item" href="#">Popular</a></li>
+                                        <li><a className="dropdown-item" href="#"> Airing Today </a></li>
+                                        <li><a className="dropdown-item" href="#"> On TV </a></li>
+                                        <li><a className="dropdown-item" href="#"> Top Rated </a></li>
+                                    </ul>
                                 </li>
-                                <li className="nav-item px-2 active">
-                                    <a className="nav-link" href="#">People</a>
+                                <li className="nav-item px-2 active dropdown">
+                                    <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">People</a>
+                                    <ul className="dropdown-menu">
+                                        <li><a className="dropdown-item" href="#">Popular People</a></li>
+                                    </ul>
                                 </li>
-                                <li className="nav-item px-2 active">
-                                    <a className="nav-link" href="#">More</a>
+                                <li className="nav-item px-2 active dropdown">
+                                    <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">More</a>
+                                    <ul className="dropdown-menu">
+                                        <li><a className="dropdown-item" href="#">Discussions</a></li>
+                                        <li><a className="dropdown-item" href="#">Leaderboard</a></li>
+                                        <li><a className="dropdown-item" href="#">Support</a></li>
+                                        <li><a className="dropdown-item" href="#">API</a></li>
+                                    </ul>
                                 </li>
                             </ul>
                             <div className="inline my-2 my-md-0">

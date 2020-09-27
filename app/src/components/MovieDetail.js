@@ -67,7 +67,7 @@ class MovieDetail extends Component {
 
         return (
             <React.Fragment>
-                <p>{this.props.logged_in_status}</p>
+                {/*<p>{this.props.logged_in_status}</p>*/}
                 <div id="cards_landscape_wrap-2" style={{backgroundImage: `url(${image_post + movie.backdrop_path})`, backgroundPosition: "right -200px top", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
                     <div className="details">
                         <div className="container" style={{maxWidth: "1300px", padding: "30px 40px"}}>
@@ -119,9 +119,16 @@ class MovieDetail extends Component {
 
                                     <div>
                                         <h3>Overview</h3>
+                                        {videos.length > 0 &&
                                         <button className="btn btn-primary" onClick={() => this.handleModalShowHide()}>
                                             Launch Trailer
                                         </button>
+                                        }
+                                        {videos.length === 0 &&
+                                        <button className="btn btn-secondary">
+                                            No Trailer Available
+                                        </button>
+                                        }
                                         <p>
                                             {movie.overview}
                                         </p>
@@ -139,7 +146,9 @@ class MovieDetail extends Component {
                                 </div>
                             </ReactBootstrap.Modal.Header>
                             <ReactBootstrap.Modal.Body id="modal-body">
-                                <ReactPlayer controls="true" width="1280px" height="720px" url={video_pre + videos[0].key} />
+                                {videos.length > 0 &&
+                                <ReactPlayer playing={true} controls={true} width="1280px" height="720px" url={video_pre + videos[0].key}/>
+                                }
                             </ReactBootstrap.Modal.Body>
                             {/*<ReactBootstrap.Modal.Footer>
 

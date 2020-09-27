@@ -14,6 +14,7 @@ import ActorsProfile from "./components/ActorsProfile";
 import Registration from "./components/auth/Registration";
 import Login from "./components/auth/Login";
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 class App extends Component {
   constructor() {
@@ -39,7 +40,19 @@ class App extends Component {
   }
 
   checkLoginStatus(){
-    axios.get("http://localhost:3000/api/logged_in", {withCredentials: true})
+    if (Object.keys(Cookies.get(this.state.user.name)).length > 0 && this.state.loggedInStatus === "NOT_LOGGED_IN"){
+      this.setState({
+        loggedInStatus: "LOGGED_IN"
+      });
+      console.log(Cookies.get(this.state.user.name));
+    }
+    else if ((Object.keys(Cookies.get(this.state.user.name)).length === 0) && this.state.loggedInStatus === "LOGGED_IN"){
+      this.setState({
+        loggedInStatus: "NOT_LOGGED_IN",
+        user: {}
+      });
+    }
+    /*axios.get("http://localhost:3000/api/logged_in", {withCredentials: true})
         .then(response => {
           if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN"){
             this.setState({
@@ -53,7 +66,7 @@ class App extends Component {
               user: {}
             })
           }
-        });
+        });*/
   }
 
   getId(){
