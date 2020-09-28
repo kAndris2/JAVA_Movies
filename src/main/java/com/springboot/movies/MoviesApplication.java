@@ -1,7 +1,6 @@
 package com.springboot.movies;
 
-import com.springboot.movies.model.ProfileModel;
-import com.springboot.movies.repository.UserRepository;
+import com.springboot.movies.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

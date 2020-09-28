@@ -1,15 +1,15 @@
 package com.springboot.movies.model;
 
-import java.util.Date;
-
-public class RateModel {
+public class RatingModel {
     private Integer id;
+    private Integer userId;
     private Integer movieId;
     private Integer rate;
-    private Date date;
+    private Long date;
 
-    public RateModel(Integer id, Integer movieId, Integer rate, Date date) {
+    public RatingModel(Integer id, Integer userid, Integer movieId, Integer rate, Long date) {
         this.id = id;
+        this.userId = userid;
         this.movieId = movieId;
         this.rate = rate;
         this.date = date;
@@ -18,6 +18,8 @@ public class RateModel {
     public Integer getId() {
         return this.id;
     }
+
+    public Integer getUserId() { return userId; }
 
     public Integer getMovieId() {
         return this.movieId;
@@ -31,11 +33,11 @@ public class RateModel {
         this.rate = rate;
     }
 
-    public Date getDate() {
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 }

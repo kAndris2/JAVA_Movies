@@ -2,9 +2,19 @@
     text-align: center;
     background: #F7F7F7;
 }
+#cards_landscape_wrap-2 .details{
+    background-image: linear-gradient(to right, rgba(14.12%, 14.51%, 16.86%, 1.00) 150px, rgba(22.35%, 22.35%, 22.35%, 0.84) 100%);
+}
+
+#cards_landscape_wrap-2 .MovieDetailsRight{
+    text-align: left;
+    color: white;
+}
+
 #cards_landscape_wrap-2 .container{
     padding-top: 80px;
     padding-bottom: 100px;
+
 }
 #cards_landscape_wrap-2 a{
     text-decoration: none;
@@ -36,10 +46,11 @@
     transform:scale(1.15);
 }
 #cards_landscape_wrap-2 .card-flyer .text-box{
-    text-align: center;
+    text-align: left;
 }
 #cards_landscape_wrap-2 .card-flyer .text-box .text-container{
-    padding: 20px 9px;
+    padding-top: 1.5rem;
+    padding-left: 1rem;
 }
 #cards_landscape_wrap-2 .card-flyer{
     background: #FFFFFF;
@@ -62,20 +73,21 @@
     margin-top: 50px;
 }
 #cards_landscape_wrap-2 .card-flyer .text-box p{
-    margin-top: 10px;
+    margin-top: 0px;
     margin-bottom: 0px;
     padding-bottom: 0px;
     font-size: 14px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
     color: #000000;
 }
 #cards_landscape_wrap-2 .card-flyer .text-box h6{
     margin-top: 0px;
     margin-bottom: 4px;
-    font-size: 1em;
+    font-size: 1rem;
     font-weight: bold;
     /*text-transform: uppercase;*/
-    font-family: 'Source Sans Pro', Arial, sans-serif;;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
     letter-spacing: 0px;
     color: black;
 }

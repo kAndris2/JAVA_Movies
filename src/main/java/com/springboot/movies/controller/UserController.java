@@ -3,10 +3,8 @@ package com.springboot.movies.controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.springboot.movies.database.IDAO;
-import com.springboot.movies.model.ProfileModel;
-import com.springboot.movies.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.springboot.movies.model.UserModel;
+import com.springboot.movies.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -14,27 +12,23 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/")
 public class UserController {
 
-    IDAO idao = new IDAO();
+    UserService us = new UserService();
 
-    public UserController() throws SQLException {
-    }
-
-    @GetMapping("users")
-    public List<ProfileModel> getUsers() {
-        return idao.getProfiles();
-    }
-
-    @PostMapping("add_user")
-    void createUser(@RequestBody ProfileModel profile) throws SQLException {
-        idao.createProfile(profile);
-    }
-    /*
-    @Autowired
-    private UserRepository userRepository;
+    public UserController() throws SQLException { }
 
     @GetMapping("users")
-    public List <ProfileModel> getUsers() {
-        return this.userRepository.findAll();
+    List<UserModel> getUsers() {
+        System.out.println("asd");
+        return us.getAllUser();
     }
-     */
+
+    @GetMapping("user/{userId}")
+    UserModel getUser(@PathVariable(value = "userId") Integer userId) {
+        return us.getUserById(userId);
+    }
+
+    @DeleteMapping("delete_user/{userId}")
+    void deleteUser(@PathVariable(value = "userId") Integer userId) throws SQLException {
+        us.deleteUser(userId);
+    }
 }
