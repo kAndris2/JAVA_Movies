@@ -15,6 +15,7 @@ import Registration from "./components/auth/Registration";
 import Login from "./components/auth/Login";
 import axios from "axios";
 import Cookies from 'js-cookie';
+import SearchResult from "./components/SearchResult";
 
 class App extends Component {
   constructor() {
@@ -40,11 +41,11 @@ class App extends Component {
   }
 
   checkLoginStatus(){
-    if (Object.keys(Cookies.get(this.state.user.name)).length > 0 && this.state.loggedInStatus === "NOT_LOGGED_IN"){
+    if ((Object.keys(Cookies.get(this.state.user.name)).length >= 1) && this.state.loggedInStatus === "NOT_LOGGED_IN"){
+      console.log(Object.keys(Cookies.get(this.state.user.name)).length);
       this.setState({
         loggedInStatus: "LOGGED_IN"
       });
-      console.log(Cookies.get(this.state.user.name));
     }
     else if ((Object.keys(Cookies.get(this.state.user.name)).length === 0) && this.state.loggedInStatus === "LOGGED_IN"){
       this.setState({
@@ -73,7 +74,13 @@ class App extends Component {
     let path = window.location.href;
     let id = String(path).split("/")[4];
     return id;
-  }l
+  }
+
+  getQuery(){
+    let path = window.location.href;
+    let query = String(path).split("=")[1];
+    return query;
+  }
 
   handleLogin(data){
     this.setState({
@@ -95,7 +102,6 @@ class App extends Component {
           <Navbar
               logged_in_status={loggedInStatus}
           />
-
           <Router>
             <Switch>
               <Route
@@ -150,6 +156,13 @@ class App extends Component {
                 <ActorsProfile
                     person_id={this.getId()}>
                 </ActorsProfile>
+              </Route>
+
+              <Route exact path={"/search"}>
+                <SearchResult
+                    query={this.getQuery()}
+                >
+                </SearchResult>
               </Route>
             </Switch>
           </Router>

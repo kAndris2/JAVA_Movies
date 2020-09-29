@@ -42,7 +42,7 @@ class Login extends Component {
                 this.handleSuccessfulAuth(response.data);
             }
         }).catch( error => {
-            console.log("reg error", error);
+            console.log("login error", error);
         })
         event.preventDefault();
     }
