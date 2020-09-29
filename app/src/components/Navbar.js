@@ -65,8 +65,14 @@ class Navbar extends Component {
                                     <li className="list-group-item" style={{border:"none", backgroundColor:"transparent",padding:"0 1.5rem"}}>
                                         <FontAwesomeIcon icon={faBell} style={{color:"#fff"}} size="lg"/>
                                     </li>
-                                    <li className="list-group-item" style={{border:"none", backgroundColor:"transparent",padding:"0 1.5rem"}}>
-                                        <FontAwesomeIcon icon={faUser} style={{color:"#fff"}} size="lg"/>
+                                    <li className="nav-item active dropdown" style={{border:"none", backgroundColor:"transparent",padding:"0 1.5rem"}}>
+                                        <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><FontAwesomeIcon icon={faUser} style={{color:"#fff"}} size="lg"/></a>
+                                        <ul className="dropdown-menu">
+                                            <li><a className="dropdown-item" href="#">{this.props.pro.user.name}</a></li>
+                                            <li><a className="dropdown-item" href="#">Leaderboard</a></li>
+                                            <li><a className="dropdown-item" href="#">Support</a></li>
+                                            <li><a className="dropdown-item" href="#">API</a></li>
+                                        </ul>
                                     </li>
                                     <li className="list-group-item" style={{border:"none", backgroundColor:"transparent",padding:"0 1.5rem"}}>
                                         <FontAwesomeIcon icon={faSearch} style={{color:"#01B4E4"}} size="lg"/>

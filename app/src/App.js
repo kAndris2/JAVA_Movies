@@ -40,9 +40,41 @@ class App extends Component {
     this.checkLoginStatus();
   }
 
-  checkLoginStatus(){
-    if ((Object.keys(Cookies.get(this.state.user.name)).length >= 1) && this.state.loggedInStatus === "NOT_LOGGED_IN"){
-      console.log(Object.keys(Cookies.get(this.state.user.name)).length);
+  async checkLoginStatus(){
+    //FUCKIN GARBAGE, DON'T DO THIS EVER. SHOULD BE REFACTORED
+    if (document.cookie){
+      let uname = document.cookie.split("=")[1];
+      let all = [];
+      let id;
+      await axios.get("http://localhost:3000/api/users")
+      .then(resp => {
+        all = resp.data
+      });
+
+      for (let i = 0; i < all.length; i++) {
+        if (all[i].name === uname){
+          id = all[i].id;
+        }
+      }
+
+      await axios.get("http://localhost:3000/api/user/"+id)
+          .then(resp => {
+            this.setState({
+              loggedInStatus: "LOGGED_IN",
+              user: resp.data
+            })
+          })
+    }
+    else{
+      this.setState({
+        loggedInStatus: "NOT_LOGGED_IN",
+        user: {}
+      })
+    }
+
+    /*if ((Object.keys(Cookies.get(this.state.user.name)).length >= 1) && this.state.loggedInStatus === "NOT_LOGGED_IN"){
+      let uname = document.cookie.split("=")[1];
+      console.log(uname);
       this.setState({
         loggedInStatus: "LOGGED_IN"
       });
@@ -52,7 +84,7 @@ class App extends Component {
         loggedInStatus: "NOT_LOGGED_IN",
         user: {}
       });
-    }
+    }*/
     /*axios.get("http://localhost:3000/api/logged_in", {withCredentials: true})
         .then(response => {
           if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN"){
@@ -100,6 +132,7 @@ class App extends Component {
     return (
         <div className="App">
           <Navbar
+              pro={this.state}
               logged_in_status={loggedInStatus}
           />
           <Router>
