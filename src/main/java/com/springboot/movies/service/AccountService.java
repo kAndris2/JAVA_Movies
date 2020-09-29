@@ -56,6 +56,7 @@ public class AccountService {
                 aem.setUser(loginUser);
                 Cookie cookie = new Cookie("username", loginUser.getName());
                 cookie.setMaxAge(3600);
+                cookie.setPath("/");
                 response.addCookie(cookie);
                 //
                 loginUser.setLoggedIn(true);
