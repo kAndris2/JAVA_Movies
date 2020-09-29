@@ -54,9 +54,9 @@ public class AccountService {
         if (loginUser != null) {
             if (loginUser.getPassword().equals(user.getPassword())) {
                 aem.setUser(loginUser);
-                response.addCookie(
-                        new Cookie("username", loginUser.getName())
-                );
+                Cookie cookie = new Cookie("username", loginUser.getName());
+                cookie.setMaxAge(3600);
+                response.addCookie(cookie);
                 //
                 loginUser.setLoggedIn(true);
                 //
