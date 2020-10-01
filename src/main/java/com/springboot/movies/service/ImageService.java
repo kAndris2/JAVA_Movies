@@ -44,14 +44,15 @@ public class ImageService {
 
     public void uploadImage(MultipartFile file, Integer userId) throws IOException {
         String path = "\\src\\main\\resources\\pics\\",
-                uploadPath = System.getProperty("user.dir") + path;
+                uploadPath = System.getProperty("user.dir") + path,
+                extension = "." + file.getContentType().split("/")[1];
 
         if (Files.notExists(Path.of(uploadPath))) {
             Files.createDirectory(Path.of(uploadPath));
         }
 
-        String filename = createUniqueFilename(), //+ file.getName().split(".")[1],
-                filePath = uploadPath + filename + "." + file.getContentType().split("/")[1];
+        String filename = createUniqueFilename(uploadPath, extension), //+ file.getName().split(".")[1],
+                filePath = uploadPath + filename + extension;
 
         file.transferTo(
                 new File(filePath)
@@ -62,17 +63,32 @@ public class ImageService {
         );
     }
 
-    String createUniqueFilename() {
+    String createUniqueFilename(String path, String ext) {
         String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         char[] chars = characters.toCharArray();
-        String unique = "";
         int length = 20;
+        String unique = "";
+        List<String> imgNames = getNames();
         Random random = new Random();
 
-        for (int i = 0; i < length; i++) {
-            unique += chars[random.nextInt(chars.length)];
+        do {
+            unique = "";
+
+            for (int i = 0; i < length; i++) {
+                unique += chars[random.nextInt(chars.length)];
+            }
         }
+        while (imgNames.contains(path + unique + ext));
         return unique;
+    }
+
+    List<String> getNames() {
+        List<String> names = new ArrayList();
+
+        for (ImageModel img : idao.getPictures()) {
+            names.add(img.getRoute());
+        }
+        return names;
     }
 
     public void deleteImage(Integer iid) throws SQLException {

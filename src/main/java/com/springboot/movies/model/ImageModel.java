@@ -14,10 +14,6 @@ public class ImageModel {
     }
 
     public Integer getId() { return this.id; }
-
-    public Long getUploadDate() { return this.uploadDate; }
-
-    public String getRoute() { return this.route; }
-
     public Integer getUserId() { return this.userId; }
+    public String getRoute() { return this.route; }
 }
