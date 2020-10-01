@@ -63,31 +63,30 @@ class Upload extends Component {
     render() {
         return (
             <div>
-                {/*<form className="md-form">
+                <form method="POST" encType="multipart/form-data" action="/api/upload_image/28" className="md-form">
                     <div className="file-field">
                         <div className="btn btn-primary btn-sm float-left">
                             <span>Choose file</span>
-                            <input type="file"/>
+                            <input type="file" name="file"/>
                         </div>
-                        <div className="file-path-wrapper">
-                            <input className="file-path validate" type="text" placeholder="Upload your file"/>
-                        </div>
+
                     </div>
+                    <button type="submit">Send</button>
                 </form>
-                */}
-                <h1>
+
+                {/*<h1>
                     Upload
                 </h1>
                 <h3>
                    Upload an image
                 </h3>
                 <div>
-                    <input type="file" onChange={this.onFileChange} />
+                    <input type="file" onChange={this.onFileChange} name="file"/>
                     <button onClick={this.onFileUpload}>
                         Upload!
                     </button>
                 </div>
-                {this.fileData()}
+                {this.fileData()}*/}
             </div>
         );
     }
