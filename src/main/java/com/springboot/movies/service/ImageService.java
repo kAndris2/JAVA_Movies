@@ -43,15 +43,15 @@ public class ImageService {
     }
 
     public void uploadImage(MultipartFile file, Integer userId) throws IOException {
-        String path = "\\src\\main\\resources\\pics",
+        String path = "\\src\\main\\resources\\pics\\",
                 uploadPath = System.getProperty("user.dir") + path;
 
         if (Files.notExists(Path.of(uploadPath))) {
             Files.createDirectory(Path.of(uploadPath));
         }
 
-        String filename = createUniqueFilename() + file.getName().split(".")[1],
-                filePath = uploadPath + filename;
+        String filename = createUniqueFilename(), //+ file.getName().split(".")[1],
+                filePath = uploadPath + filename + "." + file.getContentType().split("/")[1];
 
         file.transferTo(
                 new File(filePath)
