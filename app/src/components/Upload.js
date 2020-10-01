@@ -63,7 +63,7 @@ class Upload extends Component {
     render() {
         return (
             <div>
-                <form method="POST" encType="multipart/form-data" action="/api/upload_image/28" className="md-form">
+                <form method="POST" encType="multipart/form-data" action="/api/upload_image/1" className="md-form">
                     <div className="file-field">
                         <div className="btn btn-primary btn-sm float-left">
                             <span>Choose file</span>
