@@ -17,21 +17,22 @@ class Upload extends Component {
     // On file upload (click the upload button)
     onFileUpload = () => {
         // Create an object of formData
-        const formData = new FormData();
+        let formData = new FormData();
 
         // Update the formData object
         formData.append(
-            "myFile",
+            "file",
             this.state.selectedFile,
             this.state.selectedFile.name
         );
 
         // Details of the uploaded file
         console.log(this.state.selectedFile);
-
         // Request made to the backend api
         // Send formData object
-        axios.post("http://localhost:3000/api/upload_image/1", formData);
+        axios.post("/api/upload_image/28", formData).then(resp => {
+            console.log(resp);
+        });
     };
 
     // File content to be displayed after
@@ -63,7 +64,7 @@ class Upload extends Component {
     render() {
         return (
             <div>
-                <form method="POST" encType="multipart/form-data" action="/api/upload_image/28" className="md-form">
+                <form method="POST" action="/api/upload_image/28" className="md-form">
                     <div className="file-field">
                         <div className="btn btn-primary btn-sm float-left">
                             <span>Choose file</span>
@@ -74,7 +75,7 @@ class Upload extends Component {
                     <button type="submit">Send</button>
                 </form>
 
-                {/*<h1>
+                <h1>
                     Upload
                 </h1>
                 <h3>
@@ -86,7 +87,7 @@ class Upload extends Component {
                         Upload!
                     </button>
                 </div>
-                {this.fileData()}*/}
+                {this.fileData()}
             </div>
         );
     }
