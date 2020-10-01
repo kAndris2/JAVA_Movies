@@ -112,7 +112,7 @@ public class ImageService {
     }
 
     public String getDominantColor(MultipartFile file) throws IOException {
-        File filex = new File(PATH + "asd");
+        File filex = new File(PATH + "temp");
 
         try (OutputStream os = new FileOutputStream(filex)) {
             os.write(file.getBytes());
@@ -152,6 +152,7 @@ public class ImageService {
                 }
             }
         }
+        filex.delete();
         return getMostCommonColour(m);
     }
 
