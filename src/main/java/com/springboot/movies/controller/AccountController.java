@@ -5,6 +5,7 @@ import com.springboot.movies.model.UserModel;
 import com.springboot.movies.service.AccountService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
@@ -29,7 +30,7 @@ public class AccountController {
     }
 
     @PostMapping("logout")
-    void logout(@RequestBody UserModel user, HttpServletResponse response) {
-        as.logout(user, response);
+    void logout(@RequestBody UserModel user, HttpServletResponse response, HttpServletRequest request) {
+        as.logout(user, response, request);
     }
 }
