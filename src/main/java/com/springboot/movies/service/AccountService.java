@@ -5,6 +5,7 @@ import com.springboot.movies.model.AccountErrorModel;
 import com.springboot.movies.model.UserModel;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
@@ -75,7 +76,16 @@ public class AccountService {
         return aem;
     }
 
-    public void logout(UserModel user, HttpServletResponse response) {
-        user.setLoggedIn(false);
+    public void logout(UserModel user, HttpServletResponse response, HttpServletRequest request) {
+        for (Cookie cookie : request.getCookies()) {
+            if (user.getName().equals(cookie.getName())) {
+                response.addCookie(
+                        new Cookie(
+                                cookie.getName(),
+                                null
+                        )
+                );
+            }
+        }
     }
 }

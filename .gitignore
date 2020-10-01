@@ -4,8 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-!**/src/main/resources/pics/
-
+src/main/resources/pics/
+src/main/java/com/springboot/movies/database/
 
 ### STS ###
 .apt_generated
