@@ -20,7 +20,9 @@ class SearchResult extends Component {
         }
         return (
             <div>
-
+                {this.state.results.map(result =>
+                    <p key={result.id}>{result.title}</p>
+                )}
             </div>
         );
     }
