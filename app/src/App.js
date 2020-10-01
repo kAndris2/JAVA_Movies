@@ -16,6 +16,7 @@ import Login from "./components/auth/Login";
 import axios from "axios";
 import Cookies from 'js-cookie';
 import SearchResult from "./components/SearchResult";
+import Upload from "./components/Upload";
 
 class App extends Component {
   constructor() {
@@ -183,6 +184,10 @@ class App extends Component {
                     logged_in_status={loggedInStatus}
                 >
                 </MovieDetail>
+              </Route>
+
+              <Route exact path={"/upload"}>
+                <Upload/>
               </Route>
 
               <Route exact path={"/person/"+this.getId()}>
