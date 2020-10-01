@@ -38,7 +38,7 @@ class App extends Component {
     const response = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=04a30d5152c77afe4a81783d17e20316&language=hu-HU&page=1&region=HU');
     const movie = await response.json();
     this.setState({movies: movie.results, isLoading: false });
-    this.checkLoginStatus();
+    await this.checkLoginStatus();
   }
 
   async checkLoginStatus(){

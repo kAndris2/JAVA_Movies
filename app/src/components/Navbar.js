@@ -1,16 +1,27 @@
 import React, {Component, useState} from "react";
 import { faBell, faPlus, faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from 'axios';
 import './Nav.css';
 
 class Navbar extends Component {
+    handleLogout = () => {
+        let user = this.props.pro.user;
+        let curr = {
+            name:user.name,
+            email:user.email,
+            password: user.password
+        }
+        console.log(curr);
+        axios.post("http://localhost:3000/api/logout",curr);
+    }
     render() {
         return (
             <React.Fragment>
 
                 <nav className="navbar navbar-expand-sm navbar-dark" style={{backgroundColor:"#032541", fontWeight:"bold", padding:".75rem .75rem"}}>
                     <div className="container" style={{maxWidth:"1300px", paddingLeft:"40px", paddingRight:"40px"}}>
-                        <a className="navbar-brand" style={{paddingTop:"0"}} href="/"><img src={require("../static/img/logo.png")} width={154} height={20}/> </a>
+                        <a className="navbar-brand" style={{paddingTop:"0"}} href="/"><img alt="asd" src={require("../static/img/logo.png")} width={154} height={20}/> </a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false"
                                 aria-label="Toggle navigation">
@@ -21,10 +32,10 @@ class Navbar extends Component {
                                 <li className="nav-item px-2 active dropdown">
                                     <a className="nav-link dropdown-toggle"  data-toggle="dropdown" href="#">Movies</a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="#">Popular</a></li>
-                                        <li><a className="dropdown-item" href="#"> Now Playing </a></li>
-                                        <li><a className="dropdown-item" href="#"> Upcoming </a></li>
-                                        <li><a className="dropdown-item" href="#"> Top Rated </a></li>
+                                        <li><a className="dropdown-item" href="/">Popular</a></li>
+                                        <li><a className="dropdown-item" href="/"> Now Playing </a></li>
+                                        <li><a className="dropdown-item" href="/"> Upcoming </a></li>
+                                        <li><a className="dropdown-item" href="/"> Top Rated </a></li>
                                     </ul>
                                 </li>
                                 <li className="nav-item px-2 active dropdown">
@@ -71,7 +82,7 @@ class Navbar extends Component {
                                             <li><a className="dropdown-item" href="#">{this.props.pro.user.name}</a></li>
                                             <li><a className="dropdown-item" href="#">Leaderboard</a></li>
                                             <li><a className="dropdown-item" href="#">Support</a></li>
-                                            <li><a className="dropdown-item" href="#">API</a></li>
+                                            <li><a className="dropdown-item" onClick={this.handleLogout}>Logout</a></li>
                                         </ul>
                                     </li>
                                     <li className="list-group-item" style={{border:"none", backgroundColor:"transparent",padding:"0 1.5rem"}}>

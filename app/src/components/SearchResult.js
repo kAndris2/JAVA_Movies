@@ -20,7 +20,7 @@ class SearchResult extends Component {
         }
         return (
             <div>
-                
+
             </div>
         );
     }

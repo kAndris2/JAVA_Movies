@@ -35,7 +35,7 @@ public class ImageController {
         return is.getProfileImage(userId);
     }
 
-    @GetMapping("dominant_color")
+    @PostMapping("dominant_color")
     String getDominantColor(@RequestParam("file") MultipartFile file) throws IOException {
         return is.getDominantColor(file);
     }

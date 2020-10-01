@@ -6,46 +6,51 @@ class Upload extends Component {
         super(props);
 
         this.state = {
-            selectedFile: null
+            selectedFile: null,
+            error:''
         }
     }
     onFileChange = event => {
-        // Update the state
         this.setState({ selectedFile: event.target.files[0] });
     };
 
-    // On file upload (click the upload button)
     onFileUpload = () => {
-        // Create an object of formData
-        let formData = new FormData();
+        if (this.state.selectedFile.size >= 5000000){
+            this.setState({error:'File too large'});
 
-        // Update the formData object
-        formData.append(
-            "file",
-            this.state.selectedFile,
-            this.state.selectedFile.name
-        );
+        }
+        else {
+            this.setState({error:''})
+            let formData = new FormData();
+            formData.append(
+                "file",
+                this.state.selectedFile,
+                this.state.selectedFile.name
+            );
 
-        // Details of the uploaded file
-        console.log(this.state.selectedFile);
-        // Request made to the backend api
-        // Send formData object
-        axios.post("/api/upload_image/28", formData).then(resp => {
-            console.log(resp);
-        });
+            //console.log(this.state.selectedFile);
+
+            axios.post("/api/dominant_color", formData).then(resp => {
+                console.log(resp);
+            });
+        }
     };
+    bytesToSize(bytes) {
+        let sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+        if (bytes == 0) return '0 Byte';
+        let i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+        return Math.round(bytes / Math.pow(1024, i)) + ' ' + sizes[i];
+    }
 
-    // File content to be displayed after
-    // file upload is complete
     fileData = () => {
 
         if (this.state.selectedFile) {
-
             return (
                 <div>
                     <h2>File Details:</h2>
                     <p>File Name: {this.state.selectedFile.name}</p>
                     <p>File Type: {this.state.selectedFile.type}</p>
+                    <p>File Size: {this.bytesToSize(this.state.selectedFile.size)}</p>
                     <p>
                         Last Modified:{" "}
                         {this.state.selectedFile.lastModifiedDate.toDateString()}
@@ -64,17 +69,6 @@ class Upload extends Component {
     render() {
         return (
             <div>
-                <form method="POST" action="/api/upload_image/28" className="md-form">
-                    <div className="file-field">
-                        <div className="btn btn-primary btn-sm float-left">
-                            <span>Choose file</span>
-                            <input type="file" name="file"/>
-                        </div>
-
-                    </div>
-                    <button type="submit">Send</button>
-                </form>
-
                 <h1>
                     Upload
                 </h1>
@@ -86,7 +80,9 @@ class Upload extends Component {
                     <button onClick={this.onFileUpload}>
                         Upload!
                     </button>
+
                 </div>
+                {this.state.error}
                 {this.fileData()}
             </div>
         );
