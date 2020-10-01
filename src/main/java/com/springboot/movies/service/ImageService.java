@@ -10,13 +10,16 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.*;
 
 public class ImageService {
+    final String PATH = "src\\main\\resources\\pics\\";
     IDAO idao = IDAO.getInstance();
 
     ImageDataService ids = new ImageDataService(idao);
@@ -43,8 +46,7 @@ public class ImageService {
     }
 
     public void uploadImage(MultipartFile file, Integer userId) throws IOException {
-        String path = "\\src\\main\\resources\\pics\\",
-                uploadPath = System.getProperty("user.dir") + path,
+        String uploadPath = System.getProperty("user.dir") + PATH,
                 extension = "." + file.getContentType().split("/")[1];
 
         if (Files.notExists(Path.of(uploadPath))) {
@@ -110,8 +112,20 @@ public class ImageService {
     }
 
     public String getDominantColor(MultipartFile file) throws IOException {
-        ImageInputStream is = ImageIO.createImageInputStream(file);
+        File filex = new File(PATH + "asd");
+
+        try (OutputStream os = new FileOutputStream(filex)) {
+            os.write(file.getBytes());
+        }
+
+        ImageInputStream is = ImageIO.createImageInputStream(filex);
         Iterator iter = ImageIO.getImageReaders(is);
+
+        if (!iter.hasNext())
+        {
+            System.out.println("Cannot load the specified file "+ filex);
+            System.exit(1);
+        }
 
         ImageReader imageReader = (ImageReader)iter.next();
         imageReader.setInput(is);
