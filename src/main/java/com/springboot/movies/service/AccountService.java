@@ -60,9 +60,6 @@ public class AccountService {
                 cookie.setMaxAge(3600);
                 cookie.setPath("/");
                 response.addCookie(cookie);
-                //
-                loginUser.setLoggedIn(true);
-                //
             }
             else {
                 aem.setState(false);
