@@ -7,6 +7,7 @@ import com.springboot.movies.model.UserModel;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
 public class AccountService {
@@ -77,14 +78,19 @@ public class AccountService {
     }
 
     public void logout(UserModel user, HttpServletResponse response, HttpServletRequest request) {
-        for (Cookie cookie : request.getCookies()) {
-            if (user.getName().equals(cookie.getName())) {
-                response.addCookie(
-                        new Cookie(
-                                cookie.getName(),
-                                null
-                        )
-                );
+        HttpSession session = request.getSession(false);
+
+        if (request.isRequestedSessionIdValid() && session != null)
+            session.invalidate();
+
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getValue().equals(user.getName())) {
+                cookie.setMaxAge(0);
+                cookie.setValue(null);
+                cookie.setPath("/");
+                response.addCookie(cookie);
+                break;
             }
         }
     }
