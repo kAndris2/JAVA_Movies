@@ -11,7 +11,6 @@ public class UserModel {
     private String email;
     private String password;
     private Long registrationDate;
-    private Boolean isLoggedIn = false;
 
     public UserModel(String name, String email, String password) {
         this.name = name;
@@ -44,13 +43,5 @@ public class UserModel {
         DateFormat simple = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
         Date result = new Date(registrationDate);
         return simple.format(result);
-    }
-
-    public Boolean getLoggedIn() {
-        return isLoggedIn;
-    }
-
-    public void setLoggedIn(Boolean loggedIn) {
-        isLoggedIn = loggedIn;
     }
 }
