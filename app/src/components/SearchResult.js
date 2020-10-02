@@ -124,10 +124,17 @@ class SearchResult extends Component {
                                                             <div className="details">
                                                                 <div className="wrapper">
                                                                     <div className="title">
-                                                                        <a className="result" href={"/movie/"+movie.id}></a>
+                                                                        <a className="result" href={"/movie/"+movie.id}>
+                                                                            <h2>{movie.title}</h2>
+                                                                        </a>
+                                                                        <span className="release_date">{movie.release_date}</span>
                                                                     </div>
                                                                 </div>
-                                                                <div className="overview"></div>
+                                                                <div className="overview">
+                                                                    <p>
+                                                                        {movie.overview}
+                                                                    </p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

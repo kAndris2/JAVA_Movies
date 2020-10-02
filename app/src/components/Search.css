@@ -551,3 +551,53 @@ div.card.v4 div.details div.title a {
     width: 100%;
     display: block;
 }
+div.card.v4 div.details div.title h2 {
+    font-size: 1.2em;
+    margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+section.main_content.search_results h2, section.main_content.search_results a {
+    color: #000;
+}
+section.main_content.search_results h2 {
+    margin-bottom: 0;
+}
+h2 {
+    font-size: 1.5em;
+    margin: 0 0 4px 0;
+    font-weight: 600;
+}
+div.card.v4 div.details div.title span.release_date {
+    white-space: nowrap;
+    color: #999;
+}
+div.card.v4.tight div.details div.overview {
+    height: auto;
+}
+div.card.v4 div.details div.overview {
+    margin-top: 20px;
+}
+div.card.v4.tight div.details div.overview p {
+    font-size: 1em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0;
+}
+div.card.v4 div.details div.overview p {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+div.card.v4 div.details p {
+    color: #000;
+}
