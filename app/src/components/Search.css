@@ -601,3 +601,6 @@ div.card.v4 div.details div.overview p {
 div.card.v4 div.details p {
     color: #000;
 }
+div.card.v4 + div.card {
+    margin-top: 20px;
+}

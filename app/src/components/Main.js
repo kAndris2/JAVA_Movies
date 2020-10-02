@@ -26,6 +26,7 @@ class Main extends Component {
                     bacdrop={this.randomBackdropUrl()}
                 />
                 <Popular
+                    movies={this.props.movies}
                 />
                 <div id="cards_landscape_wrap-2">
                     {/*<p>{this.props.logged_in_status}</p>*/}
