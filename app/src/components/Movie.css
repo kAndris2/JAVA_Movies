@@ -50,3 +50,106 @@ div.media.discover div.filter_panel div.filter {
     border-top: 1px solid #eee;
     padding: 14px 16px 16px 16px;
 }
+div.media.discover .font_size_1, div.media.discover .font_size_1 ul li {
+    font-size: 0.9em;
+}
+div.media.discover .full_width {
+    width: 100%;
+}
+.k-widget, .k-textbox, .k-textarea {
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    font-size: 1em;
+}
+.k-dropdown, .k-dropdowntree {
+    width: 12.4em;
+    border-width: 0;
+    outline: 0;
+    background: none;
+    box-sizing: border-box;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: left;
+    white-space: nowrap;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle;
+    position: relative;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.k-widget {
+    border-color: rgba(33,37,41,0.125);
+    color: #292b2c;
+    background-color: #fff;
+}
+.k-widget {
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+    outline: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    line-height: 1.5;
+    display: block;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.k-dropdown .k-dropdown-wrap, .k-dropdowntree .k-dropdown-wrap {
+    border-color: #e4e4e4;
+    color: #212529;
+    background-color: #e4e4e4;
+}
+.k-dropdown .k-dropdown-wrap, .k-dropdowntree .k-dropdown-wrap {
+    transition: color 0.2s ease-in-out,background-color 0.2s ease-in-out,border-color 0.2s ease-in-out,box-shadow 0.2s ease-in-out;
+}
+.k-dropdown .k-dropdown-wrap, .k-dropdowntree .k-dropdown-wrap {
+    border-radius: .25rem;
+    padding: 0;
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+    position: relative;
+    transition: all .1s ease;
+    cursor: pointer;
+    outline: 0;
+}
+div.media.discover .font_size_1, div.media.discover .font_size_1 ul li {
+    font-size: 0.9em;
+}
+.k-widget, .k-textbox, .k-textarea {
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    font-size: 1em;
+}
+section.panel:last-of-type {
+    padding-bottom: 0;
+}
+section.panel:first-of-type {
+    border-top: none;
+    padding-top: 0;
+}
+section.panel {
+    width: 100%;
+    display: block;
+    padding: 30px 0;
+    border-top: 1px solid #d7d7d7;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
+}
+div.media.discover div.results {
+    margin-top: -30px;
+    margin-left: -30px;
+}
+div.page_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
