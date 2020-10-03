@@ -1,0 +1,52 @@
+div.media.discover div.content_wrapper > div.title {
+    width: 100%;
+    margin-bottom: 20px;
+}
+div.media.discover div.content_wrapper > div.title h2 {
+    font-size: 1.6em;
+}
+section.inner_content div.title h2 {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 2.2rem;
+}
+div.title h2 {
+    font-size: 1.5em;
+    margin: 0 0 4px 0;
+    font-weight: 600;
+}
+div.media.discover div.filter_panel {
+    min-width: 260px;
+    width: 260px;
+    border: 1px solid #e3e3e3;
+    border-radius: var(--imageBorderRadius);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(var(--lightGrey), 1);
+    background-color: #fff;
+}
+div.media.discover div.filter_panel div.name {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 14px 16px;
+}
+div.media.discover div.filter_panel div.name span.chevron-right {
+    transform: rotate(90deg);
+}
+.glyphicons_v2.chevron-right {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-224-chevron-right-d1f88a6c15e68190c3b47e1ee4f39fe47f4b69f4966ca7c250c2e14cfa689a04.svg')
+}
+div.media.discover div.filter_panel div.filter {
+    width: 100%;
+    border-top: 1px solid #eee;
+    padding: 14px 16px 16px 16px;
+}

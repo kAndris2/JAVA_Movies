@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "./Search.css";
-
+import moment from "moment";
 class SearchResult extends Component {
     constructor(props) {
         super(props);
@@ -127,7 +127,7 @@ class SearchResult extends Component {
                                                                         <a className="result" href={"/movie/"+movie.id}>
                                                                             <h2>{movie.title}</h2>
                                                                         </a>
-                                                                        <span className="release_date">{movie.release_date}</span>
+                                                                        <span className="release_date">{moment(movie.release_date).format("YYYY. MMM. D.")}</span>
                                                                     </div>
                                                                 </div>
                                                                 <div className="overview">

@@ -14,9 +14,9 @@ import ActorsProfile from "./components/ActorsProfile";
 import Registration from "./components/auth/Registration";
 import Login from "./components/auth/Login";
 import axios from "axios";
-import Cookies from 'js-cookie';
 import SearchResult from "./components/SearchResult";
 import Upload from "./components/Upload";
+import Movie from "./components/Movie";
 
 class App extends Component {
   constructor() {
@@ -150,6 +150,12 @@ class App extends Component {
                       />
 
                   )}>
+              </Route>
+
+              <Route exact path="/movie">
+                <Movie
+                  movies={movies}
+                />
               </Route>
 
               <Route

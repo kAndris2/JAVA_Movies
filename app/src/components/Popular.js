@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import "./Popular.css";
-import "./Fonts.css";
+import "./Fonts.css"
+import "./Popular.css"
 import moment from "moment";
-import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
 
 class Popular extends Component {
     constructor(props) {
@@ -25,23 +24,23 @@ class Popular extends Component {
                                         <div className="anchor selected">
                                             <h3>
                                                 <a href="#" className="no_click">Streaming
-                                                <span className="glyphicons_v2 chevron-down"></span>
+                                                <span className="glyphicons_v2 chevron-down"/>
                                                 </a>
                                             </h3>
-                                            <div className="background"></div>
+                                            <div className="background">/</div>
                                         </div>
                                         <div className="anchor ">
                                             <h3><a href="#" className="no_click" data-panel="popular_scroller"
-                                                   data-group="on-tv">On TV <span className="glyphicons_v2 chevron-down"></span></a></h3>
-                                            <div className="background hide"></div>
+                                                   data-group="on-tv">On TV <span className="glyphicons_v2 chevron-down"/></a></h3>
+                                            <div className="background hide"/>
                                         </div>
                                         <div className="anchor ">
                                             <h3><a href="#" className="no_click" data-panel="popular_scroller"
-                                                   data-group="for-rent">For Rent <span className="glyphicons_v2 chevron-down"></span></a></h3>
+                                                   data-group="for-rent">For Rent <span className="glyphicons_v2 chevron-down"/></a></h3>
                                         </div>
                                         <div className="anchor">
                                             <h3><a href="#" className="no_click" data-panel="popular_scroller"
-                                                   data-group="in-theatres">In Theaters <span className="glyphicons_v2 chevron-down"></span></a></h3>
+                                                   data-group="in-theatres">In Theaters <span className="glyphicons_v2 chevron-down"/></a></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -58,27 +57,28 @@ class Popular extends Component {
                                                 </div>
                                                 <div className="options">
                                                     <a className="no_click" href="#">
-                                                        <div className="glyphicons_v2 circle-more white"></div>
+                                                        <div className="glyphicons_v2 circle-more white"/>
                                                     </a>
                                                 </div>
-                                                <div className="content">
-                                                    <div className="consensus tight">
-                                                        <div class="outer_ring">
-                                                            <div className="user_score_chart" data-percent={(movie.vote_average)*10}>
-                                                                <div className="percent">
-                                                                    <span className={"icon icon-r"+(movie.vote_average)*10}>
-                                                                    </span>
-                                                                </div>
-                                                                <canvas height="34" width="34"/>
+                                            </div>
+                                            <div className="content">
+                                                <div className="consensus tight">
+                                                    <div className="outer_ring">
+                                                        <div className="user_score_chart" data-percent={(movie.vote_average)*10}>
+                                                            <div className="percent">
+                                                                <span className={"icon icon-r"+(movie.vote_average)*10}>
+                                                                </span>
                                                             </div>
+                                                            <canvas height="34" width="34"/>
                                                         </div>
                                                     </div>
-                                                    <h2>
-                                                        <a href={"/movie/"+movie.id} title={movie.title}>{movie.title}</a>
-                                                    </h2>
-                                                    <p>{movie.release_date}</p>
                                                 </div>
+                                                <h2>
+                                                    <a href={"/movie/"+movie.id} title={movie.title}>{movie.title}</a>
+                                                </h2>
+                                                <p>{moment(movie.release_date).format("YYYY. MMM. D.")}</p>
                                             </div>
+                                            <div className="hover"/>
                                         </div>
                                     )}
                                 </div>
