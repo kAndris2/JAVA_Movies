@@ -13,16 +13,21 @@ class Popular extends Component {
         }
 
         this.streaming = this.streaming.bind(this);
+        this.onTv = this.onTv.bind(this);
         this.getMovies = this.getMovies.bind(this);
     }
 
     streaming() {
-        this.getMovies("now_playing");
+        this.getMovies("movie", "now_playing");
     }
 
-    async getMovies(mode) {
+    onTv() {
+        this.getMovies("tv", "popular");
+    }
+
+    async getMovies(where, mode) {
         const response = await fetch(
-            `https://api.themoviedb.org/3/movie/${mode}?` +
+            `https://api.themoviedb.org/3/${where}/${mode}?` +
             `api_key=${this.props.apiData.key}&` +
             `language=${this.props.apiData.language}&` +
             `page=1&region=${this.props.apiData.region}`
@@ -32,7 +37,7 @@ class Popular extends Component {
     }
 
     componentDidMount() {
-        this.getMovies("popular");
+        this.getMovies("movie", "popular");
     }
 
     render() {
@@ -46,20 +51,25 @@ class Popular extends Component {
                                     <h2>What's Popular</h2>
                                     <div className="selector_wrap">
                                         <div className="selector">
-                                            <div className="anchor selected">
+
+                                            <div onClick={this.streaming} className="anchor selected">
                                                 <h3>
-                                                    <a onClick={this.streaming} href="#" className="no_click">Streaming
+                                                    <a href="#" className="no_click">Streaming
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
                                                 </h3>
                                                 <div className="background">/</div>
                                             </div>
-                                            <div className="anchor ">
-                                                <h3><a href="#" className="no_click" data-panel="popular_scroller"
-                                                       data-group="on-tv">On TV <span
-                                                    className="glyphicons_v2 chevron-down"/></a></h3>
+
+                                            <div onClick={this.onTv} className="anchor ">
+                                                <h3>
+                                                    <a href="#" className="no_click" data-panel="popular_scroller" data-group="on-tv">On TV
+                                                        <span className="glyphicons_v2 chevron-down"/>
+                                                    </a>
+                                                </h3>
                                                 <div className="background hide"/>
                                             </div>
+
                                             <div className="anchor ">
                                                 <h3><a href="#" className="no_click" data-panel="popular_scroller"
                                                        data-group="for-rent">For Rent <span
