@@ -5,7 +5,7 @@ CREATE TABLE public.users
     name character varying(30) not null,
     registration_date bigint not null,
     email character varying(30) not null,
-    password character varying(20) not null
+    password character varying(256) not null
 );
 
 CREATE TABLE public.ratings

@@ -14,11 +14,12 @@ public class AccountService {
     IDAO idao = IDAO.getInstance();
 
     UserService us = new UserService();
+    PasswordService ps = new PasswordService();
 
     public AccountService() throws SQLException {
     }
 
-    public AccountErrorModel validateUser(UserModel newUser, HttpServletResponse response) throws SQLException {
+    public AccountErrorModel validateUser(UserModel newUser, HttpServletResponse response) throws Exception {
         AccountErrorModel aem = new AccountErrorModel();
 
         for (UserModel user : idao.getUsers()) {
@@ -43,18 +44,21 @@ public class AccountService {
         return aem;
     }
 
-    UserModel register(UserModel user) throws SQLException {
+    UserModel register(UserModel user) throws Exception {
+        user.setPassword(
+                ps.getSaltedHash(user.getPassword())
+        );
         UserModel registeredUser = us.getUds().createUser(user);
         idao.getUsers().add(registeredUser);
         return registeredUser;
     }
 
-    public AccountErrorModel login(UserModel user, HttpServletResponse response) {
+    public AccountErrorModel login(UserModel user, HttpServletResponse response) throws Exception {
         AccountErrorModel aem = new AccountErrorModel();
         UserModel loginUser = us.getUserByEmail(user.getEmail());
 
         if (loginUser != null) {
-            if (loginUser.getPassword().equals(user.getPassword())) {
+            if (ps.check(user.getPassword(), loginUser.getPassword())) {
                 aem.setUser(loginUser);
                 Cookie cookie = new Cookie("username", loginUser.getName());
                 cookie.setMaxAge(3600);
