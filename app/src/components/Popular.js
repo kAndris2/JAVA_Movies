@@ -43,6 +43,7 @@ class Popular extends Component {
     render() {
         if (this.state.isLoaded) {
             return (
+                <div className="container">
                 <section className="inner_content no_pad">
                     <div className="column_wrapper">
                         <div className="content_wrapper no_bottom_pad wrap">
@@ -83,8 +84,7 @@ class Popular extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div id="popular_scroller"
-                                     className="media discover scroller_wrap should_fade is fading">
+                                <div id="popular_scroller" className="media discover scroller_wrap should_fade is fading">
                                     <div className="column_content flex scroller loaded">
                                         {this.state.movies.map(movie =>
                                             <div key={movie.id} className="card style_1">
@@ -131,6 +131,7 @@ class Popular extends Component {
                         </div>
                     </div>
                 </section>
+                </div>
             );
         }
         else {
