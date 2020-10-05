@@ -9,9 +9,10 @@ import java.util.List;
 public final class IDAO {
     private static IDAO singleton = null;
 
-    final public String URL = "jdbc:postgresql://172.31.1.30:5432/java_movies";
-    final public String USER = "postgres";
-    final public String PASSWORD = "123qweAsD";
+
+    final public String URL = System.getenv("DB_URL");
+    final public String USER = System.getenv("DB_USER");
+    final public String PASSWORD = System.getenv("DB_PASSWORD");
 
     final public String USER_TABLE = "users";
     final public String PICTURE_TABLE = "pictures";

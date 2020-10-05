@@ -20,12 +20,12 @@ public class AccountController {
     }
 
     @PostMapping("register")
-    AccountErrorModel register(@RequestBody UserModel user, HttpServletResponse response) throws SQLException {
+    AccountErrorModel register(@RequestBody UserModel user, HttpServletResponse response) throws Exception {
         return as.validateUser(user, response);
     }
 
     @PostMapping("login")
-    AccountErrorModel login(@RequestBody UserModel user, HttpServletResponse response) throws SQLException {
+    AccountErrorModel login(@RequestBody UserModel user, HttpServletResponse response) throws Exception {
         return as.login(user, response);
     }
 
