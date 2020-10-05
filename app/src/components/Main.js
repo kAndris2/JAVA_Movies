@@ -20,7 +20,7 @@ class Main extends Component {
                     bacdrop={this.randomBackdropUrl()}
                 />
                 <Popular
-                    movies={this.props.movies}
+                    apiData={this.props.apiData}
                 />
                 {/*<FreeToWatch>
 

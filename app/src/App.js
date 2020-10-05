@@ -28,14 +28,20 @@ class App extends Component {
       image_pre: "https://image.tmdb.org/t/p/w500",
 
       loggedInStatus: "NOT_LOGGED_IN",
-      user: {}
+      user: {},
+
+      apiData: {
+        key: "04a30d5152c77afe4a81783d17e20316",
+        language: "hu-HU",
+        region: "HU"
+      }
     }
 
     this.handleLogin = this.handleLogin.bind(this);
   }
 
   async componentDidMount() {
-    const response = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=04a30d5152c77afe4a81783d17e20316&language=hu-HU&page=1&region=HU');
+    const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${this.state.apiData.key}&language=${this.state.apiData.language}&page=1&region=${this.state.apiData.region}`);
     const movie = await response.json();
     this.setState({movies: movie.results, isLoading: false });
     await this.checkLoginStatus();
@@ -144,6 +150,7 @@ class App extends Component {
                   render={props => (
                       <Main
                           {... props}
+                          apiData={this.state.apiData}
                           movies={movies}
                           image_pre={image_pre}
                           logged_in_status={loggedInStatus}
