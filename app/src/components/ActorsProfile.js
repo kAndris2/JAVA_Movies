@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import '../cards.css';
-import './Modal.css';
+import '../static/css/cards.css';
+import '../static/css/Modal.css';
 
 
 class ActorsProfile extends Component {

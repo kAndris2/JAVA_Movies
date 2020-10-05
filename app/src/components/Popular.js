@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import "./Fonts.css"
-import "./Popular.css"
+import "../static/css/Fonts.css"
+import "../static/css/Popular.css"
 import moment from "moment";
 
 class Popular extends Component {

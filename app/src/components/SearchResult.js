@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import "./Search.css";
+import "../static/css/Search.css";
 import moment from "moment";
+
 class SearchResult extends Component {
     constructor(props) {
         super(props);

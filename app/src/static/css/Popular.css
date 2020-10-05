@@ -535,3 +535,18 @@ div.media.discover div.card.style_1 div.content a {
     font-weight: 700;
     color: #000;
 }
+div.scroller_wrap.should_fade.is_fading:after {
+    transition: linear 0.3s;
+    opacity: 1;
+}
+div.scroller_wrap.should_fade:after {
+    content: '';
+    width: 60px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    will-change: opacity;
+    pointer-events: none;
+}

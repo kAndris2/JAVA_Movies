@@ -54,9 +54,9 @@ div.content-wrapper > div.title h3 {
 div.search {
     width:100%;
 }
-div.column {
+/*div.column {
     width:100%;
-}
+}*/
 #inner_search_form {
     margin-top: 30px;
     position: relative;

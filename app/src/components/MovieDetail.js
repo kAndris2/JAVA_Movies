@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import moment from "moment";
 import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
-import '../cards.css';
+import '../static/css/cards.css';
 import {faCircle, faPlus, faTimes} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPlayer from "react-player";
 import * as ReactBootstrap from "react-bootstrap";
-import './Modal.css';
+import '../static/css/Modal.css';
 
 
 class MovieDetail extends Component {

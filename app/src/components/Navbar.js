@@ -2,7 +2,7 @@ import React, {Component, useState} from "react";
 import { faBell, faPlus, faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios';
-import './Nav.css';
+import '../static/css/Nav.css';
 
 class Navbar extends Component {
     handleLogout = () => {
@@ -12,7 +12,7 @@ class Navbar extends Component {
             email:user.email,
             password: user.password
         }
-        console.log(curr);
+        /*console.log(curr);*/
         axios.post("http://localhost:3000/api/logout",curr);
     }
     render() {
@@ -82,7 +82,7 @@ class Navbar extends Component {
                                             <li><a className="dropdown-item" href="#">{this.props.pro.user.name}</a></li>
                                             <li><a className="dropdown-item" href="#">Leaderboard</a></li>
                                             <li><a className="dropdown-item" href="#">Support</a></li>
-                                            <li><a className="dropdown-item" onClick={this.handleLogout}>Logout</a></li>
+                                            <li><a className="dropdown-item" href={"/"} onClick={this.handleLogout}>Logout</a></li>
                                         </ul>
                                     </li>
                                     <li className="list-group-item" style={{border:"none", backgroundColor:"transparent",padding:"0 1.5rem"}}>
