@@ -9,10 +9,22 @@ class FreeToWatch extends Component {
             movies:[],
             isLoading:true
         }
+
+        this.today = this.today.bind(this);
+        this.week = this.week.bind(this);
     }
+
+    today() {
+        this.getMovies("day");
+    }
+
+    week() {
+        this.getMovies("week");
+    }
+
     async getMovies(mode) {
         const response = await fetch(
-            `https://api.themoviedb.org/3/trending/${mode}/day?` +
+            `https://api.themoviedb.org/3/trending/movie/${mode}?` +
             `api_key=${this.props.apiData.key}&` +
             `language=${this.props.apiData.language}&` +
             `page=1&region=${this.props.apiData.region}`
@@ -22,7 +34,7 @@ class FreeToWatch extends Component {
     }
 
     componentDidMount() {
-        this.getMovies("movie").then();
+        this.today();
     }
     render() {
 
@@ -39,17 +51,23 @@ class FreeToWatch extends Component {
                                     <h2>Trending</h2>
                                     <div className="selector_wrap">
                                         <div className="selector">
-                                            <div className="anchor selected">
+                                            <div onClick={this.today} className="anchor selected">
                                                 <h3>
-                                                    <a  href="#" className="no_click">Today
+                                                    <a  href="#" className="no_click">
+                                                        Today
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
                                                 </h3>
                                                 <div className="background"></div>
                                             </div>
-                                            <div className="anchor ">
-                                                <h3><a href="#" className="no_click">This Week <span
-                                                    className="glyphicons_v2 chevron-down"/></a></h3>
+
+                                            <div onClick={this.week} className="anchor ">
+                                                <h3>
+                                                    <a href="#" className="no_click">
+                                                        This Week
+                                                        <span className="glyphicons_v2 chevron-down"/>
+                                                    </a>
+                                                </h3>
                                                 <div className="background hide"/>
                                             </div>
                                         </div>

@@ -67,7 +67,7 @@ class Popular extends Component {
     }
 
     componentDidMount() {
-        this.getMovies("movie", "popular");
+        this.streaming();
     }
 
     render() {
