@@ -37,12 +37,37 @@ class App extends Component {
     }
 
     this.handleLogin = this.handleLogin.bind(this);
+    this.languageChange = this.languageChange.bind(this);
+    this.getMovies = this.getMovies.bind(this);
+  }
+
+  async getMovies(language, region) {
+    let newApi = {
+      key: this.state.apiData.key,
+      language: language,
+      region: region
+    };
+
+    const response = await fetch(
+        `https://api.themoviedb.org/3/movie/popular?` +
+        `api_key=${this.state.apiData.key}&` +
+        `language=${language}&` +
+        `page=1&` +
+        `region=${region}`
+    );
+    const movie = await response.json();
+    this.setState({
+      movies: movie.results,
+      isLoading: false,
+      apiData: newApi
+    });
   }
 
   async componentDidMount() {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${this.state.apiData.key}&language=${this.state.apiData.language}&page=1&region=${this.state.apiData.region}`);
-    const movie = await response.json();
-    this.setState({movies: movie.results, isLoading: false });
+    await this.getMovies(
+        this.state.apiData.language,
+        this.state.apiData.region
+    );
     await this.checkLoginStatus();
   }
 
@@ -127,6 +152,19 @@ class App extends Component {
     })
   }
 
+  async languageChange(language) {
+    this.setState({isLoading: true});
+    if (language === "hun") {
+      await this.getMovies("hu-HU", "HU");
+    }
+    else if (language === "eng") {
+      await this.getMovies("en-US", "US");
+    }
+    else if (language === "de") {
+      await this.getMovies("de-DE", "DE");
+    }
+  }
+
   render() {
     const {movies, isLoading, image_pre, loggedInStatus} = this.state;
 
@@ -140,6 +178,7 @@ class App extends Component {
           <Navbar
               pro={this.state}
               logged_in_status={loggedInStatus}
+              languageChange={this.languageChange}
           />
           <Router>
             <Switch>

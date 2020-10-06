@@ -3,10 +3,19 @@ import { faBell, faPlus, faUser, faSearch } from "@fortawesome/free-solid-svg-ic
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios';
 import '../static/css/Nav.css';
+import {Dropdown as Drp} from "react-bootstrap";
 
 class Navbar extends Component {
+    constructor(props) {
+        super(props);
+
+        this.languageHungarian = this.languageHungarian.bind(this);
+        this.languageEnglish = this.languageEnglish.bind(this);
+        this.languageDeutsch = this.languageDeutsch.bind(this);
+    }
+
     handleLogout = () => {
-        let user = this.props.pro.user;
+        let user = this.props.user;
         let curr = {
             name:user.name,
             email:user.email,
@@ -15,6 +24,42 @@ class Navbar extends Component {
         /*console.log(curr);*/
         axios.post("http://localhost:3000/api/logout",curr);
     }
+
+    languageHungarian() {
+        this.props.languageChange("hun");
+    }
+
+    languageEnglish() {
+        this.props.languageChange("eng");
+    }
+
+    languageDeutsch() {
+        this.props.languageChange("de");
+    }
+
+    setLanguage() {
+        /*
+        return (
+            <li id="translate" className="adminlist-group-item" style={{marginLeft:"1rem", marginRight:"1rem", fontWeight:"bold", color:"white", fontSize:"1rem", border: "1px solid #fff", borderRadius: "3px", backgroundColor:"transparent",padding:"1px 4px"}}>
+                EN
+            </li>
+        );
+         */
+        return (
+            <Drp>
+                <Drp.Toggle variant="success" id="dropdown-basic">
+                    Dropdown Button
+                </Drp.Toggle>
+
+                <Drp.Menu>
+                    <Drp.Item onClick={this.languageHungarian} href="#">magyar (hu-HU)</Drp.Item>
+                    <Drp.Item onClick={this.languageEnglish} href="#">angol (en-US)</Drp.Item>
+                    <Drp.Item onClick={this.languageDeutsch} href="#">német (de-DE)</Drp.Item>
+                </Drp.Menu>
+            </Drp>
+        );
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -70,9 +115,8 @@ class Navbar extends Component {
                                     <FontAwesomeIcon icon={faPlus} style={{color:"#fff"}} size="lg"/>
                                     </li>
 
-                                    <li id="translate" className="list-group-item" style={{marginLeft:"1rem", marginRight:"1rem", fontWeight:"bold", color:"white", fontSize:"1rem", border: "1px solid #fff", borderRadius: "3px", backgroundColor:"transparent",padding:"1px 4px"}}>
-                                        EN
-                                    </li>
+                                    {this.setLanguage()}
+
                                     <li className="list-group-item" style={{border:"none", backgroundColor:"transparent",padding:"0 1.5rem"}}>
                                         <FontAwesomeIcon icon={faBell} style={{color:"#fff"}} size="lg"/>
                                     </li>
@@ -92,9 +136,9 @@ class Navbar extends Component {
                                 }
                                 {this.props.logged_in_status !== "LOGGED_IN" &&
                                 <ul className="list-group list-group-horizontal">
-                                    <li id="translate" className="list-group-item" style={{marginLeft:"1rem", marginRight:"1rem", fontWeight:"bold", color:"white", fontSize:"1rem", border: "1px solid #fff", borderRadius: "3px", backgroundColor:"transparent",padding:"1px 4px"}}>
-                                        EN
-                                    </li>
+
+                                    {this.setLanguage()}
+
                                     <li className="list-group-item" style={{border:"none", backgroundColor:"transparent",padding:"0 1.5rem"}}>
                                         <a href={"/register"}>Register</a>
                                     </li>
