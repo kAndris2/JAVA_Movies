@@ -15,6 +15,7 @@ import axios from "axios";
 import SearchResult from "./components/SearchResult";
 import Upload from "./components/Upload";
 import Movie from "./components/Movie";
+import Livetv from "./components/Livetv";
 
 class App extends Component {
   constructor() {
@@ -174,6 +175,10 @@ class App extends Component {
                       />
                   )}
               >
+              </Route>
+
+              <Route exact path="/livetv">
+                <Livetv/>
               </Route>
 
               <Route

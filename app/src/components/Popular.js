@@ -56,7 +56,7 @@ class Popular extends Component {
 
     handleMovies(data, where) {
         let myMovies = [];
-        if (where != "movie") {
+        if (where !== "movie") {
             data.results.forEach(movie => {
                 myMovies.push({
                    id: movie.id,
