@@ -113,7 +113,7 @@ class SearchResult extends Component {
                                         <div className="search_results movie">
                                             <div className="results flex">
                                                 {this.state.results.map(movie =>
-                                                    <div id={movie.id} className="card v4 tight">
+                                                    <div key={movie.id} id={movie.id} className="card v4 tight">
                                                         <div className="wrapper">
                                                             <div className="image">
                                                                 <div className="poster">

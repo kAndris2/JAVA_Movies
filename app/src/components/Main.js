@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import moment from "moment";
-import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
+
 import Search from "./Search";
 import Popular from "./Popular";
+import FreeToWatch from "./FreeToWatch";
 
 class Main extends Component {
     randomBackdropUrl(){
@@ -22,9 +22,9 @@ class Main extends Component {
                 <Popular
                     apiData={this.props.apiData}
                 />
-                {/*<FreeToWatch>
-
-                </FreeToWatch>*/}
+                <FreeToWatch
+                    apiData={this.props.apiData}
+                />
                {/* <div id="cards_landscape_wrap-2">
                     <p>{this.props.logged_in_status}</p>
                     <div className="container" style={{maxWidth:"1300px", paddingLeft: "40px", paddingRight: "40px", paddingTop: "30px", paddingBottom: "30px"}}>
