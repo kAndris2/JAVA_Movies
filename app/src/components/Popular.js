@@ -9,14 +9,21 @@ class Popular extends Component {
 
         this.state = {
             movies: [],
-            isLoaded: false
+            isLoaded: false,
+            selected: false
         }
 
+        this.toggleClass = this.toggleClass.bind(this);
         this.streaming = this.streaming.bind(this);
         this.onTv = this.onTv.bind(this);
         this.upcoming = this.upcoming.bind(this);
         this.topRated = this.topRated.bind(this);
         this.getMovies = this.getMovies.bind(this);
+    }
+
+    toggleClass(){
+        const current = this.state.selected;
+        this.setState({selected: !current});
     }
 
     streaming() {
@@ -63,19 +70,19 @@ class Popular extends Component {
                                     <div className="selector_wrap">
                                         <div className="selector">
 
-                                            <div onClick={this.streaming} className="anchor selected">
+                                            <div onClick={() => { this.streaming(); this.toggleClass();}} className={this.state.selected ? "anchor selected":"anchor"}>
                                                 <h3>
-                                                    <a href="#" className="no_click">
+                                                    <a href="/#" className="no_click">
                                                         Streaming
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
                                                 </h3>
-                                                <div className="background">/</div>
+                                                <div className={this.state.selected ? "background":"hidden"}/>
                                             </div>
 
                                             <div onClick={this.onTv} className="anchor ">
                                                 <h3>
-                                                    <a href="#" className="no_click" data-panel="popular_scroller" data-group="on-tv">
+                                                    <a href="/#" className="no_click" data-panel="popular_scroller" data-group="on-tv">
                                                         On TV
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
@@ -85,7 +92,7 @@ class Popular extends Component {
 
                                             <div onClick={this.topRated} className="anchor ">
                                                 <h3>
-                                                    <a href="#" className="no_click" data-panel="popular_scroller" data-group="for-rent">
+                                                    <a href="/#" className="no_click" data-panel="popular_scroller" data-group="for-rent">
                                                         Top Rated
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
@@ -94,7 +101,7 @@ class Popular extends Component {
 
                                             <div onClick={this.upcoming} className="anchor">
                                                 <h3>
-                                                    <a href="#" className="no_click" data-panel="popular_scroller" data-group="in-theatres">
+                                                    <a href="/#" className="no_click" data-panel="popular_scroller" data-group="in-theatres">
                                                         In Theaters
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
@@ -111,12 +118,12 @@ class Popular extends Component {
                                                     <div className="wrapper">
                                                         <a className="image" href={"/movie/" + movie.id}
                                                            title={movie.title}>
-                                                            <img className="poster"
+                                                            <img alt={movie.title} className="poster"
                                                                  src={"https://image.tmdb.org/t/p/w220_and_h330_face/" + movie.poster_path}/>
                                                         </a>
                                                     </div>
                                                     <div className="options">
-                                                        <a className="no_click" href="#">
+                                                        <a className="no_click" href="/#">
                                                             <div className="glyphicons_v2 circle-more white"/>
                                                         </a>
                                                     </div>

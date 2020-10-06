@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, {Component} from "react";
 import { faBell, faPlus, faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios';
@@ -30,7 +30,7 @@ class Navbar extends Component {
                         <div className="collapse navbar-collapse" id="navbarsExample07">
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item px-2 active dropdown">
-                                    <a className="nav-link dropdown-toggle"  data-toggle="dropdown" href="#">Movies</a>
+                                    <a className="nav-link dropdown-toggle"  data-toggle="dropdown" href={"/#"}>Movies</a>
                                     <ul className="dropdown-menu">
                                         <li><a className="dropdown-item" href="/">Popular</a></li>
                                         <li><a className="dropdown-item" href="/"> Now Playing </a></li>
@@ -39,27 +39,27 @@ class Navbar extends Component {
                                     </ul>
                                 </li>
                                 <li className="nav-item px-2 active dropdown">
-                                    <a className="nav-link dropdown-toggle"  data-toggle="dropdown" href="#">TV Shows</a>
+                                    <a className="nav-link dropdown-toggle"  data-toggle="dropdown" href="/#">TV Shows</a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="#">Popular</a></li>
-                                        <li><a className="dropdown-item" href="#"> Airing Today </a></li>
-                                        <li><a className="dropdown-item" href="#"> On TV </a></li>
-                                        <li><a className="dropdown-item" href="#"> Top Rated </a></li>
+                                        <li><a className="dropdown-item" href="/#">Popular</a></li>
+                                        <li><a className="dropdown-item" href="/#"> Airing Today </a></li>
+                                        <li><a className="dropdown-item" href="/#"> On TV </a></li>
+                                        <li><a className="dropdown-item" href="/#"> Top Rated </a></li>
                                     </ul>
                                 </li>
                                 <li className="nav-item px-2 active dropdown">
-                                    <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">People</a>
+                                    <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/#">People</a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="#">Popular People</a></li>
+                                        <li><a className="dropdown-item" href="/#">Popular People</a></li>
                                     </ul>
                                 </li>
                                 <li className="nav-item px-2 active dropdown">
-                                    <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">More</a>
+                                    <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/#">More</a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="#">Discussions</a></li>
-                                        <li><a className="dropdown-item" href="#">Leaderboard</a></li>
-                                        <li><a className="dropdown-item" href="#">Support</a></li>
-                                        <li><a className="dropdown-item" href="#">API</a></li>
+                                        <li><a className="dropdown-item" href="/#">Discussions</a></li>
+                                        <li><a className="dropdown-item" href="/#">Leaderboard</a></li>
+                                        <li><a className="dropdown-item" href="/#">Support</a></li>
+                                        <li><a className="dropdown-item" href="/#">API</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -77,11 +77,11 @@ class Navbar extends Component {
                                         <FontAwesomeIcon icon={faBell} style={{color:"#fff"}} size="lg"/>
                                     </li>
                                     <li className="nav-item active dropdown" style={{border:"none", backgroundColor:"transparent",padding:"0 1.5rem"}}>
-                                        <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><FontAwesomeIcon icon={faUser} style={{color:"#fff"}} size="lg"/></a>
+                                        <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/#"><FontAwesomeIcon icon={faUser} style={{color:"#fff"}} size="lg"/></a>
                                         <ul className="dropdown-menu">
-                                            <li><a className="dropdown-item" href="#">{this.props.pro.user.name}</a></li>
-                                            <li><a className="dropdown-item" href="#">Leaderboard</a></li>
-                                            <li><a className="dropdown-item" href="#">Support</a></li>
+                                            <li><a className="dropdown-item" href="/#">{this.props.pro.user.name}</a></li>
+                                            <li><a className="dropdown-item" href="/#">Leaderboard</a></li>
+                                            <li><a className="dropdown-item" href="/#">Support</a></li>
                                             <li><a className="dropdown-item" href={"/"} onClick={this.handleLogout}>Logout</a></li>
                                         </ul>
                                     </li>

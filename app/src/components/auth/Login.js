@@ -68,7 +68,7 @@ class Login extends Component {
                             {this.state.regErrors &&
                             <div className="error_status card">
                                 <div className="carton">
-                                    <a href="#" className="open no_click">
+                                    <a href="/#" className="open no_click">
                                         <h2 className="background_color red">
                                           <span>
                                           <span className="glyphicons_v2 circle-alert svg invert"/>&nbsp;There was a problem

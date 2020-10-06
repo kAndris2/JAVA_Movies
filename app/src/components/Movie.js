@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import '../static/css/Movie.css';
 
 class Movie extends Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
             <section className="inner_content">
@@ -25,7 +22,7 @@ class Movie extends Component {
                                                             <div className="image">
                                                                 <div className="wrapper">
                                                                     <a className="image" href={"/movie/"+movie.id} title={movie.title}>
-                                                                        <img className="poster" src={"https://image.tmdb.org/t/p/w220_and_h330_face/"+movie.poster_path}/>
+                                                                        <img alt={movie.title} className="poster" src={"https://image.tmdb.org/t/p/w220_and_h330_face/"+movie.poster_path}/>
                                                                     </a>
                                                                 </div>
                                                             </div>

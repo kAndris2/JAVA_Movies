@@ -41,14 +41,14 @@ class FreeToWatch extends Component {
                                         <div className="selector">
                                             <div className="anchor selected">
                                                 <h3>
-                                                    <a  href="#" className="no_click">Today
+                                                    <a  href="/#" className="no_click">Today
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
                                                 </h3>
                                                 <div className="background"></div>
                                             </div>
                                             <div className="anchor ">
-                                                <h3><a href="#" className="no_click">This Week <span
+                                                <h3><a href="/#" className="no_click">This Week <span
                                                     className="glyphicons_v2 chevron-down"/></a></h3>
                                                 <div className="background hide"/>
                                             </div>
@@ -63,12 +63,12 @@ class FreeToWatch extends Component {
                                                     <div className="wrapper">
                                                         <a className="image" href={"/movie/" + movie.id}
                                                            title={movie.title}>
-                                                            <img className="poster"
+                                                            <img alt={movie.title} className="poster"
                                                                  src={"https://image.tmdb.org/t/p/w220_and_h330_face/" + movie.poster_path}/>
                                                         </a>
                                                     </div>
                                                     <div className="options">
-                                                        <a className="no_click" href="#">
+                                                        <a className="no_click" href="/#">
                                                             <div className="glyphicons_v2 circle-more white"/>
                                                         </a>
                                                     </div>

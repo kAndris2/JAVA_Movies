@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import moment from "moment";
 import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
 import '../static/css/cards.css';
-import {faCircle, faPlus, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPlayer from "react-player";
 import * as ReactBootstrap from "react-bootstrap";
@@ -87,15 +87,15 @@ class MovieDetail extends Component {
                                     </div>
 
                                     <div>
-                                        {certificates[2].release_dates[0].certification} {certificates[2].iso_3166_1}
-                                        {moment(certificates[2].release_dates[0].release_date).format("YYYY/MM/DD")}
+                                        {certificates[0].release_dates[0].certification} {certificates[0].iso_3166_1}
+                                        {moment(certificates[0].release_dates[0].release_date).format("YYYY/MM/DD")}
                                         <FontAwesomeIcon icon={faCircle} style={{color:"#fff"}} size="xs"/>
-                                        {console.log(genres)}
                                         {genres.map((genre , index) =>
-                                            index + 1 == genres.length ? genre.name : genre.name + ","
+                                            index + 1 === genres.length ? genre.name : genre.name + ","
                                         )}
                                         <FontAwesomeIcon icon={faCircle} style={{color:"#fff"}} size="xs"/>
                                         {this.minutesToHours(movie.runtime)}
+                                        <p>{companies[0].name}</p>
                                     </div>
 
                                     <div style={{ width: "7%"}}>

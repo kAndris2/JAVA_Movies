@@ -38,7 +38,7 @@ class SearchResult extends Component {
                                         <input onChange={this.handleSearch} dir="auto" id="search_v4" name="query" type="text" tabIndex="1"
                                                autoCorrect="off" autofill="off" autoComplete="off" spellCheck="false"
                                                placeholder="Search for a movie, tv show, person..." value={this.state.query}
-                                               data-role="autocomplete" className="k-input" role="textbox"
+                                               data-role="autocomplete" className="k-input"
                                                aria-haspopup="true" aria-disabled="false" aria-readonly="false"
                                                aria-owns="search_v4_listbox" aria-autocomplete="list"/>
                                     </span>
@@ -118,7 +118,7 @@ class SearchResult extends Component {
                                                             <div className="image">
                                                                 <div className="poster">
                                                                     <a className="result" href={"/movie/"+movie.id}>
-                                                                        <img src={"https://image.tmdb.org/t/p/w94_and_h141_bestv2/"+movie.poster_path} className="poster"/>
+                                                                        <img alt={movie.title} src={"https://image.tmdb.org/t/p/w94_and_h141_bestv2/"+movie.poster_path} className="poster"/>
                                                                     </a>
                                                                 </div>
                                                             </div>

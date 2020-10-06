@@ -4,9 +4,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import Navbar from "./components/Navbar";
 import MovieDetail from "./components/MovieDetail";
 import { BrowserRouter as Router, Switch,
-  Route,
-  Link,
-  Redirect
+  Route
 } from "react-router-dom";
 
 import Main from "./components/Main";
