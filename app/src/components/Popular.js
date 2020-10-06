@@ -14,15 +14,25 @@ class Popular extends Component {
 
         this.streaming = this.streaming.bind(this);
         this.onTv = this.onTv.bind(this);
+        this.upcoming = this.upcoming.bind(this);
+        this.topRated = this.topRated.bind(this);
         this.getMovies = this.getMovies.bind(this);
     }
 
     streaming() {
-        this.getMovies("movie", "now_playing");
+        this.getMovies("movie", "popular");
     }
 
     onTv() {
         this.getMovies("tv", "popular");
+    }
+
+    upcoming() {
+        this.getMovies("movie", "now_playing");
+    }
+
+    topRated() {
+        this.getMovies("movie", "top_rated");
     }
 
     async getMovies(where, mode) {
@@ -55,7 +65,8 @@ class Popular extends Component {
 
                                             <div onClick={this.streaming} className="anchor selected">
                                                 <h3>
-                                                    <a href="#" className="no_click">Streaming
+                                                    <a href="#" className="no_click">
+                                                        Streaming
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
                                                 </h3>
@@ -64,22 +75,30 @@ class Popular extends Component {
 
                                             <div onClick={this.onTv} className="anchor ">
                                                 <h3>
-                                                    <a href="#" className="no_click" data-panel="popular_scroller" data-group="on-tv">On TV
+                                                    <a href="#" className="no_click" data-panel="popular_scroller" data-group="on-tv">
+                                                        On TV
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
                                                 </h3>
                                                 <div className="background hide"/>
                                             </div>
 
-                                            <div className="anchor ">
-                                                <h3><a href="#" className="no_click" data-panel="popular_scroller"
-                                                       data-group="for-rent">For Rent <span
-                                                    className="glyphicons_v2 chevron-down"/></a></h3>
+                                            <div onClick={this.topRated} className="anchor ">
+                                                <h3>
+                                                    <a href="#" className="no_click" data-panel="popular_scroller" data-group="for-rent">
+                                                        Top Rated
+                                                        <span className="glyphicons_v2 chevron-down"/>
+                                                    </a>
+                                                </h3>
                                             </div>
-                                            <div className="anchor">
-                                                <h3><a href="#" className="no_click" data-panel="popular_scroller"
-                                                       data-group="in-theatres">In Theaters <span
-                                                    className="glyphicons_v2 chevron-down"/></a></h3>
+
+                                            <div onClick={this.upcoming} className="anchor">
+                                                <h3>
+                                                    <a href="#" className="no_click" data-panel="popular_scroller" data-group="in-theatres">
+                                                        In Theaters
+                                                        <span className="glyphicons_v2 chevron-down"/>
+                                                    </a>
+                                                </h3>
                                             </div>
                                         </div>
                                     </div>
