@@ -67,10 +67,6 @@ class Popular extends Component {
         this.setState({movies: myMovies, isLoaded: true });
     }
 
-    toMovie(movie) {
-
-    }
-
     componentDidMount() {
         this.getMovies("movie", "popular");
     }
