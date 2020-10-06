@@ -18,7 +18,6 @@ class Popular extends Component {
         this.topRated = this.topRated.bind(this);
         this.getMovies = this.getMovies.bind(this);
         this.handleMovies = this.handleMovies.bind(this);
-        this.toMovie = this.toMovie.bind(this);
     }
 
     streaming() {
