@@ -19,6 +19,7 @@ class Popular extends Component {
         this.upcoming = this.upcoming.bind(this);
         this.topRated = this.topRated.bind(this);
         this.getMovies = this.getMovies.bind(this);
+        this.handleMovies = this.handleMovies.bind(this);
     }
 
     toggleClass(){
@@ -50,11 +51,30 @@ class Popular extends Component {
             `page=1&region=${this.props.apiData.region}`
         );
         const movie = await response.json();
-        this.setState({movies: movie.results, isLoaded: true });
+        this.handleMovies(movie, where);
+    }
+
+    handleMovies(data, where) {
+        let myMovies = [];
+        if (where != "movie") {
+            data.results.forEach(movie => {
+                myMovies.push({
+                   id: movie.id,
+                   title: movie.name,
+                   poster_path: movie.poster_path,
+                    vote_average: movie.vote_average,
+                    release_date: movie.first_air_date
+                });
+            });
+        }
+        else {
+            myMovies = data.results;
+        }
+        this.setState({movies: myMovies, isLoaded: true });
     }
 
     componentDidMount() {
-        this.getMovies("movie", "popular");
+        this.streaming();
     }
 
     render() {
