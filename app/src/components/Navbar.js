@@ -84,7 +84,7 @@ class Navbar extends Component {
                                 <li className="nav-item px-2 active dropdown">
                                     <a className="nav-link dropdown-toggle"  data-toggle="dropdown" href={"/#"}>Movies</a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="/">Popular</a></li>
+                                        <li><a className="dropdown-item" href="/movie">Popular</a></li>
                                         <li><a className="dropdown-item" href="/"> Now Playing </a></li>
                                         <li><a className="dropdown-item" href="/"> Upcoming </a></li>
                                         <li><a className="dropdown-item" href="/"> Top Rated </a></li>
