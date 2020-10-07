@@ -10,11 +10,13 @@ class Livetv extends Component {
             epg:[],
             selectedEpg:[],
 
+            activeItem: -1,
             isLoading: true,
             selectedChannel:'175187478216bb9042221e84add7502b'
         }
         this.changeChannel=this.changeChannel.bind(this);
         this.getEPG=this.getEPG.bind(this);
+        this.handleItemClick=this.handleItemClick.bind(this);
     }
 
     async componentDidMount() {
@@ -63,12 +65,18 @@ class Livetv extends Component {
 
     }
 
+    handleItemClick(index) {
+        this.setState({
+            activeItem: index,
+        })
+    }
+
     render() {
         if (this.state.isLoading && (this.state.selectedEpg.length === 0)){
             return (<div>Loading...</div>)
         }
         return (
-            <main id="main" className="smaller subtle show_search_true">
+
                 <section className="main_content search_results">
                     <div className="column-wrapper reverse">
                         <div className="content-wrapper">
@@ -77,8 +85,9 @@ class Livetv extends Component {
                                     <h3 className="background_color light_blue">Channels</h3>
                                     <div id="search_menu_scroller">
                                         <ul className="settings panel with_counts scroller">
-                                            {this.state.channels.map(channel =>
-                                                <li key={channel.key} className="">
+                                            {this.state.channels.map((channel,index) =>
+                                                <li key={channel.key} className={this.state.activeItem === index ? 'selected' : ''}
+                                                    onClick={this.handleItemClick(index)}>
                                                     <a href={"/livetv/#"} onClick={() => {this.changeChannel(channel.key); }}
                                                        className="search_tab active" title="Channels"
                                                        alt="Channels">{channel.val}</a>
@@ -94,12 +103,13 @@ class Livetv extends Component {
                                 <section className="panel">
                                     <div className="search_results movie">
                                         <div className="results flex">
-                                            <video key={"http://mradmin.hu:9981/stream/channel/"+this.state.selectedChannel+"?profile=webtv-h264-aac-matroska"} width="100%" autoPlay controls style={{visibility: "visible",borderRadius: "8px"}}>
+                                            {/*<video preload="auto" key={"http://mradmin.hu:9981/stream/channel/"+this.state.selectedChannel+"?profile=webtv-h264-aac-matroska"} width="100%" autoPlay controls style={{visibility: "visible",borderRadius: "8px",borderBottomLeftRadius: "0",
+                                                borderBottomRightRadius: "0"}}>
                                                 <source id="ext-gen3699" src={"http://mradmin.hu:9981/stream/channel/"+this.state.selectedChannel+"?profile=webtv-h264-aac-matroska"}/>
-                                            </video>
+                                            </video>*/}
                                         </div>
                                         {this.state.selectedEpg.map((epg,index) =>
-                                            <div className="card v4 tight" style={(index === 0) ? {backgroundColor:"rgb(30,213,169)"}:{backgroundColor:"white"}}>
+                                            <div key={index} className="card v4 tight" style={(index === 0) ? {backgroundColor:"rgb(30,213,169)",borderTopLeftRadius:"0",borderTopRightRadius:"0"}:{backgroundColor:"white"}}>
                                                 <div className="wrapper">
                                                     <div className="details">
                                                         <div className="wrapper">
@@ -142,7 +152,7 @@ class Livetv extends Component {
                         </div>
                     </div>
                 </section>
-            </main>
+
         );
     }
 }
