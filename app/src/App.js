@@ -16,6 +16,7 @@ import SearchResult from "./components/SearchResult";
 import Upload from "./components/Upload";
 import Movie from "./components/Movie";
 import Livetv from "./components/Livetv";
+import UserProfile from "./components/UserProfile";
 
 class App extends Component {
   constructor() {
@@ -259,6 +260,14 @@ class App extends Component {
                 >
                 </SearchResult>
               </Route>
+
+              <Route exact path={"/u/" + this.state.user.name}>
+                <UserProfile
+                  user={this.state.user}
+                  >
+                </UserProfile>
+              </Route>
+
             </Switch>
           </Router>
 

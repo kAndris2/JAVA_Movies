@@ -130,7 +130,7 @@ class Navbar extends Component {
                                     <li className="nav-item active dropdown" style={{border:"none", backgroundColor:"transparent",padding:"0 1.5rem"}}>
                                         <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/#"><FontAwesomeIcon icon={faUser} style={{color:"#fff"}} size="lg"/></a>
                                         <ul className="dropdown-menu">
-                                            <li><a className="dropdown-item" href="/#">{this.props.pro.user.name}</a></li>
+                                            <li><a className="dropdown-item" href={`/u/${this.props.pro.user.name}`}>{this.props.pro.user.name}</a></li>
                                             <li><a className="dropdown-item" href="/#">Leaderboard</a></li>
                                             <li><a className="dropdown-item" href="/#">Support</a></li>
                                             <li><a className="dropdown-item" href={"/"} onClick={this.handleLogout}>Logout</a></li>
