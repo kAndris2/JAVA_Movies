@@ -201,6 +201,7 @@ class App extends Component {
               <Route exact path="/movie">
                 <Movie
                   movies={movies}
+                  apiData={this.state.apiData}
                 />
               </Route>
 
