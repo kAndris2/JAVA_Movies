@@ -179,6 +179,7 @@ class App extends Component {
               pro={this.state}
               logged_in_status={loggedInStatus}
               languageChange={this.languageChange}
+              langTitle={this.state.apiData.region}
           />
           <Router>
             <Switch>

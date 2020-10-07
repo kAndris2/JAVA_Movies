@@ -12,6 +12,7 @@ class Navbar extends Component {
         this.languageHungarian = this.languageHungarian.bind(this);
         this.languageEnglish = this.languageEnglish.bind(this);
         this.languageDeutsch = this.languageDeutsch.bind(this);
+        this.setLanguage = this.setLanguage.bind(this);
     }
 
     handleLogout = () => {
@@ -38,17 +39,23 @@ class Navbar extends Component {
     }
 
     setLanguage() {
-        /*
-        return (
-            <li id="translate" className="adminlist-group-item" style={{marginLeft:"1rem", marginRight:"1rem", fontWeight:"bold", color:"white", fontSize:"1rem", border: "1px solid #fff", borderRadius: "3px", backgroundColor:"transparent",padding:"1px 4px"}}>
-                EN
-            </li>
-        );
-         */
         return (
             <Drp>
-                <Drp.Toggle variant="success" id="dropdown-basic">
-                    Dropdown Button
+                <Drp.Toggle
+                    variant="success"
+                    id="dropdown-basic"
+                    style={{
+                        marginLeft:"1rem",
+                        marginRight:"1rem",
+                        fontWeight:"bold",
+                        color:"white",
+                        fontSize:"1rem",
+                        border: "1px solid #fff",
+                        borderRadius: "3px",
+                        backgroundColor:"transparent",
+                        padding:"1px 4px"
+                    }}>
+                    {this.props.langTitle}
                 </Drp.Toggle>
 
                 <Drp.Menu>
