@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import moment from "moment";
 
 class Livetv extends Component {
     constructor(props) {
@@ -14,7 +13,7 @@ class Livetv extends Component {
     }
 
     async componentDidMount() {
-        const response = await fetch("http://172.31.1.68:9981/api/channel/list",{
+        const response = await fetch("http://mradmin.hu:9981/api/channel/list",{
                 method: 'get',
                 headers: new Headers({
                     'Authorization': 'Basic '+btoa('test:123qweAsD'),
