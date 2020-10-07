@@ -10,7 +10,7 @@ class Popular extends Component {
         this.state = {
             movies: [],
             isLoaded: false,
-            selected: false
+            activeItem: 1,
         }
 
         this.toggleClass = this.toggleClass.bind(this);
@@ -20,6 +20,7 @@ class Popular extends Component {
         this.topRated = this.topRated.bind(this);
         this.getMovies = this.getMovies.bind(this);
         this.handleMovies = this.handleMovies.bind(this);
+        this.handleItemClick=this.handleItemClick.bind(this);
     }
 
     toggleClass(){
@@ -72,7 +73,11 @@ class Popular extends Component {
         }
         this.setState({movies: myMovies, isLoaded: true });
     }
-
+    handleItemClick(index) {
+        this.setState({
+            activeItem: index,
+        })
+    }
     componentDidMount() {
         this.streaming();
     }
@@ -90,42 +95,44 @@ class Popular extends Component {
                                     <div className="selector_wrap">
                                         <div className="selector">
 
-                                            <div onClick={() => { this.streaming(); this.toggleClass();}} className={this.state.selected ? "anchor selected":"anchor"}>
+                                            <div onClick={() => { this.streaming(); this.handleItemClick(1)}} className={this.state.activeItem === 1 ? 'anchor selected' : 'anchor'}>
                                                 <h3>
                                                     <a href="/#" className="no_click">
                                                         Streaming
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
                                                 </h3>
-                                                <div className={this.state.selected ? "background":"hidden"}/>
+                                                <div className={this.state.activeItem === 1 ? "background":"hide"}/>
                                             </div>
 
-                                            <div onClick={this.onTv} className="anchor ">
+                                            <div onClick={() => { this.onTv(); this.handleItemClick(2)}} className={this.state.activeItem === 2 ? 'anchor selected' : 'anchor'}>
                                                 <h3>
                                                     <a href="/#" className="no_click" data-panel="popular_scroller" data-group="on-tv">
                                                         On TV
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
                                                 </h3>
-                                                <div className="background hide"/>
+                                                <div className={this.state.activeItem === 2 ? "background":"hide"}/>
                                             </div>
 
-                                            <div onClick={this.topRated} className="anchor ">
+                                            <div onClick={() => { this.topRated(); this.handleItemClick(3)}} className={this.state.activeItem === 3 ? 'anchor selected' : 'anchor'}>
                                                 <h3>
                                                     <a href="/#" className="no_click" data-panel="popular_scroller" data-group="for-rent">
                                                         Top Rated
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
                                                 </h3>
+                                                <div className={this.state.activeItem === 3 ? "background":"hide"}/>
                                             </div>
 
-                                            <div onClick={this.upcoming} className="anchor">
+                                            <div onClick={() => { this.upcoming(); this.handleItemClick(4)}} className={this.state.activeItem === 4 ? 'anchor selected' : 'anchor'}>
                                                 <h3>
                                                     <a href="/#" className="no_click" data-panel="popular_scroller" data-group="in-theatres">
                                                         In Theaters
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
                                                 </h3>
+                                                <div className={this.state.activeItem === 4 ? "background":"hide"}/>
                                             </div>
                                         </div>
                                     </div>

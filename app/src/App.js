@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+/*import './App.css';*/
 import 'react-circular-progressbar/dist/styles.css';
 import Navbar from "./components/Navbar";
 import MovieDetail from "./components/MovieDetail";
