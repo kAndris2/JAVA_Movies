@@ -17,6 +17,7 @@ import Upload from "./components/Upload";
 import Movie from "./components/Movie";
 import Livetv from "./components/Livetv";
 import UserProfile from "./components/UserProfile";
+import  Footer from "./components/Footer";
 
 class App extends Component {
   constructor() {
@@ -182,6 +183,7 @@ class App extends Component {
               languageChange={this.languageChange}
               langTitle={this.state.apiData.region}
           />
+
           <Router>
             <Switch>
               <Route
@@ -270,6 +272,11 @@ class App extends Component {
 
             </Switch>
           </Router>
+
+          <Footer
+              user={this.state.user}
+              logged_in_status={loggedInStatus}
+          />
 
         </div>
     );
