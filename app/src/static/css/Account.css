@@ -2033,34 +2033,3 @@ textarea.pre {
 textarea.pre:focus {
     outline: none;
 }
-
-div.inner_block div.inner_content div.content h2 {
-    font-weight: 700 !important;
-    margin-bottom: 0 !important;
-}
-h2 {
-    font-size: 1.5em !important;
-    margin: 0 0 4px 0 !important;
-    font-weight: 600 !important;
-}
-.h3, h3 {
-    font-size: 1.75rem !important;
-}
-
- .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-     margin-bottom: .5rem !important;
-     font-weight: 500 !important;
-     line-height: 1.2 !important;
- }
-div.inner_block div.inner_content div.content div.stats_blocks div.stat_block h2 {
-    font-size: 3.6em !important;
-    line-height: 1;
-    margin: 0;
-}
-div.inner_block div.inner_content div.content h2 {
-    font-weight: 700;
-    margin-bottom: 0;
-}
-.color.green, .color_hover.green:hover {
-    color: #01d277;
-}
