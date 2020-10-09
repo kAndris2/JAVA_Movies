@@ -87,7 +87,7 @@ class Livetv extends Component {
                                         <ul className="settings panel with_counts scroller">
                                             {this.state.channels.map((channel,index) =>
                                                 <li key={channel.key} className={this.state.activeItem === index ? 'selected' : ''}
-                                                    onClick={this.handleItemClick(index)}>
+                                                    onClick={() => this.handleItemClick(index)}>
                                                     <a href={"/livetv/#"} onClick={() => {this.changeChannel(channel.key); }}
                                                        className="search_tab active" title="Channels"
                                                        alt="Channels">{channel.val}</a>
@@ -103,10 +103,10 @@ class Livetv extends Component {
                                 <section className="panel">
                                     <div className="search_results movie">
                                         <div className="results flex">
-                                            {/*<video preload="auto" key={"http://mradmin.hu:9981/stream/channel/"+this.state.selectedChannel+"?profile=webtv-h264-aac-matroska"} width="100%" autoPlay controls style={{visibility: "visible",borderRadius: "8px",borderBottomLeftRadius: "0",
+                                            <video preload="auto" key={"http://mradmin.hu:9981/stream/channel/"+this.state.selectedChannel+"?profile=webtv-h264-aac-matroska"} width="100%" autoPlay controls style={{visibility: "visible",borderRadius: "8px",borderBottomLeftRadius: "0",
                                                 borderBottomRightRadius: "0"}}>
                                                 <source id="ext-gen3699" src={"http://mradmin.hu:9981/stream/channel/"+this.state.selectedChannel+"?profile=webtv-h264-aac-matroska"}/>
-                                            </video>*/}
+                                            </video>
                                         </div>
                                         {this.state.selectedEpg.map((epg,index) =>
                                             <div key={index} className="card v4 tight" style={(index === 0) ? {backgroundColor:"rgb(30,213,169)",borderTopLeftRadius:"0",borderTopRightRadius:"0"}:{backgroundColor:"white"}}>
