@@ -276,6 +276,7 @@ class App extends Component {
           <Footer
               user={this.state.user}
               logged_in_status={loggedInStatus}
+              language={this.state.apiData.region}
           />
 
         </div>
