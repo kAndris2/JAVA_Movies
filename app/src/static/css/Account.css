@@ -2033,3 +2033,8 @@ textarea.pre {
 textarea.pre:focus {
     outline: none;
 }
+.display {
+   /* composes: serif-font;*/
+    font-size: 30px;
+    line-height: 35px;
+}

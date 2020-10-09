@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "../static/css/Account.css";
+/*import "../static/css/Account.css";*/
 
 class UserProfile extends Component {
     constructor(props) {
@@ -13,6 +13,7 @@ class UserProfile extends Component {
 
     render() {
         const {user, profileImg} = this.state;
+
         return (
             <>
                 <div className="bg_image">

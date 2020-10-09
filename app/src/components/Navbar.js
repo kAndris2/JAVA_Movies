@@ -95,7 +95,7 @@ class Navbar extends Component {
                                     <ul className="dropdown-menu">
                                         <li><a className="dropdown-item" href="/#">Popular</a></li>
                                         <li><a className="dropdown-item" href="/#"> Airing Today </a></li>
-                                        <li><a className="dropdown-item" href="/#"> On TV </a></li>
+                                        <li><a className="dropdown-item" href="/livetv"> On TV </a></li>
                                         <li><a className="dropdown-item" href="/#"> Top Rated </a></li>
                                     </ul>
                                 </li>

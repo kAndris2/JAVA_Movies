@@ -10,7 +10,7 @@ class Livetv extends Component {
             epg:[],
             selectedEpg:[],
 
-            activeItem: -1,
+            activeItem: 7,
             isLoading: true,
             selectedChannel:'175187478216bb9042221e84add7502b'
         }
