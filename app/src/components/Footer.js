@@ -10,7 +10,7 @@ class Footer extends Component {
             <React.Fragment>
                 <nav className="navbar navbar-expand-sm navbar-dark" style={{backgroundColor:"#032541", fontWeight:"bold", padding:".75rem .75rem"}}>
                     <div className={"join"}>
-                        <img src={require("../static/img/logo2.png")}
+                        <img src={require("../static/img/logo2.svg")}
                              alt={"TMDB"}
                              width={"130"}
                              height={"94"}
