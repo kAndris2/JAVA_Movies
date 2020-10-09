@@ -25,7 +25,7 @@ class Footer extends Component {
                             {
                                 this.props.logged_in_status !== "LOGGED_IN" &&
                                    <a className={"rounded"}
-                                      href={"/register"}
+                                      href={"/signup"}
                                    >Join the Community</a>
                             }
                         </div>
