@@ -17,7 +17,8 @@ import Upload from "./components/Upload";
 import Movie from "./components/Movie";
 import Livetv from "./components/Livetv";
 import UserProfile from "./components/UserProfile";
-import  Footer from "./components/Footer";
+import Footer from "./components/Footer";
+import TvDetails from "./components/TvDetails";
 
 class App extends Component {
   constructor() {
@@ -244,6 +245,14 @@ class App extends Component {
                     logged_in_status={loggedInStatus}
                 >
                 </MovieDetail>
+              </Route>
+
+              <Route exact path={"/tv/"+this.getId()}>
+                <TvDetails
+                    movie_id={this.getId()}
+                    logged_in_status={loggedInStatus}
+                >
+                </TvDetails>
               </Route>
 
               <Route exact path={"/upload"}>

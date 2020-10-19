@@ -17,7 +17,9 @@ class UserProfile extends Component {
         return (
             <div className={styles["city"]}>
                 <h2>London</h2>
-                <p>London is the capital of England.</p>
+                <p className={styles["button"]}>London is the capital of England.
+                    <button className={styles["btn","btn-success"]}>YEET</button>
+                </p>
             </div>
         );
 

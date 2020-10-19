@@ -143,7 +143,7 @@ class Popular extends Component {
                                             <div key={movie.id} className="card style_1">
                                                 <div className="image">
                                                     <div className="wrapper">
-                                                        <a className="image" href={"/movie/" + movie.id}
+                                                        <a className="image" href={(this.state.activeItem === 2) ? "/tv/" + movie.id : "/movie/" + movie.id}
                                                            title={movie.title}>
                                                             <img alt={movie.title} className="poster"
                                                                  src={"https://image.tmdb.org/t/p/w220_and_h330_face/" + movie.poster_path}/>
