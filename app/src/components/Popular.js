@@ -97,7 +97,7 @@ class Popular extends Component {
 
                                             <div onClick={() => { this.streaming(); this.handleItemClick(1)}} className={this.state.activeItem === 1 ? 'anchor selected' : 'anchor'}>
                                                 <h3>
-                                                    <a href="/#" className="no_click">
+                                                    <a className="no_click">
                                                         Streaming
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
@@ -107,7 +107,7 @@ class Popular extends Component {
 
                                             <div onClick={() => { this.onTv(); this.handleItemClick(2)}} className={this.state.activeItem === 2 ? 'anchor selected' : 'anchor'}>
                                                 <h3>
-                                                    <a href="/#" className="no_click" data-panel="popular_scroller" data-group="on-tv">
+                                                    <a className="no_click" data-panel="popular_scroller" data-group="on-tv">
                                                         On TV
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
@@ -117,7 +117,7 @@ class Popular extends Component {
 
                                             <div onClick={() => { this.topRated(); this.handleItemClick(3)}} className={this.state.activeItem === 3 ? 'anchor selected' : 'anchor'}>
                                                 <h3>
-                                                    <a href="/#" className="no_click" data-panel="popular_scroller" data-group="for-rent">
+                                                    <a className="no_click" data-panel="popular_scroller" data-group="for-rent">
                                                         Top Rated
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
@@ -127,7 +127,7 @@ class Popular extends Component {
 
                                             <div onClick={() => { this.upcoming(); this.handleItemClick(4)}} className={this.state.activeItem === 4 ? 'anchor selected' : 'anchor'}>
                                                 <h3>
-                                                    <a href="/#" className="no_click" data-panel="popular_scroller" data-group="in-theatres">
+                                                    <a className="no_click" data-panel="popular_scroller" data-group="in-theatres">
                                                         In Theaters
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>

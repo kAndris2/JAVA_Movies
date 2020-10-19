@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import moment from "moment";
+import "../static/css/FreeToWatch.css"
 
 class FreeToWatch extends Component {
     constructor(props) {
@@ -53,7 +54,7 @@ class FreeToWatch extends Component {
                                         <div className="selector">
                                             <div onClick={this.today} className="anchor selected">
                                                 <h3>
-                                                    <a  href="/#" className="no_click">Today
+                                                    <a className="no_click">Today
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
                                                 </h3>
@@ -62,7 +63,7 @@ class FreeToWatch extends Component {
 
                                             <div onClick={this.week} className="anchor ">
                                                 <h3>
-                                                    <a href="/#" className="no_click">
+                                                    <a className="no_click">
                                                         This Week
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
