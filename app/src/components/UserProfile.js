@@ -15,14 +15,6 @@ class UserProfile extends Component {
         const {user, profileImg} = this.state;
 
         return (
-            <div className={styles["city"]}>
-                <h2>London</h2>
-                <p>London is the capital of England.</p>
-            </div>
-        );
-
-        /*
-        return (
             <>
                 <div className="bg_image">
                     <div className="block header gradient green">
@@ -372,7 +364,6 @@ class UserProfile extends Component {
                 </div>
             </>
         );
-         */
     }
 }
 

@@ -251,14 +251,6 @@ p.button {
     font-size: 1.2em;
 }
 
-.city {
-    background-color: tomato;
-    color: white;
-    border: 2px solid black;
-    margin: 20px;
-    padding: 20px;
-}
-
 div.block div.inner_content div.content {
     color: #fff;
     display: flex;
