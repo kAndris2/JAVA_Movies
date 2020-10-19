@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-/*import "../static/css/Account.css";*/
+import styles from "../static/css/Account.module.css";
 
 class UserProfile extends Component {
     constructor(props) {
@@ -14,6 +14,14 @@ class UserProfile extends Component {
     render() {
         const {user, profileImg} = this.state;
 
+        return (
+            <div className={styles["city"]}>
+                <h2>London</h2>
+                <p>London is the capital of England.</p>
+            </div>
+        );
+
+        /*
         return (
             <>
                 <div className="bg_image">
@@ -364,6 +372,7 @@ class UserProfile extends Component {
                 </div>
             </>
         );
+         */
     }
 }
 
