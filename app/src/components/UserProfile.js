@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import styles from "../static/css/Account.module.css";
 
 class UserProfile extends Component {
     constructor(props) {
