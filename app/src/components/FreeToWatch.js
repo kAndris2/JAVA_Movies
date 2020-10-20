@@ -63,7 +63,7 @@ class FreeToWatch extends Component {
                                             <div onClick={() => { this.today(); this.handleItemClick(1)}} className={this.state.activeItem === 1 ? 'anchor selected' : 'anchor'}>
                                                 <h3>
                                                     <a className="no_click">Today
-                                                        <span className="glyphicons_v2  chevron-down"/>
+                                                        <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
                                                 </h3>
                                                 <div className={this.state.activeItem === 1 ? "background":"hide"}/>

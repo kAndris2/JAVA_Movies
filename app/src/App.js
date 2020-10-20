@@ -19,6 +19,7 @@ import Livetv from "./components/Livetv";
 import UserProfile from "./components/UserProfile";
 import Footer from "./components/Footer";
 import TvDetails from "./components/TvDetails";
+import GenericNotFound from "./components/GenericNotFound";
 
 class App extends Component {
   constructor() {
@@ -277,8 +278,9 @@ class App extends Component {
                   user={this.state.user}
                   >
                 </UserProfile>
-              </Route>
 
+              </Route>
+              <Route component={GenericNotFound} />
             </Switch>
           </Router>
 
