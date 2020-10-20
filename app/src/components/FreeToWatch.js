@@ -8,11 +8,13 @@ class FreeToWatch extends Component {
 
         this.state={
             movies:[],
-            isLoading:true
+            isLoading:true,
+            activeItem:1
         }
 
         this.today = this.today.bind(this);
         this.week = this.week.bind(this);
+        this.handleItemClick = this.handleItemClick.bind(this);
     }
 
     today() {
@@ -37,6 +39,12 @@ class FreeToWatch extends Component {
     componentDidMount() {
         this.today();
     }
+
+    handleItemClick(index) {
+        this.setState({
+            activeItem: index,
+        })
+    }
     render() {
 
         if (this.state.isLoading) {
@@ -52,24 +60,23 @@ class FreeToWatch extends Component {
                                     <h2>Trending</h2>
                                     <div className="selector_wrap">
                                         <div className="selector">
-                                            <div onClick={this.today} className="anchor selected">
+                                            <div onClick={() => { this.today(); this.handleItemClick(1)}} className={this.state.activeItem === 1 ? 'anchor selected' : 'anchor'}>
                                                 <h3>
                                                     <a className="no_click">Today
-                                                        <span className="glyphicons_v2 chevron-down"/>
+                                                        <span className="glyphicons_v2  chevron-down"/>
                                                     </a>
                                                 </h3>
-                                                <div className="background"></div>
+                                                <div className={this.state.activeItem === 1 ? "background":"hide"}/>
                                             </div>
 
-                                            <div onClick={this.week} className="anchor ">
+                                            <div onClick={() => { this.week(); this.handleItemClick(2)}} className={this.state.activeItem === 2 ? 'anchor selected' : 'anchor'}>
                                                 <h3>
                                                     <a className="no_click">
                                                         This Week
                                                         <span className="glyphicons_v2 chevron-down"/>
                                                     </a>
                                                 </h3>
-
-                                                <div className="background hide"/>
+                                                <div className={this.state.activeItem === 2 ? "background":"hide"}/>
                                             </div>
                                         </div>
                                     </div>
