@@ -21,6 +21,7 @@ class Popular extends Component {
         this.getMovies = this.getMovies.bind(this);
         this.handleMovies = this.handleMovies.bind(this);
         this.handleItemClick=this.handleItemClick.bind(this);
+        this.lengthify=this.lengthify.bind(this);
     }
 
     toggleClass(){
@@ -80,6 +81,19 @@ class Popular extends Component {
     }
     componentDidMount() {
         this.streaming();
+    }
+
+    lengthify(title){
+        let str = title;
+
+        if (str.toString().length >= 23) {
+            str = str.substring(0,23)+"...";
+            return str;
+        }
+        else {
+            return str;
+        }
+
     }
 
     render() {
@@ -171,7 +185,7 @@ class Popular extends Component {
                                                     </div>
                                                     <h2>
                                                         <a href={"/movie/" + movie.id}
-                                                           title={movie.title}>{movie.title}</a>
+                                                           title={movie.title}>{this.lengthify(movie.title)}</a>
                                                     </h2>
                                                     <p>{moment(movie.release_date).format("YYYY. MMM. D.")}</p>
                                                 </div>

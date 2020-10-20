@@ -15,6 +15,7 @@ class FreeToWatch extends Component {
         this.today = this.today.bind(this);
         this.week = this.week.bind(this);
         this.handleItemClick = this.handleItemClick.bind(this);
+        this.lengthify=this.lengthify.bind(this);
     }
 
     today() {
@@ -45,6 +46,18 @@ class FreeToWatch extends Component {
             activeItem: index,
         })
     }
+
+    lengthify(title){
+        let str = title;
+        if (str.toString().length >= 23) {
+            str = str.substring(0,23)+"...";
+            return str;
+        }
+        else {
+            return str;
+        }
+    }
+
     render() {
 
         if (this.state.isLoading) {
@@ -115,7 +128,7 @@ class FreeToWatch extends Component {
                                                     </div>
                                                     <h2>
                                                         <a href={"/movie/" + movie.id}
-                                                           title={movie.title}>{movie.title}</a>
+                                                           title={movie.title}>{this.lengthify(movie.title)}</a>
                                                     </h2>
                                                     <p>{moment(movie.release_date).format("YYYY. MMM. D.")}</p>
                                                 </div>
