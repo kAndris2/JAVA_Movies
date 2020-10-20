@@ -15,58 +15,58 @@ class UserProfile extends Component {
 
         return (
             <>
-                <div className="bg_image">
-                    <div className="block header gradient green">
-                        <div className="inner_content">
-                            <div className="content">
+                <div className={styles["bg_image"]}>
+                    <div className={`${styles["block"]} ${styles["header"]} ${styles["gradient"]} ${styles["green"]}`}>
+                        <div className={styles["inner_content"]}>
+                            <div className={styles["content"]}>
 
-                              <span className="avatar">
+                              <span className={styles["avatar"]}>
                                 <a href={"/u/"+user.name}>
-                                    <img className="avatar"
+                                    <img className={styles["avatar"]}
                                          src={profileImg}
                                          srcSet={profileImg +" 1x, "+profileImg+" 2x"}
                                          alt={user.name} width="150" height="150"/>
                                 </a>
                               </span>
                             <div>
-                                <div className="about">
-                                    <div className="content_wrapper flex">
+                                <div className={styles["about"]}>
+                                    <div className={`${styles["content_wrapper"]} ${styles["flex"]}`}>
                                         <h2><a href={"/u/"+user.name}>{user.name}</a></h2>
                                         <h3>Member since November 2019</h3>
                                     </div>
-                                    <div className="content_wrapper flex">
-                                        <div className="block">
-                                            <div className="consensus no_hover">
-                                                <div className="outer_ring">
-                                                    <div className="user_score_chart" data-percent="0"
+                                    <div className={`${styles["content_wrapper"]} ${styles["flex"]}`}>
+                                        <div className={styles["block"]}>
+                                            <div className={`${styles["consensus"]} ${styles["no_hover"]}`}>
+                                                <div className={styles["outer_ring"]}>
+                                                    <div className={styles["user_score_chart"]} data-percent="0"
                                                          data-track-color="#666666" data-bar-color="#d4d4d4">
-                                                        <div className="percent">
+                                                        <div className={styles["percent"]}>
 
-                                                            <span className="icon icon-r0"/>
+                                                            <span className={`${styles["icon"]} ${styles["icon-r0"]}`}/>
 
                                                         </div>
                                                         <canvas height="60" width="60"/>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="text">Average<br/>Movie Score</div>
+                                            <div className={styles["text"]}>Average<br/>Movie Score</div>
                                         </div>
 
-                                        <div className="block">
-                                            <div className="consensus no_hover">
-                                                <div className="outer_ring">
-                                                    <div className="user_score_chart" data-percent="0"
+                                        <div className={styles["block"]}>
+                                            <div className={`${styles["consensus"]} ${styles["no_hover"]}`}>
+                                                <div className={styles["outer_ring"]}>
+                                                    <div className={styles["user_score_chart"]} data-percent="0"
                                                          data-track-color="#666666" data-bar-color="#d4d4d4">
-                                                        <div className="percent">
-                                                            <span className="icon icon-r0"/>
+                                                        <div className={styles["percent"]}>
+                                                            <span className={`${styles["icon"]} ${styles["icon-r0"]}`}/>
                                                         </div>
                                                         <canvas height="60" width="60"/>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="text">Average<br/>TV Score</div>
+                                            <div className={styles["text"]}>Average<br/>TV Score</div>
                                         </div>
-                                        <div className="social_links"/>
+                                        <div className={styles["social_links"]}/>
                                     </div>
                                 </div>
                             </div>
@@ -75,27 +75,27 @@ class UserProfile extends Component {
                     </div>
                 </div>
                 <div id="sticky_anchor"></div>
-                <div className="account_page_data">
-                    <div className="inner_block">
-                        <div className="inner_content">
-                            <div className="content">
+                <div className={styles["account_page_data"]}>
+                    <div className={styles["inner_block"]}>
+                        <div className={styles["inner_content"]}>
+                            <div className={styles["content"]}>
 
                                 <h2>Stats</h2>
 
-                                <div className="stats_blocks">
-                                    <div className="stat_block">
+                                <div className={styles["stats_blocks"]}>
+                                    <div className={styles["stat_block"]}>
                                         <h3>Total Edits</h3>
-                                        <h2 className="color green">0</h2>
+                                        <h2 className={`${styles["color"]} ${styles["green"]}`}>0</h2>
                                     </div>
 
-                                    <div className="stat_block">
+                                    <div className={styles["stat_block"]}>
                                         <h3>Total Ratings</h3>
-                                        <h2 className="color green">0</h2>
+                                        <h2 className={`${styles["color"]} ${styles["green"]}`}>0</h2>
                                     </div>
 
-                                    <div className="stat_block">
+                                    <div className={styles["stat_block"]}>
                                         <h3>Rating Overview</h3>
-                                        <div id="rating_histogram_chart" data-role="chart" className=" k-chart"
+                                        <div id="rating_histogram_chart" data-role="chart" className={styles["k-chart"]}
                                              style={{position: "relative"}}>
                                             <svg
                                                 style={{width: "100%", height: "100%", overflow: "hidden", left: "-0.96875px", top: "0px"}}
@@ -265,7 +265,7 @@ class UserProfile extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="stat_block">
+                                    <div className={styles["stat_block"]}>
                                         <h3>Most Watched Genres</h3>
 
 
@@ -278,15 +278,15 @@ class UserProfile extends Component {
                         </div>
                     </div>
 
-                    <div className="inner_block">
-                        <div className="inner_content">
-                            <div className="content">
+                    <div className={styles["inner_block"]}>
+                        <div className={styles["inner_content"]}>
+                            <div className={styles["content"]}>
 
-                                <div className="title_header">
-                                    <div className="title_group space_between">
+                                <div className={styles["title_header"]}>
+                                    <div className={`${styles["title_group"]} ${styles["space_between"]}`}>
                                         <h2>Upcoming From Watchlist</h2>
                                         <div>
-                                            <h3 className="border_color green"><a className="color green"
+                                            <h3 className={`${styles["border_color"]} ${styles["green"]}`}><a className={`${styles["color"]} ${styles["green"]}`}
                                                                                   href="/u/burgonyapure/watchlist">Go to
                                                 Watchlist</a></h3>
                                         </div>
@@ -301,12 +301,12 @@ class UserProfile extends Component {
                         </div>
                     </div>
 
-                    <div className="inner_block">
-                        <div className="inner_content">
-                            <div className="content">
+                    <div className={styles["inner_block"]}>
+                        <div className={styles["inner_content"]}>
+                            <div className={styles["content"]}>
 
-                                <div className="title_header">
-                                    <div className="title_group space_between">
+                                <div className={styles["title_header"]}>
+                                    <div className={`${styles["title_group"]} ${styles["space_between"]}`}>
                                         <h2>Recent Discussions</h2>
                                         <div>
 
@@ -314,8 +314,8 @@ class UserProfile extends Component {
                                     </div>
                                 </div>
 
-                                <div className="discussion_container">
-                                    <table className="width_100 new space">
+                                <div className={styles["discussion_container"]}>
+                                    <table className={`${styles["width_100"]} ${styles["new"]} ${styles["space"]}`}>
                                         <thead>
                                         <tr>
                                             <th>Subject</th>
@@ -324,9 +324,9 @@ class UserProfile extends Component {
                                             <th>Last Reply</th>
                                         </tr>
                                         </thead>
-                                        <tbody className="items_wrapper color green">
+                                        <tbody className={`${styles["items_wrapper"]} ${styles["color"]} ${styles["green"]}`}>
                                         <tr>
-                                            <td colSpan="4" className="no_results">
+                                            <td colSpan="4" className={styles["no_results"]}>
                                                 <p>You are not watching any discussions.</p>
                                             </td>
                                         </tr>
@@ -338,15 +338,15 @@ class UserProfile extends Component {
                         </div>
                     </div>
 
-                    <div className="inner_block">
-                        <div className="inner_content">
-                            <div className="content">
+                    <div className={styles["inner_block"]}>
+                        <div className={styles["inner_content"]}>
+                            <div className={styles["content"]}>
 
-                                <div className="title_header">
-                                    <div className="title_group space_between">
+                                <div className={styles["title_header"]}>
+                                    <div className={`${styles["title_group"]} ${styles["space_between"]}`}>
                                         <h2>Recent Activity</h2>
                                         <div>
-                                            <h3 className="border_color green"><a className="color green"
+                                            <h3 className={`${styles["border_color"]} ${styles["green"]}`}><a className={`${styles["color"]} ${styles["green"]}`}
                                                                                   href="/u/burgonyapure/activity">View
                                                 More</a></h3>
                                         </div>
