@@ -16,7 +16,9 @@ import SearchResult from "./components/SearchResult";
 import Upload from "./components/Upload";
 import Movie from "./components/Movie";
 import Livetv from "./components/Livetv";
+import UserHeader from "./components/UserHeader";
 import UserProfile from "./components/UserProfile";
+import Watchlist from "./components/Watchlist";
 import Footer from "./components/Footer";
 import TvDetails from "./components/TvDetails";
 import GenericNotFound from "./components/GenericNotFound";
@@ -287,12 +289,19 @@ class App extends Component {
               </Route>
 
               <Route exact path={"/u/" + this.state.user.name}>
-                <UserProfile
-                  user={this.state.user}
-                  >
-                </UserProfile>
-
+                <UserHeader user={this.state.user}></UserHeader>
+                <UserProfile user={this.state.user}></UserProfile>
               </Route>
+
+              <Route exact path={`/u/${this.state.user.name}/watchlist`}>
+                <UserHeader user={this.state.user}></UserHeader>
+                <Watchlist
+                    user={this.state.user}
+                    apiData={this.state.apiData}
+                >
+                </Watchlist>
+              </Route>
+
               <Route component={GenericNotFound} />
             </Switch>
           </Router>
