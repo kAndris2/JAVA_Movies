@@ -20,7 +20,7 @@ public class WatchService {
         List<WatchModel> result = new ArrayList<>();
 
         for (WatchModel watch : idao.getWatchList()) {
-            if (userId.equals(watch.getId()))
+            if (userId.equals(watch.getUserId()))
                 result.add(watch);
         }
         return result;
