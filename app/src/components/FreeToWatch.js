@@ -65,7 +65,7 @@ class FreeToWatch extends Component {
         }
         return (
             <div className={"container"}>
-                <section className="inner_content no_pad">
+                <section className="inner_content trending no_pad">
                     <div className="column_wrapper">
                         <div className="content_wrapper no_bottom_pad wrap">
                             <div className="column">

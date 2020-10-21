@@ -5,6 +5,8 @@ public class FavoriteModel {
     Integer userId;
     Integer movieId;
 
+    public FavoriteModel(){}
+
     public FavoriteModel(Integer userId, Integer movieId) {
         this.userId = userId;
         this.movieId = movieId;

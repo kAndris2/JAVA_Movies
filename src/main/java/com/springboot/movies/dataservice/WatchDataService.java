@@ -15,7 +15,7 @@ public class WatchDataService {
     public WatchModel createWatch(Integer pid, Integer mid) throws SQLException {
         int id = -1;
         String sqlstr = String.format("INSERT INTO %s " +
-                "(profile_id, movie_id) " +
+                "(user_id, movie_id) " +
                 "VALUES " +
                 "(?, ?) " +
                 "RETURNING id", idao.WATCHLIST_TABLE);

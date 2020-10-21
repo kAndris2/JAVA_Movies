@@ -1,0 +1,521 @@
+.glyphicons_v2 {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1em;
+    min-height: 1em;
+    width: 1em;
+    height: 1em;
+    line-height: inherit;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: inherit;
+    box-sizing: border-box;
+}
+
+.glyphicons_v2.facebook, .glyphicons_v2.facebook_id {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/social/facebook-71155d1cd369c47ce8456477833a92c324fa01e6d628cb6ece19cedea3c1c480.svg');
+}
+
+.glyphicons_v2.twitter, .glyphicons_v2.twitter_id {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/social/twitter-a6ff8c172b8e086f4a64578cee0a16676c1a067b47a1b1b186d58795d241a852.svg');
+}
+
+.glyphicons_v2.instagram, .glyphicons_v2.instagram_id {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/social/instagram-74e6299c864adc384258da3b3a8eb09282b7ccda4dd1dfa9a4158ba2ea8583b9.svg');
+}
+
+.glyphicons_v2.justwatch {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/logos/justwatch-small-grey-b589701cfd61de942e17ae33c34a7c939a1218595df3d8744c16a5612f0fd6f7.svg');
+    background-size: 21px;
+}
+
+.glyphicons_v2.vimeo {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/social/vimeo-54fba5fa977000511829fd7cb5631ded76490a20b8f8dc9254092d6ea8ab3341.svg');
+}
+
+.glyphicons_v2.youtube {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/social/youtube-de379f898e1a71c488c71075eb00f5c003699069b9cb1f38c8ac7ea99c8a6338.svg');
+}
+
+.glyphicons_v2.user, .glyphicons_v2.picture.profile {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-4-user-7de7dfcae838579a18f4eebc5b8847230d154718e481c5cd01c477cfcbc85993.svg');
+}
+
+.glyphicons_v2.user.grey, .glyphicons_v2.picture.profile.grey {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg');
+}
+
+.glyphicons_v2.film {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-9-film-4ea386ceaf360069e7a0a2c8a3ef4c046883afc49bf2511f77a8282b1ee705dc.svg');
+}
+
+.glyphicons_v2.heart {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-13-heart-28c7c34a7fef8b646f2f0c4c610f4a93bdce0b6cc24deea49674eb30f9961109.svg');
+}
+
+.glyphicons_v2.heart.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-13-heart-white-28d2cc2d6418c5047efcfd2438bfc5d109192671263c270993c05f130cc4584e.svg');
+}
+
+.glyphicons_v2.heart.selected, .glyphicons_v2.heart.true {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-13-heart-selected-7d05ac729b7f41ab22db83dba29b73f81da2c0a2b1c5fc938fb333d34adf965e.svg');
+    filter: invert(0);
+}
+
+.glyphicons_v2.heart-empty {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-20-heart-empty-fa92fd5018240dae12f5fa8c0eeb7bbfdf1d86107d58b58eb8832a48885c3638.svg');
+}
+
+.glyphicons_v2.heart-empty.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-20-heart-empty-white-61bd5f7479b8555ef2a35a4f831a221cf330175430e17a7066530e2943ef5b92.svg');
+}
+
+.glyphicons_v2.search {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-3992eb97b2b749f09793f9653407c499aa896d99535cb35cc66682d26a49df13.svg');
+}
+
+.glyphicons_v2.search.green {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-green-ea6e5cc8b038c3303fc4cb8b9762b70a0a8fbfd1df287f242acafc939e7f5105.svg');
+}
+
+.glyphicons_v2.search.blue {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-blue-177462d06db81ff2a02aa022c1c0be5ba4200d7bd3f51091ed9298980e3a26a1.svg');
+}
+
+.glyphicons_v2.pencil {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-31-pencil-d8846f0ad15f5e1b1fa509be4fe6f0fa639ee81fca2af1a0b83485a742bcd4bc.svg');
+}
+
+.glyphicons_v2.pencil.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-31-pencil-white-d8846f0ad15f5e1b1fa509be4fe6f0fa639ee81fca2af1a0b83485a742bcd4bc.svg');
+}
+
+.glyphicons_v2.user-female, .glyphicons_v2.picture.profile.one {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-36-user-female-1252799405af813fe2e29e8b25c44d9a12406c0db697a6b4a25080f5974ddf68.svg');
+}
+
+.glyphicons_v2.user-female.grey, .glyphicons_v2.picture.profile.one.grey {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-36-user-female-grey-d9222f16ec16a33ed5e2c9bbdca07a4c48db14008bbebbabced8f8ed1fa2ad59.svg');
+}
+
+.glyphicons_v2.picture {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-4ee37443c461fff5bc221b43ae018a5dae317469c8e2479a87d562537dd45fdc.svg');
+}
+
+.glyphicons_v2.picture.grey {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg');
+}
+
+.glyphicons_v2.notes {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-40-notes-5e66e9fb6dc04437f6cb288a71db9e21478592d0cf1291e4f75c91495e4ca34c.svg');
+}
+
+.glyphicons_v2.calendar {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-46-calendar-3e0931dfeba8f62c51e81dfa4364a6d836f3a03aaf739a51d0846902ee367645.svg');
+}
+
+.glyphicons_v2.star {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-49-star-67a24f6d4324aa644c594653e762b1c0de2b3e1ce0852171cfa49cc2650de374.svg');
+}
+
+.glyphicons_v2.star.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-49-star-white-5c85220678b312aea9599d5f12ad858a9e7df226de51ef8b6b699023ffeda5fa.svg');
+}
+
+.glyphicons_v2.star.selected, .glyphicons_v2.star.true {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-49-star-selected-2e1896f9d89607f6b8ec0285906d4b813e0d957689319c5da760c5a15069c191.svg');
+    filter: invert(0);
+}
+
+.glyphicons_v2.star-empty {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-50-star-empty-861c8c182cec172bbddab3aa01bdccd169138232ec09655b23930717985d6e6f.svg');
+}
+
+.glyphicons_v2.pulse, .glyphicons_v2.cardio {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-51-pulse-1d4200175b4eda92f3ee7aa41f60102e061e07addeafefbd85bb8a54dc30dcd1.svg');
+}
+
+.glyphicons_v2.eye {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-52-eye-e094acbc90b836407728ab20104931e9f1e818acbc294cfa6da80b50507d8145.svg');
+}
+
+.glyphicons_v2.history {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-58-history-db1ef365a355e6b4e1fa9d15fc00bd2faafe3f8a476732a96b13365d4e193f2d.svg');
+}
+
+.glyphicons_v2.lightbulb {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-65-lightbulb-e4fe3e8a16d82c54cf0b5d5b9b44d969d33e55171f7d28e0a657d343279073b3.svg');
+}
+
+.glyphicons_v2.bookmark {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-73-bookmark-696996f38fbacdcebe327e9465c09386a177a5b7b93ac6665471ccbb239d9af0.svg');
+}
+
+.glyphicons_v2.bookmark.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-73-bookmark-white-432e98d550b7e4c80b06272c49475b0db85a60f6fae450420713004b3c9d3ffd.svg');
+}
+
+.glyphicons_v2.bookmark.selected, .glyphicons_v2.bookmark.true {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-73-bookmark-selected-ddcb9a1fcb04650d6879314313b71e397521c2e41e07b1405b30d4244deb52f8.svg');
+    filter: invert(0);
+}
+
+.glyphicons_v2.refresh {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-82-refresh-778edeb46e958940d0fce8f8fbcc38e98f1465ed0672358ca6dad4618eabe6d6.svg');
+}
+
+.glyphicons_v2.tv {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-87-tv-0ed68826577a0881c28305786e1524bb9c0ab426bb8b0dd637e80f80f338be08.svg');
+}
+
+.glyphicons_v2.building {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-90-building-ae48715fa2e40d7a6e2f031be6d381fb1456d8ebd0b814e884fb2364ce375fe5.svg');
+}
+
+.glyphicons_v2.italic {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-102-italic-cb13d3e86b77d9aab0f260e6d04bb9c39e5f4c10468719082fcaf95f16961009.svg');
+}
+
+.glyphicons_v2.bold {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-103-bold-1d76197cc9c8f395bcbcd0a0ff56927f5a43330807969d73b50aa9450440a9c4.svg');
+}
+
+.glyphicons_v2.list, .glyphicons_v2.bulletlist {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-115-list-da23f42f5dfdea80dd4b343fb64ee9b582836a57780e0235e5678c07d3a32ef8.svg');
+}
+
+.glyphicons_v2.code {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-119-code-b2a0a871e8c01389199dc77d1fe29f4f31fe0fb46ff90909b5dae31bc80e0caf.svg');
+}
+
+.glyphicons_v2.inbox {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-131-inbox-7b5ea8c303c9139ebddfa95c09c4a925cde0641cebdd68a78cd11b627c8e608c.svg');
+}
+
+.glyphicons_v2.inbox-plus {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-132-inbox-plus-ccafbaf06d73974d3d65bf9e8d2d6cf005280c46551bc60fd9271343e7ad6d35.svg');
+}
+
+.glyphicons_v2.cogwheel {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-137-cogwheel-3dd62b47dc7f58d8aee8303d505fd1bf3aadb782f42b3223ecfa05b89dddc4cd.svg');
+}
+
+.glyphicons_v2.square-edit {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-151-square-edit-4384537ef9438440b7090264a6ced5d2013aede66315aec4dbf9a53a5cb4c146.svg');
+}
+
+.glyphicons_v2.square-new-window {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-152-square-new-window-c575b6c7170e08a226598e1b5646648a3943df21baa29d01abd4f84f7f64f510.svg');
+}
+
+.glyphicons_v2.thumbnails-list {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-159-thumbnails-list-6e8977a4772e1bf4249bdaa9f63b091281a651009a84bca5b1a2b2fe65724da7.svg');
+}
+
+.glyphicons_v2.thumbnails-list.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-159-thumbnails-list-white-c260ea972eebf812289fd3c41d0d2c1dff33ecbcd62be13fba8eeaf9de173789.svg');
+}
+
+.glyphicons_v2.play {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-175-play-806cb05551791b8dedd7f8d38fd3bd806e2d397fcfeaa00a5cc9129f0819fd07.svg');
+}
+
+.glyphicons_v2.play.green {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-175-play-green-77cecf6e3cfa36fcce76328c315004c62fe14516660b9761690d58e15632909c.svg');
+}
+
+.glyphicons_v2.play.blue {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-175-play-blue-1ee278831b39163a6d2eedaafe412df9511d95743ad024145799263c351ca80e.svg');
+}
+
+.glyphicons_v2.play.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-175-play-white-a325b21212f72cf58f8ba0f932694246ac8bce69928f8cd27e0b2efb9edcdc6e.svg');
+}
+
+.glyphicons_v2.circle-empty-plus {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-191-circle-empty-plus-3bf7acabec3af6a4b4a14a2936736e9f6c6320ad527ed4a04736832aab720f71.svg');
+}
+
+.glyphicons_v2.circle-empty-plus.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-191-circle-empty-plus-white-8463f680b56c35e92b11bd5ed95e429ef0e10c69cf958d3e97ef194f29eeec87.svg');
+}
+
+.glyphicons_v2.circle-empty-play {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-206-circle-empty-play-b47f0fd50f209d3a9bbe98b4f6977840cea7b742fd06b077e4465ebee333bc11.svg');
+}
+
+.glyphicons_v2.fullscreen-off {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-215-fullscreen-off-9b259862d068b3922192fa477dee55a6196952e641058dd560568b007bbe13f3.svg');
+}
+
+.glyphicons_v2.fullscreen.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-216-fullscreen-white-87524788011715a9bd73de86ef577442070ebc9873a7abb2845a6310a7f6174a.svg');
+}
+
+.glyphicons_v2.fullscreen {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-216-fullscreen-51ecf56bfbd82088acde8cd598d108a7432a4a255f2067854828204da9ae9d56.svg');
+}
+
+.glyphicons_v2.lock, .glyphicons_v2.locked {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-217-lock-e9f123776b034a0be74a4f3061cd0b9704e854cb8c29307352f20fec2bac4f46.svg');
+}
+
+.glyphicons_v2.lock.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-217-lock-white-81d0c4a81e3d038565c80391d6a28a49e98bfe9f1fa26e6473feb3b92de5b4d1.svg');
+}
+
+.glyphicons_v2.unlock, .glyphicons_v2.unlocked {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-218-lock-open-e3ddaaf88cb0c2f1c62bf0620eaaacd12522f0f589c77e523c659d7f3f2a1e89.svg');
+}
+
+.glyphicons_v2.chevron-down {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-221-chevron-down-e38bfea9df2c34a300157424b5aa481c58addc01323bfe4106d78b9650d5a1d5.svg');
+}
+
+.glyphicons_v2.chevron-up {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-222-chevron-up-3169719786ef9b091516632a81b6cf043f876e41733caffe7b2219786d95ea51.svg');
+}
+
+.glyphicons_v2.chevron-left {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-223-chevron-left-df1f1c94e7c416fbae4963b3b007008f1a45aae59b945f0f7d320c50ae5ebce7.svg');
+}
+
+.glyphicons_v2.chevron-right {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-224-chevron-right-d1f88a6c15e68190c3b47e1ee4f39fe47f4b69f4966ca7c250c2e14cfa689a04.svg');
+}
+
+.glyphicons_v2.chevron-right.blue {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-224-chevron-right-blue-6094fd9f49010170582ba069ce10c999c8fc78f107339d86ac363f12e3b6a927.svg');
+}
+
+.glyphicons_v2.chevron-right.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-224-chevron-right-white-a4e5bbaf210868cf7b5f16df5a4382100c675c90623f4e55ef9c7ff9b3dc2e21.svg');
+}
+
+.glyphicons_v2.chat-conversation {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-235-chat-conversation-830085f6aef710f6e73386ad2e9e9d3963c10b990921a922e532e0a5ba74633e.svg');
+}
+
+.glyphicons_v2.chat-message, .glyphicons_v2.quote {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-238-chat-message-9e3f3fedbb03d1453859d16337dce19f117b929e32007d0e8099084430a582d1.svg');
+}
+
+.glyphicons_v2.circle-empty {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-298-circle-empty-04c378f484e29180410eb305f586561b024cc969e038a8687fffd641f55b894c.svg');
+}
+
+.glyphicons_v2.circle-selected {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-299-circle-selected-bd5504b5b4b3d56021801a8f1d64956aedf8be4f77e8b614244b9224943a5998.svg');
+}
+
+.glyphicons_v2.verify-empty {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-303-verify-empty-fbe8a110503a112c8f18f3e890dea8ee83bdc1a9c033b83b3952f6d00e071d29.svg');
+}
+
+.glyphicons_v2.verify-check {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-304-verify-check-de4e704637b8d5964017b66a2c63bdfff2a8cb9ecce81c6e95e8631911d97a96.svg');
+}
+
+.glyphicons_v2.verify-check.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-304-verify-check-white-0afc4bbd19996f93867ec036b220222528309bd3f0cf65b4bcfc9391e6f7450f.svg');
+}
+
+.glyphicons_v2.square-empty-upload {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-308-square-empty-upload-c8d3098cead239d471198861c4b91eef65a58608f07da31fc907fe5f737028c5.svg');
+}
+
+.glyphicons_v2.id-badge {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-347-id-badge-58ba8503cb4c67c22a34538682a35d944126dc31f6fcdb86cb2bda077a89a527.svg');
+}
+
+.glyphicons_v2.link {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-351-link-5f643a86c2515cb06ea08ebc798941824f76bbcea4ed571222a81f271b30c7f3.svg');
+}
+
+.glyphicons_v2.link.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-351-link-white-01862998bc66427e34bc44eff9e443ea834401844eddf651e7a5367c1bf3385c.svg');
+}
+
+.glyphicons_v2.keyboard {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-357-keyboard-4de4fe2896d6ba568aeb8c07d250a99374f086554ffd4b1f7645d69325b979ab.svg');
+}
+
+.glyphicons_v2.plus {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-371-plus-44afa5bd1a077a546a846d5a31c37ff62a44f91ae490737a8ac99880e2359f11.svg');
+}
+
+.glyphicons_v2.plus.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-371-plus-white-0bac34f16124808a12ea863b4d9cc6e599dee7c0a80658cfe9ead26939e64517.svg');
+}
+
+.glyphicons_v2.minus {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-372-minus-a0dda16cd2197bb2636923a88e02d497a7aba0e6bcb06aed737b5b7c3633c6e9.svg');
+}
+
+.glyphicons_v2.times {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-373-times-c76b2c2602c76acb9aa0a8b019019f6e6cb3cfeb1cb9f5294081a8c0697872b4.svg');
+}
+
+.glyphicons_v2.world-west {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-418-world-west-5eb699d57e3e276e1d32ecbb1c2089dd24bf630137670cc9ba0bcc24f8e60562.svg');
+}
+
+.glyphicons_v2.crown {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-425-crown-4f79d77070fda2ee024b27f05fc39ff710ef1714a6e320927851b8f092a488bb.svg');
+}
+
+.glyphicons_v2.archive {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-436-archive-5438e757e053c6811e92624f07d13c76bda4bd101d1c8b0257442c6b92264123.svg');
+}
+
+.glyphicons_v2.video-play {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-440-video-play-4973faa2c8f55b2f9870a701dd528b43df3415779106e57ca004c9a0c111cc37.svg');
+}
+
+.glyphicons_v2.bell {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-441-bell-9cd2af257b98c4af3460078777d8e38a5e12bca89704eeac2f39273afcbd06ff.svg');
+}
+
+.glyphicons_v2.hand-like {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-451-hand-like-10db6816d1483cba3abf2e8a9e9133b3441882c804f6d3c2283aa946aca674a0.svg');
+}
+
+.glyphicons_v2.hand-dislike {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-452-hand-dislike-d97408deec38f6595c7b2e40eadb649ef2beee92df579b3f88095e9c183ca92e.svg');
+}
+
+.glyphicons_v2.send {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-461-send-b4c1df0161407b4c110b67936afbdcb09fccacba992b1e62b56717ab5160e160.svg');
+}
+
+.glyphicons_v2.sort {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-471-sort-21f6a3b9efbb3231323b9363037e29ef8fea7a7c3c3d3b315580d5f4acefc066.svg');
+}
+
+.glyphicons_v2.sort-numerically {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-474-sort-numerically-e01e3903980ecada44e7e896a33a9fede7bf655d0185376eb5451d1004b4ab67.svg');
+}
+
+.glyphicons_v2.more {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-497-more-ecad2ce55441b5abe5477c4359668cedb032a6467379bc87a4d6b24461ee7127.svg');
+}
+
+.glyphicons_v2.share {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-578-share-dce09a44c7966cc46df6037442483c29c77ec11c0cfdf547e2f0bf6bd73b9446.svg');
+}
+
+.glyphicons_v2.map-marker {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-591-map-marker-84f0501583846aa63533d527bba8f5ddb2d3c9ae9fa9128580e3ddea7d296518.svg');
+}
+
+.glyphicons_v2.nearby {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-594-nearby-b532d56bb2b74899bd843c315563e3e9e77450a59b12a1502d764ed1bf5284e3.svg');
+}
+
+.glyphicons_v2.menu-close {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-599-menu-close-7400e9a2ea92ad8d7cccf18d1ea34cd690790638a6e7768922eaef6e07109723.svg');
+}
+
+.glyphicons_v2.menu-close.yellow {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-599-menu-close-yellow-a6fb15cc7ae44f280e1882b8001e67f09d7c48847ef4b3d503ee941204ffdc80.svg');
+}
+
+.glyphicons_v2.menu {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-600-menu-7ef6e3f4266b4b216a8ef5920da43fc8c96e1ee805a219c5628fed5bfac854d5.svg');
+}
+
+.glyphicons_v2.user-no {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-601-user-no-7805b6d5802955ab463fc4b2eec5187cb4b817a68baf786b4286fd539a0b3f5c.svg');
+}
+
+.glyphicons_v2.circle-plus {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-631-circle-plus-7273f0be160a6c7f6091d15f3e20df5f5fbe1ce8631b76db1ae117f907189bd4.svg');
+}
+
+.glyphicons_v2.circle-minus {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-632-circle-minus-1b80ec04fef1deb696ce9bc16f247380b4b38befab0dc43ab7bb019e650059be.svg');
+}
+
+.glyphicons_v2.circle-remove {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-633-circle-remove-68c206d14efd88f5f9e9bdaf80024532fa31f0d8ffbfed31191673aef25b373a.svg');
+}
+
+.glyphicons_v2.circle-check, .glyphicons_v2.ok-circle {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-634-circle-check-70a073eb6aec58b11e4cde42cbe62713432bfa5b276301f30c1537f6404b6f19.svg');
+}
+
+.glyphicons_v2.circle-question {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-635-circle-question-58cc1ee10fd7a11546f8e97b1b5590b2d6e0c883acaea64a5f4c2c5b60f9f364.svg');
+}
+
+.glyphicons_v2.circle-question.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-635-circle-question-white-056950147b5a62c4ac076dc7f837a74ad252b72cee319d336e8c3cebf007e2c4.svg');
+}
+
+.glyphicons_v2.circle-info {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-636-circle-info-06837a451a09552349b182d84ae84f26308efee8f7e8ddca255bd5dbc4a66ea4.svg');
+}
+
+.glyphicons_v2.circle-alert {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-637-circle-alert-6c910e8542fb88ad14dab4b2b9a14b4453a6e51fcb5c2f2671d641b7aef095ac.svg');
+}
+
+.glyphicons_v2.triangle-alert {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-638-triangle-alert-d5b37ab544c3b89d9fc06b51a5642f2aa9da1d319d2d05168ce3539c704193e7.svg');
+}
+
+.glyphicons_v2.triangle-alert.yellow {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-638-triangle-alert-yellow-146df8efe4fead84c89a19b1cda7e61e9d4a255da829717b7dc6a7607d7c192e.svg');
+}
+
+.glyphicons_v2.circle-play {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-646-circle-play-9b57d72ad6ea44cefefffa2f2ea0e0084aefd11a7066e88c0090ad93e2e9a09b.svg');
+}
+
+.glyphicons_v2.circle-right {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-650-circle-right-74964888ec28ed7284bac83c6b9be1db85809561491c21451c041079b788cd06.svg');
+}
+
+.glyphicons_v2.check {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-739-check-5d342631f0752609bcce3a844f9ba24f1c95d2d06b1674b1ba146d35f9cdce7a.svg');
+}
+
+.glyphicons_v2.check.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-739-check-white-a09b2a26e235b77489dfd57be3b66a17ff86efd5fb94d6db5f10cd3ced01e5a6.svg');
+}
+
+.glyphicons_v2.resize-vertical {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-750-resize-vertical-b4f74de933afbf5c0d672e7df760b46d755f57a6b50fe4f0fbcc1195d2215e5d.svg');
+}
+
+.glyphicons_v2.chevron-last-up {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-798-chevron-last-up-d610e129b6ede8477379d964c93a0e4bd030c43afa299c69213b210237f52605.svg');
+}
+
+.glyphicons_v2.arrow-thin-left {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-829-arrow-thin-left-bce3041a901f2e52b9d9b77756e9e6bd5a236f68af022ebf056d4fc35cdf004e.svg');
+}
+
+.glyphicons_v2.arrow-thin-right {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-830-arrow-thin-right-5c2f4e65afc985448cd9042f9d64426f1e002fbd3c2546053d190fa27f77600f.svg');
+}
+
+.glyphicons_v2.speech-bubble-alert {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-933-speech-bubble-alert-b33d276606a1a76a1a612c9a7043dfd275ddf0ac55587a5e6a621323db6c488a.svg');
+}
+
+.glyphicons_v2.circle-more {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-947-circle-more-5d2623ed440c97b015f42cd7275fc052cf0569ad1f84b7531704ae01cda651cb.svg');
+}
+
+.glyphicons_v2.circle-more.white {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-947-circle-more-white-4c440dfc1b0e626c70f4853dbbce9c4d1f2c5d8f3e05a7d3df47881cbd816adf.svg');
+}
+
+.glyphicons_v2.list-numbers, .glyphicons_v2.numberlist {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-952-list-numbers-08dc7516327724816bb7666bf4d90886812f437cadac9f241b3dfd91ba77e8e3.svg');
+}

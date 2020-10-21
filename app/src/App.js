@@ -244,6 +244,7 @@ class App extends Component {
                 <MovieDetail
                     movie_id={this.getId()}
                     logged_in_status={loggedInStatus}
+                    user={this.state.user}
                 >
                 </MovieDetail>
               </Route>
