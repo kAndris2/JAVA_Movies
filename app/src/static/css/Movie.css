@@ -165,3 +165,159 @@ section.inner_content {
     background-repeat: no-repeat;
     background-position: 50% 50%;
 }
+ ul.actions {
+    margin-bottom: 20px;
+    width: 100%;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+ul.actions li.chart {
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 68px;
+}
+ul.actions li {
+    margin-right: 20px;
+}
+ul.actions li.chart div.text {
+    font-weight: 700;
+    margin-left: 6px;
+    white-space: pre-line;
+}
+ul.actions li.tooltip1 {
+    padding: 3px 0;
+}
+ul.actions li {
+    margin-right: 20px;
+}
+ul.actions li.tooltip1 a, section.inner_content section.header ul.actions li.video a {
+    border-color: #000000;
+    color: #000000;
+}
+ul.actions li.tooltip1 a, section.inner_content section.header ul.actions li.video a {
+    box-sizing: border-box;
+    background: rgba(var(--tmdbDarkBlue), 1.0);
+    color: #000;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+}
+ul.actions li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    color: black;
+    font-weight: 600;
+}
+
+
+
+
+ .k-tooltip1.custom_theme {
+     background-color: #000000;
+     color: #ffffff;
+ }
+
+.custom_theme .k-callout-n {
+    border-bottom-color: #000000;
+}
+
+.custom_theme .k-callout-e {
+    border-left-color: #000000;
+}
+
+.custom_theme .k-callout-w {
+    border-right-color: #000000;
+}
+
+.custom_theme .k-callout-s {
+    border-top-color: #000000;
+}
+
+#shortcut_bar_scroller.scroller_wrap, div.single_column_wrapper {
+    border-bottom: 1px solid rgba(27.84%, 79.22%, 62.16%, 1.00);
+}
+
+
+div.header.large.first {
+    border-bottom: 1px solid rgba(27.84%, 79.22%, 62.16%, 1.00);
+    background-position: right -200px top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('//image.tmdb.org/t/p/w1920_and_h800_multi_faces/9xNOiv6DZZjH7ABoUUDP0ZynouU.jpg');
+}
+
+
+section.inner_content section.header div.facts span.certification {
+    border: 1px solid rgba(0.00%, 0.00%, 0.00%, 0.60);
+    color: rgba(0.00%, 0.00%, 0.00%, 0.60);
+}
+
+
+
+section div.header.first div.single_column {
+    background: transparent;
+}
+
+section.inner_content section.header {
+    color: #000000;
+}
+
+section.inner_content a, section.media_panel div.menu ul li.active a {
+    color: #000;
+}
+
+section.inner_content a:hover, section.media_panel div.menu ul li.active a:hover {
+    color: #33cc99;
+}
+
+section.inner_content section.header ul.actions li.tooltip1 a, section.inner_content section.header ul.actions li.video a {
+    border-color: #000000;
+    color: #000000;
+}
+
+p.new_button a, section.media_panel div.menu ul li.view_all a, div.episode div.info span.episode_number, section.review div.review_container div.inner_content div.teaser p a {
+    color: #33cc99;
+}
+
+p.rounded.new_button a:hover {
+    color: #000000;
+}
+
+section.media_panel div.menu ul li.active, section.inner_content ul.shortcut_bar li.selected, section.inner_content ul.shortcut_bar li:hover {
+    border-color: #33cc99;
+}
+
+section.content_score div.content_score {
+    background-color: rgba(20.00%, 80.00%, 60.00%, 0.60);
+}
+
+div.settings_panel h3.background_color {
+    background-color: #33cc99;
+}
+
+
+section.inner_content div.custom_bg {
+    background-image: linear-gradient(to right, rgba(20.00%, 80.00%, 60.00%, 1.00) 150px, rgba(35.69%, 78.43%, 64.31%, 0.84) 100%);
+}
+
+section.inner_content.no_backdrop.poster div.custom_bg {
+    background-image: linear-gradient(to right, rgba(20.00%, 80.00%, 60.00%, 0.84) 0, rgba(35.69%, 78.43%, 64.31%, 0.64) 100%);
+}
+
+
+section.inner_content section.header a, section.inner_content section.header div.title a {
+    color: #000000;
+}
+
+p.new_button.rounded, section.content_score div.content_score div, div.leaderboard div.histogram div.bar span {
+    border-color: #33cc99;
+    background-color: #33cc99;
+}
+
