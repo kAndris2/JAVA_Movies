@@ -203,7 +203,7 @@ class Popular extends Component {
         }
         else {
             return (
-                <h1>Lóding van he!</h1>
+                <h1>Loading...</h1>
             )
         }
     }

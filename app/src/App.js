@@ -20,6 +20,7 @@ import UserProfile from "./components/UserProfile";
 import Footer from "./components/Footer";
 import TvDetails from "./components/TvDetails";
 import GenericNotFound from "./components/GenericNotFound";
+import { Helmet } from 'react-helmet';
 
 class App extends Component {
   constructor() {
@@ -179,6 +180,10 @@ class App extends Component {
 //details :https://api.themoviedb.org/3/movie/337401?api_key=04a30d5152c77afe4a81783d17e20316&language=hu-HU
     return (
         <div className="App">
+          <Helmet>
+            <title>The Movie Database (TMDb)</title>
+          </Helmet>
+
           <Navbar
               pro={this.state}
               logged_in_status={loggedInStatus}
