@@ -18,6 +18,7 @@ class MovieDetail extends Component {
         this.myRef = React.createRef();
         this.test = this.test.bind(this);
         this.addTo = this.addTo.bind(this);
+        this.setTextColor = this.setTextColor.bind(this);
     }
     state = {
         isLoading: true,
@@ -36,6 +37,7 @@ class MovieDetail extends Component {
 
         from_dominant_colors: [],
         to_dominant_colors: [],
+        textColor: '',
         loaded_backdrop:false,
         videos:[]
     };
@@ -58,7 +60,6 @@ class MovieDetail extends Component {
         const vids = await trailers.json();
 
         this.setState({movie: movie, genres:movie.genres, companies: movie.production_companies,credits:creds.cast, certificates:cert.results ,isLoading: false ,videos:vids.results});
-        /*await this.test();*/
 
     }
 
@@ -73,6 +74,15 @@ class MovieDetail extends Component {
         this.setState({ showHide: !this.state.showHide })
     }
 
+    setTextColor(rgb){
+
+        const brightness = Math.round((
+            (rgb[0]  * 299) +
+            (rgb[1] * 587) +
+            (rgb[2] * 114)) / 1000);
+        const asd = (brightness > 125) ? 'black' : 'white';
+        this.setState({textColor:asd});
+    }
 
     async test(){
         const colorThief = new ColorThief();
@@ -81,7 +91,9 @@ class MovieDetail extends Component {
 
         if (img.complete) {
            await this.setState({from_dominant_colors :colorThief.getPalette(img)[0],to_dominant_colors: colorThief.getPalette(img)[1]});
-        } else {
+           this.setTextColor(colorThief.getPalette(img)[0]);
+        }
+        else {
             let asd = document.getElementById("asd");
             asd.addEventListener('load', function() {
                return colorThief.getColor(img);
@@ -124,7 +136,7 @@ class MovieDetail extends Component {
                 Rate It!
             </ReactBootstrap.Tooltip>
         );
-        const {movie, genres, companies, isLoading, image_pre,image_post,credits, certificates, showHide,videos, video_pre} = this.state;
+        const {movie, genres, companies, isLoading, image_pre,image_post,credits, certificates, showHide,videos, video_pre, to_dominant_colors} = this.state;
 
         if (isLoading) {
             return <p>Loading...</p>;
@@ -147,11 +159,10 @@ class MovieDetail extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-sm-9 MovieDetailsRight">
+                                <div className="col-sm-9 MovieDetailsRight" style={{color:this.state.textColor}}>
                                     <div>
                                         <h2 style={{fontWeight:"700"}}>{movie.title}</h2>
                                     </div>
-
                                     <div>
                                         {certificates[0].release_dates[0].certification} {certificates[0].iso_3166_1}
                                         {moment(certificates[0].release_dates[0].release_date).format("YYYY/MM/DD")}
