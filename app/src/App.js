@@ -44,6 +44,7 @@ class App extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.languageChange = this.languageChange.bind(this);
     this.getMovies = this.getMovies.bind(this);
+    this.getCurrentTitle = this.getCurrentTitle.bind(this);
   }
 
   async getMovies(language, region) {
@@ -170,6 +171,10 @@ class App extends Component {
     }
   }
 
+  getCurrentTitle(part) {
+    return `${part} - The Movie Database (TMDb)`;
+  }
+
   render() {
     const {movies, isLoading, image_pre, loggedInStatus} = this.state;
 
@@ -223,6 +228,7 @@ class App extends Component {
                           {...props}
                           handleLogin={this.handleLogin}
                           loggedInStatus={this.state.loggedInStatus}
+                          getCurrentTitle={this.getCurrentTitle}
                       />
                   )}
               >
@@ -240,6 +246,7 @@ class App extends Component {
                           {...props}
                           handleLogin={this.handleLogin}
                           loggedInStatus={this.state.loggedInStatus}
+                          getCurrentTitle={this.getCurrentTitle}
                       />
                   )}
               >

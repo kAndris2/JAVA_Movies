@@ -58,7 +58,7 @@ class Registration extends Component {
         return (
             <>
                 <Helmet>
-                    <title>Registration - The Movie Database (TMDb)</title>
+                    <title>{this.props.getCurrentTitle("Registration")}</title>
                 </Helmet>
 
                 <main id="main" className="smaller  subtle show_search_false">

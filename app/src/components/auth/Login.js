@@ -62,7 +62,7 @@ class Login extends Component {
         return (
             <>
                 <Helmet>
-                    <title>Login - The Movie Database (TMDb)</title>
+                    <title>{this.props.getCurrentTitle("Login")}</title>
                 </Helmet>
 
                 <section className="main_content content">
