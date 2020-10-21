@@ -20,6 +20,7 @@ import UserProfile from "./components/UserProfile";
 import Footer from "./components/Footer";
 import TvDetails from "./components/TvDetails";
 import GenericNotFound from "./components/GenericNotFound";
+import { Helmet } from 'react-helmet';
 
 class App extends Component {
   constructor() {
@@ -43,6 +44,7 @@ class App extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.languageChange = this.languageChange.bind(this);
     this.getMovies = this.getMovies.bind(this);
+    this.getCurrentTitle = this.getCurrentTitle.bind(this);
   }
 
   async getMovies(language, region) {
@@ -169,6 +171,10 @@ class App extends Component {
     }
   }
 
+  getCurrentTitle(part) {
+    return `${part} - The Movie Database (TMDb)`;
+  }
+
   render() {
     const {movies, isLoading, image_pre, loggedInStatus} = this.state;
 
@@ -179,6 +185,10 @@ class App extends Component {
 //details :https://api.themoviedb.org/3/movie/337401?api_key=04a30d5152c77afe4a81783d17e20316&language=hu-HU
     return (
         <div className="App">
+          <Helmet>
+            <title>The Movie Database (TMDb)</title>
+          </Helmet>
+
           <Navbar
               pro={this.state}
               logged_in_status={loggedInStatus}
@@ -218,6 +228,7 @@ class App extends Component {
                           {...props}
                           handleLogin={this.handleLogin}
                           loggedInStatus={this.state.loggedInStatus}
+                          getCurrentTitle={this.getCurrentTitle}
                       />
                   )}
               >
@@ -235,6 +246,7 @@ class App extends Component {
                           {...props}
                           handleLogin={this.handleLogin}
                           loggedInStatus={this.state.loggedInStatus}
+                          getCurrentTitle={this.getCurrentTitle}
                       />
                   )}
               >
