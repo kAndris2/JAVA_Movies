@@ -9,7 +9,8 @@ import * as ReactBootstrap from "react-bootstrap";
 import '../static/css/Modal.css';
 import ColorThief from 'colorthief';
 import '../static/css/Application.css';
-import '../static/css/Movie.css'
+import '../static/css/Movie.css';
+import LoadingBar from "react-top-loading-bar";
 
 
 class MovieDetail extends Component {
@@ -39,7 +40,25 @@ class MovieDetail extends Component {
         to_dominant_colors: [],
         textColor: '',
         loaded_backdrop:false,
+
+        loadingBarProgress: 0,
+
         videos:[]
+    };
+
+    //progress bar functions
+    add = value => {
+        this.setState({
+            loadingBarProgress: this.state.loadingBarProgress + value
+        });
+    };
+
+    complete = () => {
+        this.setState({ loadingBarProgress: 100 });
+    };
+
+    onLoaderFinished = () => {
+        this.setState({ loadingBarProgress: 0 });
     };
 
     async componentDidMount() {
@@ -75,7 +94,6 @@ class MovieDetail extends Component {
     }
 
     setTextColor(rgb){
-
         const brightness = Math.round((
             (rgb[0]  * 299) +
             (rgb[1] * 587) +
@@ -91,7 +109,8 @@ class MovieDetail extends Component {
 
         if (img.complete) {
            await this.setState({from_dominant_colors :colorThief.getPalette(img)[0],to_dominant_colors: colorThief.getPalette(img)[1]});
-           this.setTextColor(colorThief.getPalette(img)[0]);
+           this.setTextColor(colorThief.getPalette(img,2)[0]);
+           console.log(colorThief.getPalette(img));
         }
         else {
             let asd = document.getElementById("asd");
@@ -138,13 +157,24 @@ class MovieDetail extends Component {
         );
         const {movie, genres, companies, isLoading, image_pre,image_post,credits, certificates, showHide,videos, video_pre, to_dominant_colors} = this.state;
 
+
+
         if (isLoading) {
-            return <p>Loading...</p>;
+            return ( <p>Loading....</p>
+               /* <div>
+                    <LoadingBar
+                        progress={this.state.loadingBarProgress}
+                        height={5}
+                        color="green"
+                        onLoaderFinished={() => this.onLoaderFinished()}
+                    />
+                    <div onLoad={this.complete}></div>
+                </div>*/
+            );
         }
 
         return (
             <React.Fragment>
-
                 <div id="cards_landscape_wrap-2" style={{backgroundImage: `url(${image_post + movie.backdrop_path})`, backgroundPosition: "right -200px top", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
                     <img style={{display:"none"}} ref={this.myRef}  src={image_pre+movie.poster_path} onLoad={this.test}/>
                     <div className="details" style={{backgroundImage: "linear-gradient(to right, rgba("+this.state.from_dominant_colors[0]+", "+this.state.from_dominant_colors[1]+", "+this.state.from_dominant_colors[2]+", 1) 150px, rgba("+this.state.to_dominant_colors[0]+", "+this.state.to_dominant_colors[1]+", "+this.state.to_dominant_colors[2]+", 0.84) 100%)"}}>
