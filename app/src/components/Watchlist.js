@@ -11,38 +11,37 @@ class Watchlist extends Component {
             movies: []
         }
 
-
-
-        this.getMovies = this.getMovies.bind(this);
-        this.getMoviesById = this.getMoviesById.bind(this);
+        this.getStoredIds = this.getStoredIds.bind(this);
+        this.handleIdListResponse = this.handleIdListResponse.bind(this);
+        this.handleMovieResponse = this.handleMovieResponse.bind(this);
     }
 
-    async componentDidMount() {
-        await this.getMoviesById();
+    componentDidMount() {
+        this.getStoredIds();
     }
 
-    async getMoviesById() {
-        const movies = [];
-        await axios.get("http://localhost:3000/api/watchlist/" + this.props.user.id)
-            .then(resp => {
-                resp.data.map(async w => {
-                    movies.push(
-                        await this.getMovies(w.movieId)
-                    );
-                })
-            });
+    getStoredIds() {
+        axios.get("http://localhost:3000/api/watchlist/" + this.props.user.id)
+            .then(this.handleIdListResponse)
+    }
+
+    handleIdListResponse(response) {
+        Promise.all(response.data.map((w) => axios.get('https://api.themoviedb.org/3/movie/' +
+                                                            w.movieId +
+                                                            `?api_key=${this.props.apiData.key}` +
+                                                            `&language=${this.props.apiData.language}`)))
+            .then(this.handleMovieResponse)
+    }
+
+    handleMovieResponse(response) {
+        const temp = [];
+        response.map(movie => {
+            temp.push(movie.data)
+        })
         this.setState({
-            movies:movies,
+            movies:temp,
             loading:false
-        });
-    }
-
-    async getMovies(id) {
-        const response = await fetch('https://api.themoviedb.org/3/movie/' +
-                    id +
-                    `?api_key=${this.props.apiData.key}` +
-                    `&language=${this.props.apiData.language}`);
-        return await response.json();
+        })
     }
 
     render () {
