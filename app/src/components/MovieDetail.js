@@ -11,6 +11,8 @@ import ColorThief from 'colorthief';
 import '../static/css/Application.css';
 import '../static/css/Movie.css';
 import LoadingBar from "react-top-loading-bar";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 
 class MovieDetail extends Component {
@@ -38,6 +40,7 @@ class MovieDetail extends Component {
 
         from_dominant_colors: [],
         to_dominant_colors: [],
+        color_palette:[],
         textColor: '',
         loaded_backdrop:false,
 
@@ -108,7 +111,7 @@ class MovieDetail extends Component {
         img.crossOrigin = "Anonymous";
 
         if (img.complete) {
-           await this.setState({from_dominant_colors :colorThief.getPalette(img)[0],to_dominant_colors: colorThief.getPalette(img)[1]});
+           await this.setState({from_dominant_colors :colorThief.getPalette(img)[0],to_dominant_colors: colorThief.getPalette(img)[1], color_palette: colorThief.getPalette(img)[2]});
            this.setTextColor(colorThief.getPalette(img)[0]);
         }
         else {
@@ -120,12 +123,52 @@ class MovieDetail extends Component {
     }
 
     async addTo(what,id){
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'center-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+
         switch (what){
             case "watchlist":
-                const watch = await axios.put('http://localhost:3000/api/add_watch/'+this.props.user.id+'/'+id+'');
+                const watch = await axios.put('http://localhost:3000/api/add_watch/'+this.props.user.id+'/'+id+'')
+                    .then(res => {
+                        if (res.statusText === "OK"){
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Added to watchlist successfully'
+                            })
+                        }
+                        else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'Something went wrong 🤷‍♂️'
+                            })
+                        }
+                    });
                 break;
             case "favourite":
-                let fav = await axios.post('http://localhost:3000/api/add_favorite/',{userId:this.props.user.id,movieId:id});
+                let fav = await axios.post('http://localhost:3000/api/add_favorite/',{userId:this.props.user.id,movieId:id})
+                    .then(res => {
+                        if (res.statusText === "OK"){
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Added to favourites successfully'
+                            })
+                        }
+                        else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'Something went wrong 🤷‍♂️'
+                            })
+                        }
+                    });
                 break;
             default:
                 console.log("default");
@@ -134,6 +177,19 @@ class MovieDetail extends Component {
 
 
     render() {
+        //toast notification
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'center-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+
         const addToList = (props) => (
             <ReactBootstrap.Tooltip id="button-tooltip" {...props}>
                 Add To List
@@ -174,6 +230,7 @@ class MovieDetail extends Component {
 
         return (
             <React.Fragment>
+                {console.log(this.state.color_palette[2])}
                 <div id="cards_landscape_wrap-2" style={{backgroundImage: `url(${image_post + movie.backdrop_path})`, backgroundPosition: "right -200px top", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
                     <img style={{display:"none"}} ref={this.myRef}  src={image_pre+movie.poster_path} onLoad={this.test}/>
                     <div className="details" style={{backgroundImage: "linear-gradient(to right, rgba("+this.state.from_dominant_colors[0]+", "+this.state.from_dominant_colors[1]+", "+this.state.from_dominant_colors[2]+", 1) 150px, rgba("+this.state.to_dominant_colors[0]+", "+this.state.to_dominant_colors[1]+", "+this.state.to_dominant_colors[2]+", 0.84) 100%)"}}>
