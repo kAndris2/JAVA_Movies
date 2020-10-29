@@ -109,8 +109,7 @@ class MovieDetail extends Component {
 
         if (img.complete) {
            await this.setState({from_dominant_colors :colorThief.getPalette(img)[0],to_dominant_colors: colorThief.getPalette(img)[1]});
-           this.setTextColor(colorThief.getPalette(img,2)[0]);
-           console.log(colorThief.getPalette(img));
+           this.setTextColor(colorThief.getPalette(img)[0]);
         }
         else {
             let asd = document.getElementById("asd");

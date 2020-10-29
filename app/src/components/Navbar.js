@@ -77,7 +77,7 @@ class Navbar extends Component {
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false"
                                 aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
+                            <span className="navbar-toggler-icon"/>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarsExample07">
                             <ul className="navbar-nav mr-auto">
@@ -133,7 +133,7 @@ class Navbar extends Component {
                                             <li><a className="dropdown-item" href={`/u/${this.props.pro.user.name}`}>{this.props.pro.user.name}</a></li>
                                             <li><a className="dropdown-item" href="/#">Leaderboard</a></li>
                                             <li><a className="dropdown-item" href="/#">Support</a></li>
-                                            <li><a className="dropdown-item" href={"#"} onClick={this.handleLogout}>Logout</a></li>
+                                            <li><a className="dropdown-item" href={"/#"} onClick={this.handleLogout}>Logout</a></li>
                                         </ul>
                                     </li>
                                     <li className="list-group-item" style={{border:"none", backgroundColor:"transparent",padding:"0 1.5rem"}}>
