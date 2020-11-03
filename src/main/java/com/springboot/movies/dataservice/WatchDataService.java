@@ -37,7 +37,7 @@ public class WatchDataService {
         String sqlstr = String.format("DELETE FROM %s WHERE id = %d", idao.WATCHLIST_TABLE, wid);
         try (Connection con = DriverManager.getConnection(idao.URL, idao.USER, idao.PASSWORD);
              PreparedStatement pst = con.prepareStatement(sqlstr)) {
-            pst.executeQuery();
+            pst.executeUpdate();
         }
     }
 

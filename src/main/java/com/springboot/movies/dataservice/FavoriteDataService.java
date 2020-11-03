@@ -42,7 +42,7 @@ public class FavoriteDataService {
         String sqlstr = String.format("DELETE FROM %s WHERE id = %d", idao.FAVORITE_TABLE, fid);
         try (Connection con = DriverManager.getConnection(idao.URL, idao.USER, idao.PASSWORD);
              PreparedStatement pst = con.prepareStatement(sqlstr)) {
-            pst.executeQuery();
+            pst.executeUpdate();
         }
     }
 

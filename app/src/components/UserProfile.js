@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import styles from "../static/css/Account.module.css";
+import {Helmet} from "react-helmet";
 
 class UserProfile extends Component {
     constructor(props) {
@@ -13,6 +14,10 @@ class UserProfile extends Component {
     render() {
         return (
             <>
+                <Helmet>
+                    <title>{this.props.getCurrentTitle("My Profile")}</title>
+                </Helmet>
+
                 <div className={styles["account_page_data"]}>
                     <div className={styles["inner_block"]}>
                         <div className={styles["inner_content"]}>

@@ -82,7 +82,18 @@ class Footer extends Component {
                             alt="The Movie Database (TMDb)" width="130" height="94"/>
 
 
-                            <a className="rounded" href="/signup">Join the Community</a>
+                        {
+                            this.props.logged_in_status === "LOGGED_IN" &&
+                            <a className={"rounded logged_in"}
+                               href={`/u/${this.props.user.name}`}
+                            >Hi {this.props.user.name}!</a>
+                        }
+                        {
+                            this.props.logged_in_status !== "LOGGED_IN" &&
+                            <a className={"rounded"}
+                               href={"/signup"}
+                            >Join the Community</a>
+                        }
 
                     </div>
 

@@ -75,6 +75,73 @@ class UserHeader extends Component {
                         </div>
                     </div>
                 </div>
+                <div className={styles["block"]}>
+                    <div className={styles["inner_content"]}>
+                        <div className={`${styles["scroller_warp"]} ${styles["shortcut_bar_wrapper"]} ${styles["is_fading"]}`}>
+                            <ul className={`${styles["dropdown_menu"]} 
+                                            ${styles["silver"]} 
+                                            ${styles["scroller"]} 
+                                            ${styles["k-widget"]} 
+                                            ${styles["k-reset"]} 
+                                            ${styles["k-header"]} 
+                                            ${styles["k-menu"]} 
+                                            ${styles["k-menu-horizontal"]}`}
+                                id={"new_shortcut_bar"}
+                                role={"menubar"}
+                                tabIndex={"0"}
+                                dataRole={"menu"}>
+                                <li className={`${styles["true"]} 
+                                                ${styles["k-item"]} 
+                                                ${styles["k-menu-item"]} 
+                                                ${styles["k-state-default"]}
+                                                ${styles["k-first"]}`}
+                                    aria-haspopup={"true"}
+                                    role={"menuitem"}
+                                    style={{zIndex:"auto"}}>
+                                    <a href={`/u/${this.state.user.name}/favorites`} className={`${styles["k-link"]} ${styles["k-menu-link"]}`}>
+                                        Favorites
+                                    </a>
+                                </li>
+                                <li className={`${styles["false"]} 
+                                                ${styles["k-item"]} 
+                                                ${styles["k-menu-item"]} 
+                                                ${styles["k-state-default"]}`}
+                                    role={"menuitem"}>
+                                    <a href={"/#"} className={`${styles["k-link"]} ${styles["k-menu-link"]}`}>
+                                        Lists
+                                    </a>
+                                </li>
+                                <li className={`${styles["false"]} 
+                                                ${styles["k-item"]} 
+                                                ${styles["k-menu-item"]} 
+                                                ${styles["k-state-default"]}`}
+                                    role={"menuitem"}>
+                                    <a href={"/#"} className={`${styles["k-link"]} ${styles["k-menu-link"]}`}>
+                                        Rates
+                                    </a>
+                                </li>
+                                <li className={`${styles["false"]} 
+                                                ${styles["k-item"]} 
+                                                ${styles["k-menu-item"]} 
+                                                ${styles["k-state-default"]}`}
+                                    role={"menuitem"}>
+                                    <a href={`/u/${this.state.user.name}/watchlist`} className={`${styles["k-link"]} ${styles["k-menu-link"]}`}>
+                                        Watchlist
+                                    </a>
+                                </li>
+                                <li className={`${styles["false"]} 
+                                                ${styles["k-item"]} 
+                                                ${styles["k-menu-item"]} 
+                                                ${styles["k-state-default"]}`}
+                                    role={"menuitem"}>
+                                    <a href={"/settings/profile"} className={`${styles["k-link"]} ${styles["k-menu-link"]}`}>
+                                        Profile
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </>
         );
     }

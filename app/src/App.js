@@ -18,7 +18,7 @@ import Movie from "./components/Movie";
 import Livetv from "./components/Livetv";
 import UserHeader from "./components/UserHeader";
 import UserProfile from "./components/UserProfile";
-import Watchlist from "./components/Watchlist";
+import MyLists from "./components/MyLists";
 import Footer from "./components/Footer";
 import TvDetails from "./components/TvDetails";
 import GenericNotFound from "./components/GenericNotFound";
@@ -290,16 +290,35 @@ class App extends Component {
 
               <Route exact path={"/u/" + this.state.user.name}>
                 <UserHeader user={this.state.user}></UserHeader>
-                <UserProfile user={this.state.user}></UserProfile>
+                <UserProfile
+                    user={this.state.user}
+                    getCurrentTitle={this.getCurrentTitle}
+                >
+                </UserProfile>
               </Route>
 
               <Route exact path={`/u/${this.state.user.name}/watchlist`}>
                 <UserHeader user={this.state.user}></UserHeader>
-                <Watchlist
+                <MyLists
                     user={this.state.user}
                     apiData={this.state.apiData}
+                    logged_in_status={loggedInStatus}
+                    type={"watchlist"}
+                    getCurrentTitle={this.getCurrentTitle}
                 >
-                </Watchlist>
+                </MyLists>
+              </Route>
+
+              <Route exact path={`/u/${this.state.user.name}/favorites`}>
+                <UserHeader user={this.state.user}></UserHeader>
+                <MyLists
+                    user={this.state.user}
+                    apiData={this.state.apiData}
+                    logged_in_status={loggedInStatus}
+                    type={"favorites"}
+                    getCurrentTitle={this.getCurrentTitle}
+                >
+                </MyLists>
               </Route>
 
               <Route component={GenericNotFound} />

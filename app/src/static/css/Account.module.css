@@ -2039,3 +2039,98 @@ textarea.pre:focus {
     font-size: 30px;
     line-height: 35px;
 }
+
+ul#new_shortcut_bar {
+    height: 100%;
+    background-color: rgb(28, 28, 33);
+    font-weight: 600;
+    flex-wrap: nowrap;
+}
+
+ul.dropdown_menu.k-menu.k-menu-horizontal:not(.k-context-menu) {
+    padding: 0px;
+}
+
+.k-menu.k-menu-horizontal:not(.k-context-menu) {
+    padding: 0.5rem 1rem;
+}
+
+ul.dropdown_menu.k-menu {
+    visibility: visible;
+    background: rgb(28, 28, 33);
+    margin: 0px;
+}
+
+.k-menu:not(.k-context-menu) {
+    border-color: rgb(54, 54, 54);
+    color: rgb(191, 191, 191);
+    background-color: rgb(31, 31, 31);
+}
+
+.k-widget, .k-textbox, .k-textarea {
+    font-family: "Source Sans Pro", Arial, sans-serif;
+    font-size: 1em;
+}
+
+.k-menu-horizontal {
+    flex-direction: row;
+}
+
+.k-menu {
+    border-width: 0px;
+    border-style: solid;
+    box-sizing: border-box;
+    outline: 0px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    line-height: 1.5;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    position: relative;
+    cursor: default;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.k-reset {
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    outline: 0px;
+    font: inherit;
+    text-decoration: none;
+    list-style: none;
+}
+
+ul#new_shortcut_bar > .true.k-item {
+    border-bottom: 4px solid rgba(var(--tmdbLightBlue), 1);
+}
+
+ul#new_shortcut_bar.k-menu > .k-item {
+    padding: 6px 0px 4px;
+    margin-right: 40px;
+    border-bottom: 4px solid rgb(28, 28, 33);
+}
+
+.k-menu:not(.k-context-menu) > .k-item, .k-menu-group .k-item > .k-link, .k-menu-vertical .k-item > .k-link {
+    color: rgb(191, 191, 191);
+    font-weight: 400;
+}
+
+.k-menu:not(.k-context-menu) > .k-item {
+    color: rgba(191, 191, 191, 0.5);
+}
+
+.k-item {
+    cursor: default;
+}
+
+.k-menu-item {
+    border-width: 0px;
+    outline: 0px;
+    display: flex;
+    flex: 0 0 auto;
+    position: relative;
+    user-select: none;
+    width: 100px;
+}
