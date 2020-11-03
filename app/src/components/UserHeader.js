@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import styles from "../static/css/Account.module.css";
+import axios from "axios";
 
 class UserHeader extends Component {
     constructor(props) {
@@ -7,8 +8,22 @@ class UserHeader extends Component {
 
         this.state = {
             user: this.props.user,
-            profileImg: 'https://hostpapasupport.com/knowledgebase/wp-content/uploads/2018/04/1-13.png'
+            profileImg: 'https://hostpapasupport.com/knowledgebase/wp-content/uploads/2018/04/1-13.png',
+            ratesAvg: 0
         };
+
+        this.getAverageOfRatings = this.getAverageOfRatings.bind(this);
+    }
+
+    componentDidMount() {
+        this.getAverageOfRatings();
+    }
+
+    async getAverageOfRatings() {
+        await axios.get(`http://localhost:3000/api/avg_ratings/${this.state.user.id}`)
+            .then(result =>{
+                this.setState({ratesAvg: result.data})
+            })
     }
 
     render() {
@@ -37,20 +52,7 @@ class UserHeader extends Component {
                                         </div>
                                         <div className={`${styles["content_wrapper"]} ${styles["flex"]}`}>
                                             <div className={styles["block"]}>
-                                                <div className={`${styles["consensus"]} ${styles["no_hover"]}`}>
-                                                    <div className={styles["outer_ring"]}>
-                                                        <div className={styles["user_score_chart"]} data-percent="0"
-                                                             data-track-color="#666666" data-bar-color="#d4d4d4">
-                                                            <div className={styles["percent"]}>
-
-                                                                <span className={`${styles["icon"]} ${styles["icon-r0"]}`}/>
-
-                                                            </div>
-                                                            <canvas height="60" width="60"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={styles["text"]}>Average<br/>Movie Score</div>
+                                                <div className={styles["text"]}>Average<br/>of all Ratings</div>
                                             </div>
 
                                             <div className={styles["block"]}>
@@ -59,13 +61,12 @@ class UserHeader extends Component {
                                                         <div className={styles["user_score_chart"]} data-percent="0"
                                                              data-track-color="#666666" data-bar-color="#d4d4d4">
                                                             <div className={styles["percent"]}>
-                                                                <span className={`${styles["icon"]} ${styles["icon-r0"]}`}/>
+                                                                <span className={`icon icon-r${this.state.ratesAvg}`}/>
                                                             </div>
                                                             <canvas height="60" width="60"/>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className={styles["text"]}>Average<br/>TV Score</div>
                                             </div>
                                             <div className={styles["social_links"]}/>
                                         </div>

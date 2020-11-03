@@ -26,6 +26,19 @@ public class RatingService {
         return result;
     }
 
+    public Integer countRatings(Integer uid) {
+        return getRatingsByUserId(uid).size();
+    }
+
+    public Integer getAvgOfRatings(Integer uid) {
+        List<RatingModel> ratings = getRatingsByUserId(uid);
+        Integer sum = 0;
+        for (RatingModel rate : ratings) {
+            sum += rate.getRate();
+        }
+        return sum / ratings.size();
+    }
+
     public void addRating(Integer uid, Integer mid, Integer rate) throws SQLException {
         idao.getRatings().add(
               rds.createRating(uid, mid, rate)

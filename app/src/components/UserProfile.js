@@ -1,14 +1,29 @@
 import React, {Component} from "react";
 import styles from "../static/css/Account.module.css";
 import {Helmet} from "react-helmet";
+import axios from "axios";
 
 class UserProfile extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            user: this.props.user
+            user: this.props.user,
+            ratesCount: 0
         };
+
+        this.countRatings = this.countRatings.bind(this);
+    }
+
+    componentDidMount() {
+        this.countRatings();
+    }
+
+    async countRatings() {
+        await axios.get(`http://localhost:3000/api/count_ratings/${this.state.user.id}`)
+            .then(result =>{
+                this.setState({ratesCount: result.data})
+            })
     }
 
     render() {
@@ -33,7 +48,7 @@ class UserProfile extends Component {
 
                                     <div className={styles["stat_block"]}>
                                         <h3>Total Ratings</h3>
-                                        <h2 className={`${styles["color"]} ${styles["green"]}`}>0</h2>
+                                        <h2 className={`${styles["color"]} ${styles["green"]}`}>{this.state.ratesCount}</h2>
                                     </div>
 
                                     <div className={styles["stat_block"]}>

@@ -21,6 +21,16 @@ public class RatingController {
         return rs.getRatingsByUserId(userId);
     }
 
+    @GetMapping("count_ratings/{userId}")
+    Integer countRatings(@PathVariable(value = "userId") Integer userId) {
+        return rs.countRatings(userId);
+    }
+
+    @GetMapping("avg_ratings/{userId}")
+    Integer getAvgOfRatings(@PathVariable(value = "userId") Integer userId) {
+        return rs.getAvgOfRatings(userId);
+    }
+
     @PostMapping("add_rating/{userId}/{movieId}/{rate}")
     void addRating(@PathVariable(value = "userId") Integer userId, @PathVariable(value = "movieId") Integer movieId, @PathVariable(value = "rate") Integer rate) throws SQLException {
         rs.addRating(userId, movieId, rate);
