@@ -23,7 +23,6 @@ import Footer from "./components/Footer";
 import TvDetails from "./components/TvDetails";
 import GenericNotFound from "./components/GenericNotFound";
 import ProfileSettings from "./components/ProfileSettings";
-import SettingsHeader from "./components/SettingsHeader";
 import { Helmet } from 'react-helmet';
 
 class App extends Component {
@@ -324,10 +323,7 @@ class App extends Component {
               </Route>
 
               <Route exact path={'/settings/profile'}>
-                <SettingsHeader user={this.state.user}></SettingsHeader>
-                <ProfileSettings
-                    user={this.state.user}
-                ></ProfileSettings>
+                <ProfileSettings user={this.state.user}></ProfileSettings>
               </Route>
 
               <Route component={GenericNotFound} />
