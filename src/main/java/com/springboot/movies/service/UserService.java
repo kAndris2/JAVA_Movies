@@ -35,4 +35,8 @@ public class UserService {
                 .findAny()
                 .orElse(null);
     }
+
+    public void basicSettings(Integer uid, String name, String color, String description, String language, String region) throws SQLException {
+        uds.basicSettings(uid, name, color, description, language, region);
+    }
 }

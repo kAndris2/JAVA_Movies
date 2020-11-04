@@ -30,4 +30,14 @@ public class UserController {
     void deleteUser(@PathVariable(value = "userId") Integer userId) throws SQLException {
         us.deleteUser(userId);
     }
+
+    @PutMapping("basic_settings/{userId}/{name}/{color}/{description}/{language}/{region}")
+    void basicSettings(@PathVariable(value = "userId") Integer userId,
+                       @PathVariable(value = "name") String name,
+                       @PathVariable(value = "color") String color,
+                       @PathVariable(value = "description") String description,
+                       @PathVariable(value = "language") String language,
+                       @PathVariable(value = "region") String region) throws SQLException {
+        us.basicSettings(userId, name, color, description, language, region);
+    }
 }

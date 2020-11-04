@@ -3,9 +3,13 @@ CREATE TABLE public.users
 (
     id serial not null,
     name character varying(30) not null,
-    registration_date bigint not null,
     email character varying(30) not null,
-    password character varying(256) not null
+    password character varying(256) not null,
+    registration_date bigint not null,
+    language character varying(15) not null,
+    region character varying(10) not null,
+    color character varying(15),
+    description character varying(256)
 );
 
 CREATE TABLE public.ratings

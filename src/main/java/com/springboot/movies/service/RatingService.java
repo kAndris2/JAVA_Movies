@@ -32,11 +32,16 @@ public class RatingService {
 
     public Integer getAvgOfRatings(Integer uid) {
         List<RatingModel> ratings = getRatingsByUserId(uid);
-        Integer sum = 0;
-        for (RatingModel rate : ratings) {
-            sum += rate.getRate();
+
+        if (ratings.size() == 0)
+            return 0;
+        else {
+            Integer sum = 0;
+            for (RatingModel rate : ratings) {
+                sum += rate.getRate();
+            }
+            return sum / ratings.size();
         }
-        return sum / ratings.size();
     }
 
     public void addRating(Integer uid, Integer mid, Integer rate) throws SQLException {
