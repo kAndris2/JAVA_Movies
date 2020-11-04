@@ -10,10 +10,8 @@ import '../static/css/Modal.css';
 import ColorThief from 'colorthief';
 import '../static/css/Application.css';
 import '../static/css/Movie.css';
-import LoadingBar from "react-top-loading-bar";
 import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-
+import styles from '../static/css/MovieDetail.module.css';
 
 class MovieDetail extends Component {
     constructor(props) {
@@ -30,6 +28,7 @@ class MovieDetail extends Component {
         image_post: "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces",
         image_pre: "https://image.tmdb.org/t/p/w500",
         video_pre: "https://youtube.com/watch?v=",
+        profile_pre:"https://image.tmdb.org/t/p/w138_and_h175_face",
 
         genres: [],
         companies: [],
@@ -210,27 +209,17 @@ class MovieDetail extends Component {
                 Rate It!
             </ReactBootstrap.Tooltip>
         );
-        const {movie, genres, companies, isLoading, image_pre,image_post,credits, certificates, showHide,videos, video_pre, to_dominant_colors} = this.state;
+        const {movie, genres, companies, isLoading, image_pre,image_post,credits, certificates, showHide,videos, video_pre, to_dominant_colors, profile_pre} = this.state;
 
 
 
         if (isLoading) {
             return ( <p>Loading....</p>
-               /* <div>
-                    <LoadingBar
-                        progress={this.state.loadingBarProgress}
-                        height={5}
-                        color="green"
-                        onLoaderFinished={() => this.onLoaderFinished()}
-                    />
-                    <div onLoad={this.complete}></div>
-                </div>*/
             );
         }
 
         return (
             <React.Fragment>
-                {console.log(this.state.color_palette[2])}
                 <div id="cards_landscape_wrap-2" style={{backgroundImage: `url(${image_post + movie.backdrop_path})`, backgroundPosition: "right -200px top", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
                     <img style={{display:"none"}} ref={this.myRef}  src={image_pre+movie.poster_path} onLoad={this.test}/>
                     <div className="details" style={{backgroundImage: "linear-gradient(to right, rgba("+this.state.from_dominant_colors[0]+", "+this.state.from_dominant_colors[1]+", "+this.state.from_dominant_colors[2]+", 1) 150px, rgba("+this.state.to_dominant_colors[0]+", "+this.state.to_dominant_colors[1]+", "+this.state.to_dominant_colors[2]+", 0.84) 100%)"}}>
@@ -365,7 +354,7 @@ class MovieDetail extends Component {
 
                     </div>
                 </div>
-                <div className="container" style={{maxWidth: "1300px", padding: "30px 40px"}}>
+                {/*<div className="container" style={{maxWidth: "1300px", padding: "30px 40px"}}>
                     <div>
                         <h4>Top Billed Cast</h4>
                         <div id="cards_landscape_wrap-2">
@@ -393,9 +382,135 @@ class MovieDetail extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>*/}
                 <div id={"asd"}>
 
+                </div>
+                <div id="media_v4" className={`${styles["media"]} ${styles["movie_v4"]} ${styles["header_large"]}`}>
+                    <div className={styles["column_wrapper"]}>
+                        <div className={styles["content_wrapper"]}>
+                            <div>
+                                <div className={styles["white_column"]}>
+                                    <section className={`${styles["panel"]} ${styles["top_billed"]} ${styles["scroller"]}`}>
+                                        <h3 dir={"auto"}>Top Billed Cast</h3>
+                                        <div id="cast_scroller" className={`${styles["scroller_wrap"]} ${styles["should_fade"]} ${styles["is_fading"]}`}>
+                                            <ol className={`${styles["people"]} ${styles["scroller"]}`}>
+                                                {credits.map((credit,index) =>
+                                                    <li key={credit.id} className={styles["card"]}>
+                                                        <a href={"/person/"+credit.id}>
+                                                            <img className={styles["profile"]} alt={credit.name} data-src={profile_pre + credit.profile_path} src={profile_pre + credit.profile_path} />
+                                                        </a>
+                                                        <p>
+                                                            <a href={"/person/"+credit.id} >{credit.name}</a>
+                                                        </p>
+                                                        <p className={styles["character"]}>{credit.character}</p>
+                                                    </li>
+                                                )}
+                                            </ol>
+                                        </div>
+                                    </section>
+                                    <section className={`${styles["panel"]} ${styles["media_panel"]} ${styles["social_panel"]}`}>
+                                        <section className={styles["review"]}>
+                                            <div className={styles["menu"]}>
+                                                <h3 dir={"auto"}>Social</h3>
+                                                <ul>
+                                                    <li>
+                                                        <a href={"#"} className={styles["media_panel"]}>Reviews <span>0</span></a>
+                                                    </li>
+                                                    <li className={styles["active"]}>
+                                                        <a href={"#"} className={styles["media_panel"]}>Discussions <span>1</span></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div className={styles["content"]}>
+                                                <div className={styles["original_content"]}>
+                                                    <div className={styles["discussion_container"]}>
+                                                        <table className={`${styles["new"]} ${styles["space"]}`}>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Subject</th>
+                                                                    <th>Status</th>
+                                                                    <th>Replies</th>
+                                                                    <th>Last Reply</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr className={styles["open"]}>
+                                                                <td className={styles["subject"]}>
+                                                                    <div className={styles["post_info"]}>
+                                                                        <div className={styles["flex_wrapper"]}>
+                                                                            <div className={styles["avatar_wrapper"]}>
+                                                                              <span className={`${styles["avatar"]} ${styles["thirty-two"]}`}>
+                                                                                <a href="/u/acontributor" alt="Discussion started by acontributor">
+                                                                                    <span className={`${styles["background_color"]} ${styles["silver"]}`}>a</span>
+                                                                                </a>
+                                                                              </span>
+                                                                            </div>
+                                                                            <div className={styles["link_wrapper"]}>
+                                                                                <a className={styles["topic"]}
+                                                                                   href="#">Not
+                                                                                    what I expected</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td><p className={styles["status"]}>Open</p></td>
+                                                                <td><p>1</p></td>
+                                                                <td>
+                                                                    <p>
+                                                                        Oct 29, 2020 at 6:29 AM<br/>by <span className={styles["username"]}><a href="/movie/615665-holidate/discuss/5f9a3960e942ee0037abfd28?page=1#5f9a5356aad9c20036d68b27">mechajutaro</a></span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </section>
+                                    <section className={`${styles["panel"]} ${styles["media_panel"]} ${styles["media"]} ${styles["scroller"]}`}>
+                                        <div className={styles["menu"]}>
+                                            <h3>Media</h3>
+                                            <ul>
+                                                <li><a className={styles["media_panel"]}>Most Popular</a></li>
+                                                <li><a className={styles["media_panel"]}>Videos <span>2</span></a> </li>
+                                                <li><a className={styles["media_panel"]}>Backdrops <span>8</span></a></li>
+                                                <li><a className={styles["media_panel"]}>Posters <span>11</span></a></li>
+                                                <li className={styles["view_all"]}></li>
+                                            </ul>
+                                        </div>
+                                        <div className={`${styles["scroller_wrap"]} ${styles["should_fade"]} ${styles["is_fading"]}`}>
+                                            <div className={`${styles["h_scroller"]} ${styles["content"]} ${styles["scroller"]}`}>
+                                                <div className={`${styles["video"]} ${styles["card"]} ${styles["no_border"]}`}>
+                                                    {/*ezt itt hagytam abba*/}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                            <div className={styles["grey_column"]}>
+                                    <div>
+                                        <section className={styles["split_column"]}>
+                                            <div>
+                                                <div className={`${styles["column"]} ${styles["no_bottom_pad"]}`}>
+                                                    <section className={`${styles["facts"]} ${styles["left_column"]}`}>
+                                                        <p>
+                                                            <strong><bdi>Status</bdi></strong> Released
+                                                        </p>
+                                                        <p><strong><bdi>Original Language</bdi></strong> English</p>
+                                                        <p><strong><bdi>Budget</bdi></strong> -</p>
+                                                        <p><strong><bdi>Revenue</bdi></strong> -</p>
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
                 </div>
 
             </React.Fragment>
