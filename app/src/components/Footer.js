@@ -2,9 +2,6 @@ import React, {Component} from "react";
 import "../static/css/Footer.css";
 
 class Footer extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (
@@ -104,7 +101,7 @@ class Footer extends Component {
                             <li><a href="/about/staying-in-touch">Contact Us</a></li>
                             <li><a href="/talk">Support Forums</a></li>
                             <li><a href="/documentation/api">API</a></li>
-                            <li><a href="https://status.themoviedb.org/" target="_blank" rel="noopener">System
+                            <li><a href="https://status.themoviedb.org/">System
                                 Status</a></li>
                         </ul>
                     </div>
@@ -124,7 +121,7 @@ class Footer extends Component {
                             <li><a href="/documentation/community/guidelines">Guidelines</a></li>
                             <li><a href="/discuss">Discussions</a></li>
                             <li><a href="/leaderboard">Leaderboard</a></li>
-                            <li><a href="https://twitter.com/themoviedb" target="_blank" rel="noopener">Twitter</a></li>
+                            <li><a href="https://twitter.com/themoviedb">Twitter</a></li>
                         </ul>
                     </div>
                     <div>

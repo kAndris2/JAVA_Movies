@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import moment from "moment";
 import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
 import '../static/css/cards.css';
 import {faCircle, faTimes} from "@fortawesome/free-solid-svg-icons";

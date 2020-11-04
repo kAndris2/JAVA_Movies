@@ -11,7 +11,8 @@ class MyLists extends Component {
 
         this.state = {
             loading: true,
-            movies: []
+            movies: [],
+            favIds: []
         }
 
         this.getStoredIds = this.getStoredIds.bind(this);
@@ -19,23 +20,58 @@ class MyLists extends Component {
         this.handleMovieResponse = this.handleMovieResponse.bind(this);
         this.addTo = this.addTo.bind(this);
         this.removeMovie = this.removeMovie.bind(this);
+        this.getFavIds = this.getFavIds.bind(this);
+        this.isFavorite = this.isFavorite.bind(this);
+        this.handleFavIds = this.handleFavIds.bind(this);
+        this.getCurrentIds = this.getCurrentIds.bind(this);
     }
 
     componentDidMount() {
         this.getStoredIds();
+        if (this.props.type !== "favorites") {
+            this.getFavIds();
+        }
     }
 
-    async removeMovie(movieId) {
-        let routePart = this.props.type === "watchlist" ? "delete_watch" : "delete_favorite";
+    getFavIds() {
+        axios.get(`http://localhost:3000/api/favorites/${this.props.user.id}`)
+            .then(this.handleFavIds)
+    }
+
+    handleFavIds(response) {
+        const temp = [];
+        Promise.all(response.data.map((f) => {
+            temp.push(f.movieId);
+        }));
+        this.setState({favIds:temp});
+    }
+
+    getCurrentIds() {
+        const temp = [];
+        this.state.movies.forEach(movie => {
+           temp.push(movie.id);
+        });
+        return temp;
+    }
+
+    isFavorite(mid) {
+        if (this.props.type === "favorites") {
+            return this.getCurrentIds().includes(mid);
+        }
+        else {
+            return this.state.favIds.includes(mid);
+        }
+    }
+
+    async removeMovie(movieId, where) {
+        let routePart = where === "watchlist" ? "delete_watch" : "delete_favorite";
         await axios.delete(`http://localhost:3000/api/${routePart}/${this.props.user.id}/${movieId}`)
             .then(res => {
-                //this.state.movies = [];
                 this.getStoredIds();
             })
     }
 
     getStoredIds() {
-        console.log("gsi")
         axios.get(`http://localhost:3000/api/${this.props.type}/` + this.props.user.id)
             .then(this.handleIdListResponse)
     }
@@ -50,7 +86,7 @@ class MyLists extends Component {
 
     handleMovieResponse(response) {
         const temp = [];
-        response.map(movie => {
+        response.forEach(movie => {
             temp.push(movie.data)
         })
         this.setState({
@@ -59,7 +95,7 @@ class MyLists extends Component {
         })
     }
 
-    async addTo(what,id){
+    async addTo(id){
         const Toast = Swal.mixin({
             toast: true,
             position: 'center-end',
@@ -72,44 +108,22 @@ class MyLists extends Component {
             }
         });
 
-        switch (what){
-            /*
-            case "watchlist":
-                const watch = await axios.put('http://localhost:3000/api/add_watch/'+this.props.user.id+'/'+id+'')
-                    .then(res => {
-                        if (res.statusText === "OK"){
-                            Toast.fire({
-                                icon: 'success',
-                                title: 'Added to watchlist successfully'
-                            })
-                        }
-                        else {
-                            Toast.fire({
-                                icon: 'error',
-                                title: 'Something went wrong 🤷‍♂️'
-                            })
-                        }
-                    });
-                break;
-             */
-            case "favourite":
-                let fav = await axios.post('http://localhost:3000/api/add_favorite/',{userId:this.props.user.id,movieId:id})
-                    .then(res => {
-                        if (res.statusText === "OK"){
-                            Toast.fire({
-                                icon: 'success',
-                                title: 'Added to favourites successfully'
-                            })
-                        }
-                        else {
-                            Toast.fire({
-                                icon: 'error',
-                                title: 'Something went wrong 🤷‍♂️'
-                            })
-                        }
-                    });
-                break;
-        }
+        await axios.post('http://localhost:3000/api/add_favorite/',{userId:this.props.user.id,movieId:id})
+            .then(res => {
+                if (res.statusText === "OK"){
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Added to favourites successfully'
+                    })
+                }
+                else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Something went wrong 🤷‍♂️'
+                    })
+                }
+                this.getStoredIds();
+            });
     }
 
     capitalize(str){
@@ -124,11 +138,6 @@ class MyLists extends Component {
                     Add To List
                 </ReactBootstrap.Tooltip>
             );
-            const favourite = (props) => (
-                <ReactBootstrap.Tooltip id="button-tooltip" {...props}>
-                    Mark As Favourite
-                </ReactBootstrap.Tooltip>
-            );
             const rate = (props) => (
                 <ReactBootstrap.Tooltip id="button-tooltip"{...props}>
                     Rate It!
@@ -139,113 +148,7 @@ class MyLists extends Component {
                     Remove
                 </ReactBootstrap.Tooltip>
             );
-/*
-            return (
-                <div className={"account_page_data"}>
-                    <div className={"inner_block"}>
-                        <div className={"inner_content"}>
-                            <div className={"content"}>
-                                <div className={"title_header"}>
-                                    <div className={"title_group"}>
-                                        <div>
-                                            <h2>My MyLists</h2>
-                                        </div>
-                                        <div className={"items_wrapper"}>
-                                            <div className={"result_page"}>
-                                                {this.state.movies.map(movie =>
-                                                        <div className={"card v4"}>
-                                                            <div className={"image"}>
-                                                                <div className={"poster"}>
-                                                                    <a className="result" href={"/movie/" + movie.id}>
-                                                                        <img alt={movie.title}
-                                                                             src={"https://image.tmdb.org/t/p/w94_and_h141_bestv2/" + movie.poster_path}
-                                                                             className="poster"/>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div className={"details"}>
-                                                                <div className={"flex_space_between"}>
-                                                                    <div className={"wrapper"}>
-                                                                        <div className={"consensus tight"}>
-                                                                            <div className={"outer_ring"}>
-                                                                                <div className="user_score_chart">
-                                                                                    <div className="percent">
-                                                                                        <span className={"icon icon-r"+movie.vote_average * 10}/>
-                                                                                    </div>
-                                                                                    <canvas height="34" width="34"/>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className={"title"}>
-                                                                            <a className="result" href={"/movie/" + movie.id}>
-                                                                                <h2>{movie.title}</h2>
-                                                                            </a>
-                                                                            <span className={"release_date"}>
-                                                                                {moment(movie.release_date).format("YYYY. MMM. D.")}
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className={"overview true"}>
-                                                                        <p>
-                                                                            {movie.overview}
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                                <div className={"action_bar"}>
-                                                                    <ul className="auto actions" style={{padding:"0"}}>
-                                                                        <li className="tooltip1 use_tooltip rating tooltip_hover">
-                                                                            <ReactBootstrap.OverlayTrigger
-                                                                                placement="bottom"
-                                                                                delay={{ show: 100, hide: 300 }}
-                                                                                overlay={rate}
-                                                                            >
-                                                                                <a onClick={() => {alert("not yet")}} id="rate_it" className="no_click rating" href="#"><span
-                                                                                    className="glyphicons_v2 star white false"/></a>
-                                                                            </ReactBootstrap.OverlayTrigger>
-                                                                        </li>
-                                                                        <li className="tooltip1 use_tooltip" data-toggle="tooltip">
-                                                                            <ReactBootstrap.OverlayTrigger
-                                                                                placement="bottom"
-                                                                                delay={{ show: 100, hide: 300 }}
-                                                                                overlay={favourite}
-                                                                            >
-                                                                                <a onClick={() => {this.props.logged_in_status ==="LOGGED_IN" ? this.addTo("favourite",movie.id):alert("not logged in")}} id="favourite" className="no_click add_to_account_list favourite" href="#"><span className="glyphicons_v2 heart white false"/></a>
-                                                                            </ReactBootstrap.OverlayTrigger>
-                                                                        </li>
-                                                                        <li className="tooltip1 use_tooltip list tooltip_hover">
-                                                                            <ReactBootstrap.OverlayTrigger
-                                                                                placement="bottom"
-                                                                                delay={{ show: 100, hide: 300 }}
-                                                                                overlay={addToList}
-                                                                            >
-                                                                                <a onClick={() => {alert("not yet")}} className="no_click" href="#"><span className="glyphicons_v2 thumbnails-list white"/></a>
-                                                                            </ReactBootstrap.OverlayTrigger>
-                                                                        </li>
-                                                                        <li className="tooltip1 use_tooltip list tooltip_hover">
-                                                                            <ReactBootstrap.OverlayTrigger
-                                                                                placement="bottom"
-                                                                                delay={{ show: 100, hide: 300 }}
-                                                                                overlay={remove}
-                                                                            >
-                                                                                <a onClick={() => {alert("not yet")}} className="no_click" href="#"><span className="glyphicons_v2 menu-close white"/></a>
-                                                                            </ReactBootstrap.OverlayTrigger>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
 
- */
             return (
                 <>
 
@@ -323,14 +226,21 @@ class MyLists extends Component {
                                                                 <ReactBootstrap.OverlayTrigger
                                                                     placement="bottom"
                                                                     delay={{show: 100, hide: 300}}
-                                                                    overlay={favourite}
+                                                                    overlay={
+                                                                        (props) => (
+                                                                            <ReactBootstrap.Tooltip id="button-tooltip" {...props}>
+                                                                                {this.isFavorite(movie.id) === true ? "Remove from favorites" : "Mark as favorite"}
+                                                                            </ReactBootstrap.Tooltip>
+                                                                        )
+                                                                    }
                                                                 >
                                                                     <a onClick={() => {
-                                                                        this.props.logged_in_status === "LOGGED_IN" ? this.addTo("favourite", movie.id) : alert("not logged in")
+                                                                        this.isFavorite(movie.id) === true ? this.removeMovie(movie.id, "favorites") : this.addTo(movie.id)
                                                                     }} id="favourite"
                                                                        className="no_click add_to_account_list favourite"
                                                                        href="#"><span
-                                                                        className="glyphicons_v2 heart white false"/></a>
+                                                                        className={`glyphicons_v2 heart white ${this.props.type == "favorites" ? true : this.isFavorite(movie.id)}`}
+                                                                    /></a>
                                                                 </ReactBootstrap.OverlayTrigger>
                                                             </li>
                                                             <li className="tooltip1 use_tooltip list tooltip_hover">
@@ -352,7 +262,7 @@ class MyLists extends Component {
                                                                     overlay={remove}
                                                                 >
                                                                     <a onClick={() => {
-                                                                        this.removeMovie(movie.id)
+                                                                        this.removeMovie(movie.id, this.props.type)
                                                                     }} className="no_click" href="#"><span
                                                                         className="glyphicons_v2 menu-close white"/></a>
                                                                 </ReactBootstrap.OverlayTrigger>
