@@ -19,7 +19,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class ImageService {
-    final String PATH = "src\\main\\resources\\pics\\";
+    final String PATH = "\\app\\public\\pics\\";
     IDAO idao = IDAO.getInstance();
 
     ImageDataService ids = new ImageDataService(idao);
@@ -61,7 +61,10 @@ public class ImageService {
         );
 
         idao.getPictures().add(
-                ids.createImage(filePath, userId)
+                ids.createImage(
+                        PATH + filename + extension,
+                        userId
+                )
         );
     }
 

@@ -9,15 +9,32 @@ class UserHeader extends Component {
 
         this.state = {
             user: this.props.user,
-            profileImg: 'https://hostpapasupport.com/knowledgebase/wp-content/uploads/2018/04/1-13.png',
+            defaultImg: 'https://hostpapasupport.com/knowledgebase/wp-content/uploads/2018/04/1-13.png',
+            userImg: undefined,
             ratesAvg: 0
         };
 
         this.getAverageOfRatings = this.getAverageOfRatings.bind(this);
+        this.getProfileImage = this.getProfileImage.bind(this);
+        this.handleProfileImage = this.handleProfileImage.bind(this);
     }
 
     componentDidMount() {
+        this.getProfileImage();
         this.getAverageOfRatings();
+    }
+
+    async getProfileImage() {
+        await axios.get(`http://localhost:3000/api/profile_image/${this.state.user.id}`)
+            .then(this.handleProfileImage)
+    }
+
+    handleProfileImage(response) {
+        let temp = undefined;
+        Promise.all(
+            temp = response.data.route
+        );
+        this.setState({userImg: temp});
     }
 
     async getAverageOfRatings() {
@@ -28,7 +45,7 @@ class UserHeader extends Component {
     }
 
     render() {
-        const {user, profileImg} = this.state;
+        const {user, defaultImg, userImg} = this.state;
 
         return (
             <>
@@ -39,10 +56,18 @@ class UserHeader extends Component {
 
                               <span className={styles["avatar"]}>
                                 <a href={"/u/"+user.name}>
+                                    {userImg === undefined &&
                                     <img className={styles["avatar"]}
-                                         src={profileImg}
-                                         srcSet={profileImg +" 1x, "+profileImg+" 2x"}
+                                         src={defaultImg}
+                                         srcSet={defaultImg + " 1x, " + defaultImg + " 2x"}
                                          alt={user.name} width="150" height="150"/>
+                                    }
+                                    {userImg !== undefined &&
+                                    <img className={styles["avatar"]}
+                                         src={userImg}
+                                         srcSet={userImg + " 1x, " + userImg + " 2x"}
+                                         alt={user.name} width="150" height="150"/>
+                                    }
                                 </a>
                               </span>
                                 <div>

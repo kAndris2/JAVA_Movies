@@ -15,7 +15,9 @@ class ProfileSettings extends Component {
             inDesc: undefined,
             inLang: undefined,
             inRegion: undefined,
-            loading: false
+            loading: false,
+            selectedFile: null,
+            error:''
         }
 
         this.handleSave = this.handleSave.bind(this);
@@ -25,6 +27,8 @@ class ProfileSettings extends Component {
         this.setRegion = this.setRegion.bind(this);
         this.currentRegion = this.currentRegion.bind(this);
         this.updateUser = this.updateUser.bind(this);
+        this.onFileChange = this.onFileChange.bind(this);
+        this.onFileUpload = this.onFileUpload.bind(this);
     }
 
     updateUser(newData) {
@@ -178,6 +182,33 @@ class ProfileSettings extends Component {
         this.setState({inRegion: region})
     }
 
+    onFileChange = event => {
+        this.setState({ selectedFile: event.target.files[0] });
+    };
+
+    onFileUpload = () => {
+        if (this.state.selectedFile.size >= 5000000){
+            this.setState({error:'File too large'});
+
+        }
+        else {
+            this.setState({error:''})
+            let formData = new FormData();
+            formData.append(
+                "file",
+                this.state.selectedFile,
+                this.state.selectedFile.name
+            );
+
+            //console.log(this.state.selectedFile);
+
+            axios.post(`http://localhost:3000/api/upload_image/${this.props.user.id}`, formData)
+                .then(resp => {
+                console.log(resp);
+            });
+        }
+    };
+
     render() {
         const colors = ["blue", "light_blue", "teal", "green", "purple", "silver", "orange", "yellow", "red", "pink"];
 
@@ -193,6 +224,18 @@ class ProfileSettings extends Component {
                                     <section className={"content"}>
                                         <div className={"column_content"}>
                                             <h2>Profile</h2>
+                                            <div>
+                                                <input type="file" onChange={this.onFileChange} name="file"/>
+                                                <input type={"button"}
+                                                       className={`${styles["k-button"]} 
+                                                                    ${styles["k-primary"]} 
+                                                                    ${styles["rounded"]} 
+                                                                    ${styles["background_color"]}
+                                                                    ${styles["border_color"]}
+                                                                    ${styles[this.props.user.color]}`}
+                                                       value={"Upload!"}
+                                                       onClick={this.onFileUpload}/>
+                                            </div>
                                             <form className={styles["k-form"]}>
                                                 <fieldset>
                                                     <label className={styles["k-form-field"]}>
