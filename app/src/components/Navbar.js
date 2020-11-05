@@ -27,15 +27,15 @@ class Navbar extends Component {
     }
 
     languageHungarian() {
-        this.props.languageChange("hun");
+        this.props.languageChange("hu-HU", "HU");
     }
 
     languageEnglish() {
-        this.props.languageChange("eng");
+        this.props.languageChange("en-US", "US");
     }
 
     languageDeutsch() {
-        this.props.languageChange("de");
+        this.props.languageChange("de-DE", "DE");
     }
 
     setLanguage() {
