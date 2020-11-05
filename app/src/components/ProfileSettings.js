@@ -29,6 +29,21 @@ class ProfileSettings extends Component {
         this.updateUser = this.updateUser.bind(this);
         this.onFileChange = this.onFileChange.bind(this);
         this.onFileUpload = this.onFileUpload.bind(this);
+        this.getToast = this.getToast.bind(this);
+    }
+
+    getToast() {
+        return Swal.mixin({
+            toast: true,
+            position: 'center-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
     }
 
     updateUser(newData) {
@@ -52,17 +67,7 @@ class ProfileSettings extends Component {
             region: this.state.inRegion == undefined ? this.props.user.region : this.state.inRegion
         };
 
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'center-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        });
+        const Toast = this.getToast();
 
         axios.put("http://localhost:3000/api/basic_settings/" +
             `${this.props.user.id}/` +
@@ -77,7 +82,7 @@ class ProfileSettings extends Component {
                 if (res.statusText === "OK"){
                     Toast.fire({
                         icon: 'success',
-                        title: 'Added to watchlist successfully'
+                        title: 'Successfull saving!'
                     })
                 }
                 else {
@@ -192,7 +197,10 @@ class ProfileSettings extends Component {
 
         }
         else {
-            this.setState({error:''})
+            this.setState({
+                error: '',
+                loading: true
+            })
             let formData = new FormData();
             formData.append(
                 "file",
@@ -200,11 +208,23 @@ class ProfileSettings extends Component {
                 this.state.selectedFile.name
             );
 
-            //console.log(this.state.selectedFile);
+            const Toast = this.getToast();
 
             axios.post(`http://localhost:3000/api/upload_image/${this.props.user.id}`, formData)
                 .then(resp => {
-                console.log(resp);
+                    if (resp.statusText === "OK"){
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Successfull image upload!'
+                        })
+                    }
+                    else {
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Something went wrong 🤷‍♂️'
+                        })
+                    }
+                    this.setState({loading: false});
             });
         }
     };
