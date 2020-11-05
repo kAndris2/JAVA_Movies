@@ -12,6 +12,7 @@ import '../static/css/Application.css';
 import '../static/css/Movie.css';
 import Swal from 'sweetalert2';
 import styles from '../static/css/MovieDetail.module.css';
+import {getCountryName} from './Function';
 
 class MovieDetail extends Component {
     constructor(props) {
@@ -20,6 +21,8 @@ class MovieDetail extends Component {
         this.test = this.test.bind(this);
         this.addTo = this.addTo.bind(this);
         this.setTextColor = this.setTextColor.bind(this);
+        this.errors = this.errors.bind(this);
+        this.formatMoney = this.formatMoney.bind(this);
     }
     state = {
         isLoading: true,
@@ -46,21 +49,6 @@ class MovieDetail extends Component {
         loadingBarProgress: 0,
 
         videos:[]
-    };
-
-    //progress bar functions
-    add = value => {
-        this.setState({
-            loadingBarProgress: this.state.loadingBarProgress + value
-        });
-    };
-
-    complete = () => {
-        this.setState({ loadingBarProgress: 100 });
-    };
-
-    onLoaderFinished = () => {
-        this.setState({ loadingBarProgress: 0 });
     };
 
     async componentDidMount() {
@@ -91,6 +79,19 @@ class MovieDetail extends Component {
         return hours + "h " + minutes +"m";
     }
 
+    formatMoney(amount) {
+        let formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+
+            // These options are needed to round to whole numbers if that's what you want.
+            //minimumFractionDigits: 0,
+            //maximumFractionDigits: 0,
+        });
+        return formatter.format(amount);
+    }
+
+
     handleModalShowHide() {
         this.setState({ showHide: !this.state.showHide })
     }
@@ -118,6 +119,18 @@ class MovieDetail extends Component {
             asd.addEventListener('load', function() {
                return colorThief.getColor(img);
             });
+        }
+    }
+
+    errors(type){
+        switch (type){
+            case "not_logged_in":
+                Swal.fire({
+                    icon: 'error',
+                    title: 'You are not logged in...',
+                    text: 'Why are u not logged in to our site m8 🤦‍♂️',
+                })
+            break;
         }
     }
 
@@ -280,7 +293,7 @@ class MovieDetail extends Component {
                                                     delay={{ show: 100, hide: 300 }}
                                                     overlay={favourite}
                                                 >
-                                                    <a onClick={() => {this.props.logged_in_status ==="LOGGED_IN" ? this.addTo("favourite",movie.id):alert("not logged in")}} id="favourite" className="no_click add_to_account_list favourite" href="#"><span className="glyphicons_v2 heart white false"/></a>
+                                                    <a onClick={() => {this.props.logged_in_status ==="LOGGED_IN" ? this.addTo("favourite",movie.id):this.errors("not_logged_in")}} id="favourite" className="no_click add_to_account_list favourite" href="#"><span className="glyphicons_v2 heart white false"/></a>
                                                 </ReactBootstrap.OverlayTrigger>
                                             </li>
                                             <li className="tooltip1 use_tooltip" title="" >
@@ -289,7 +302,7 @@ class MovieDetail extends Component {
                                                     delay={{ show: 100, hide: 300 }}
                                                     overlay={watchlist}
                                                 >
-                                                    <a onClick={() => {this.props.logged_in_status ==="LOGGED_IN" ? this.addTo("watchlist",movie.id):alert("not logged in")}} id="watchlist" className="no_click add_to_account_list watchlist"
+                                                    <a onClick={() => {this.props.logged_in_status ==="LOGGED_IN" ? this.addTo("watchlist",movie.id):this.errors("not_logged_in")}} id="watchlist" className="no_click add_to_account_list watchlist"
                                                        href="#"><span className="glyphicons_v2 bookmark white false"/></a>
                                                 </ReactBootstrap.OverlayTrigger>
                                             </li>
@@ -497,11 +510,11 @@ class MovieDetail extends Component {
                                                 <div className={`${styles["column"]} ${styles["no_bottom_pad"]}`}>
                                                     <section className={`${styles["facts"]} ${styles["left_column"]}`}>
                                                         <p>
-                                                            <strong><bdi>Status</bdi></strong> Released
+                                                            <strong><bdi>Status</bdi></strong> {movie.status}
                                                         </p>
-                                                        <p><strong><bdi>Original Language</bdi></strong> English</p>
-                                                        <p><strong><bdi>Budget</bdi></strong> -</p>
-                                                        <p><strong><bdi>Revenue</bdi></strong> -</p>
+                                                        <p><strong><bdi>Original Language</bdi></strong> {getCountryName(movie.original_language)}</p>
+                                                        <p><strong><bdi>Budget</bdi></strong> {this.formatMoney(movie.budget)}</p>
+                                                        <p><strong><bdi>Revenue</bdi></strong> {this.formatMoney(movie.revenue)}</p>
                                                     </section>
                                                 </div>
                                             </div>
