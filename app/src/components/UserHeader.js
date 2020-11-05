@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import styles from "../static/css/Account.module.css";
 import axios from "axios";
+import moment from "moment";
 
 class UserHeader extends Component {
     constructor(props) {
@@ -48,7 +49,7 @@ class UserHeader extends Component {
                                     <div className={styles["about"]}>
                                         <div className={`${styles["content_wrapper"]} ${styles["flex"]}`}>
                                             <h2><a href={"/u/"+user.name}>{user.name}</a></h2>
-                                            <h3>Member since November 2019</h3>
+                                            <h3>Member since {moment(user.registrationDate).format('LL')}</h3>
                                         </div>
                                         <div className={`${styles["content_wrapper"]} ${styles["flex"]}`}>
                                             <div className={styles["block"]}>
