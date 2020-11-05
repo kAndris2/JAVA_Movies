@@ -48,6 +48,7 @@ class App extends Component {
     this.languageChange = this.languageChange.bind(this);
     this.getMovies = this.getMovies.bind(this);
     this.getCurrentTitle = this.getCurrentTitle.bind(this);
+    this.updateUser = this.updateUser.bind(this);
   }
 
   async getMovies(language, region) {
@@ -147,6 +148,10 @@ class App extends Component {
             })
           }
         });*/
+  }
+
+  updateUser(newUser) {
+    this.setState({user: newUser});
   }
 
   getId(){
@@ -324,8 +329,7 @@ class App extends Component {
               <Route exact path={'/settings/profile'}>
                 <ProfileSettings
                     user={this.state.user}
-                    region={this.state.apiData.region}
-                    language={this.state.apiData.language}
+                    updateUser={this.updateUser}
                 ></ProfileSettings>
               </Route>
 
