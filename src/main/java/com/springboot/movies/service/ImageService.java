@@ -62,7 +62,7 @@ public class ImageService {
 
         idao.getPictures().add(
                 ids.createImage(
-                        PATH + filename + extension,
+                        filename + extension,
                         userId
                 )
         );

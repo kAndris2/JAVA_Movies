@@ -30,11 +30,13 @@ class UserHeader extends Component {
     }
 
     handleProfileImage(response) {
-        let temp = undefined;
-        Promise.all(
-            temp = response.data.route
-        );
-        this.setState({userImg: `http://localhost:3000/pics/${temp.split('\\')[4]}`});
+        if (response.data.length != 0) {
+            let temp = undefined;
+            Promise.all(
+                temp = response.data.route
+            );
+            this.setState({userImg: `http://localhost:3000/pics/${temp}`});
+        }
     }
 
     async getAverageOfRatings() {
