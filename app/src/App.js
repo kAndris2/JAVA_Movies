@@ -73,11 +73,12 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    await this.checkLoginStatus();
+
     await this.getMovies(
         this.state.apiData.language,
         this.state.apiData.region
     );
-    await this.checkLoginStatus();
   }
 
   async checkLoginStatus(){
@@ -99,9 +100,15 @@ class App extends Component {
 
       await axios.get("http://localhost:3000/api/user/"+id)
           .then(resp => {
+            let newApi = {
+              key: this.state.apiData.key,
+              language: resp.data.language,
+              region: resp.data.region
+            };
             this.setState({
               loggedInStatus: "LOGGED_IN",
-              user: resp.data
+              user: resp.data,
+              apiData: newApi
             })
           })
     }
@@ -161,17 +168,9 @@ class App extends Component {
     })
   }
 
-  async languageChange(language) {
+  async languageChange(language, region) {
     this.setState({isLoading: true});
-    if (language === "hun") {
-      await this.getMovies("hu-HU", "HU");
-    }
-    else if (language === "eng") {
-      await this.getMovies("en-US", "US");
-    }
-    else if (language === "de") {
-      await this.getMovies("de-DE", "DE");
-    }
+    await this.getMovies(language, region);
   }
 
   getCurrentTitle(part) {
@@ -323,7 +322,11 @@ class App extends Component {
               </Route>
 
               <Route exact path={'/settings/profile'}>
-                <ProfileSettings user={this.state.user}></ProfileSettings>
+                <ProfileSettings
+                    user={this.state.user}
+                    region={this.state.apiData.region}
+                    language={this.state.apiData.language}
+                ></ProfileSettings>
               </Route>
 
               <Route component={GenericNotFound} />

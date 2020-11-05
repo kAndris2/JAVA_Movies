@@ -1,17 +1,23 @@
 import React, {Component} from "react";
 import styles from "../static/css/ProfileSettings.module.css";
 import SettingsHeader from "./SettingsHeader";
+import {Dropdown as Drp} from "react-bootstrap";
 
 class ProfileSettings extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            clicked: null
+            clicked: null,
+            inName: undefined,
+            inDesc: undefined,
+            inLang: undefined,
+            inRegion: undefined
         }
 
         this.handleSave = this.handleSave.bind(this);
         this.isSelected = this.isSelected.bind(this);
+        this.setLanguage = this.setLanguage.bind(this);
     }
 
     handleSave(response) {
@@ -25,6 +31,35 @@ class ProfileSettings extends Component {
 
     isSelected(color) {
         return this.props.user.color === color ? "selected" : "";
+    }
+
+    setLanguage() {
+        return (
+            <Drp>
+                <Drp.Toggle
+                    variant="success"
+                    id="dropdown-basic"
+                    style={{
+                        marginLeft:"1rem",
+                        marginRight:"1rem",
+                        fontWeight:"bold",
+                        color:"white",
+                        fontSize:"1rem",
+                        border: "1px solid #fff",
+                        borderRadius: "3px",
+                        backgroundColor:"transparent",
+                        padding:"1px 4px"
+                    }}>
+                    Language:{this.props.langTitle}
+                </Drp.Toggle>
+
+                <Drp.Menu>
+                    <Drp.Item onClick={this.languageHungarian} href="#">magyar (hu-HU)</Drp.Item>
+                    <Drp.Item onClick={this.languageEnglish} href="#">angol (en-US)</Drp.Item>
+                    <Drp.Item onClick={this.languageDeutsch} href="#">német (de-DE)</Drp.Item>
+                </Drp.Menu>
+            </Drp>
+        );
     }
 
     render() {
@@ -67,6 +102,7 @@ class ProfileSettings extends Component {
                                                               type={"text"} name={"name"}
                                                               autoComplete={"off"}
                                                               placeholder={this.props.user.name}
+                                                              onChange={(event) => {this.setState({inName:event.target.value})}}
                                                        />
                                                    </label>
                                                </div>
@@ -76,9 +112,11 @@ class ProfileSettings extends Component {
                                                              className={styles["k-textbox"]}
                                                              name={"description"}
                                                              style={{overflow:"hidden", overflowWrap:"break-word", width:"800px", height:"86px"}}
+                                                             onChange={(event) => {this.setState({inDesc:event.target.value})}}
                                                    >
                                                    </textarea>
                                                </label>
+                                               {this.setLanguage()}
                                            </fieldset>
                                            <input type={"submit"}
                                                     className={`${styles["k-button"]} 
