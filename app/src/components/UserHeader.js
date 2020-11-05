@@ -32,7 +32,7 @@ class UserHeader extends Component {
         return (
             <>
                 <div className={styles["bg_image"]}>
-                    <div className={`${styles["block"]} ${styles["header"]} ${styles["gradient"]} ${styles["green"]}`}>
+                    <div className={`${styles["block"]} ${styles["header"]} ${styles["gradient"]} ${styles[user.color]}`}>
                         <div className={styles["inner_content"]}>
                             <div className={styles["content"]}>
 
