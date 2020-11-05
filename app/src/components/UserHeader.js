@@ -34,7 +34,7 @@ class UserHeader extends Component {
         Promise.all(
             temp = response.data.route
         );
-        this.setState({userImg: temp});
+        this.setState({userImg: `http://localhost:3000/pics/${temp.split('\\')[4]}`});
     }
 
     async getAverageOfRatings() {
