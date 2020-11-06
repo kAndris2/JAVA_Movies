@@ -21,6 +21,7 @@ public class AccountService {
 
     public AccountErrorModel validateUser(UserModel newUser, HttpServletResponse response) throws Exception {
         AccountErrorModel aem = new AccountErrorModel();
+        String originPass = newUser.getPassword();
 
         for (UserModel user : idao.getUsers()) {
             if (user.getEmail().equals(newUser.getEmail())) {
@@ -38,17 +39,21 @@ public class AccountService {
                     register(newUser)
             );
 
-            login(newUser, response);
+            login(
+                    newUser,
+                    response
+            );
         }
 
         return aem;
     }
 
     UserModel register(UserModel user) throws Exception {
-        user.setPassword(
-                ps.getSaltedHash(user.getPassword())
+        UserModel newUser = (UserModel) user.clone();
+        newUser.setPassword(
+                ps.getSaltedHash(newUser.getPassword())
         );
-        UserModel registeredUser = us.getUds().createUser(user);
+        UserModel registeredUser = us.getUds().createUser(newUser);
         idao.getUsers().add(registeredUser);
         return registeredUser;
     }

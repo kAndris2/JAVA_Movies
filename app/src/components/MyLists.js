@@ -159,7 +159,7 @@ class MyLists extends Component {
                     <h2>My {this.capitalize(this.props.type)}</h2>
 
                     {this.state.movies.length === 0 &&
-                        <p>You have not added movies to your {this.props.type}.</p>
+                        <p>You have not added movies to your {this.props.type} yet.</p>
                     }
                     {this.state.movies.length > 0 &&
                     <div className="white_column">

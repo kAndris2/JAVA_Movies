@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class UserModel {
+public class UserModel implements Cloneable {
 
     private Integer id;
     private String name;
@@ -84,5 +84,9 @@ public class UserModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
