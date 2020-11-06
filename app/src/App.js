@@ -49,6 +49,7 @@ class App extends Component {
     this.getMovies = this.getMovies.bind(this);
     this.getCurrentTitle = this.getCurrentTitle.bind(this);
     this.updateUser = this.updateUser.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   async getMovies(language, region) {
@@ -155,6 +156,13 @@ class App extends Component {
     this.setState({user: newUser});
   }
 
+  logout() {
+    this.setState({
+      loggedInStatus: "NOT_LOGGED_IN",
+      user: {}
+    })
+  }
+
   getId(){
     let path = window.location.href;
     let id = String(path).split("/")[4];
@@ -202,6 +210,7 @@ class App extends Component {
               logged_in_status={loggedInStatus}
               languageChange={this.languageChange}
               langTitle={this.state.apiData.region}
+              logout={this.logout}
           />
 
           <Router>
