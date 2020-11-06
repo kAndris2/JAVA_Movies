@@ -92,7 +92,6 @@ class App extends Component {
       await axios.get("http://localhost:3000/api/users")
       .then(resp => {
         all = resp.data
-        console.log(all);
       });
 
       for (let i = 0; i < all.length; i++) {
@@ -303,8 +302,8 @@ class App extends Component {
                 </SearchResult>
               </Route>
 
-              <Route exact path={"/u/" + this.state.user.name}>
-                <UserHeader user={this.state.user}></UserHeader>
+              <Route exact path={"/u/:name"}>
+                <UserHeader></UserHeader>
                 <UserProfile
                     user={this.state.user}
                     getCurrentTitle={this.getCurrentTitle}

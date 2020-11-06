@@ -8,7 +8,7 @@ class UserHeader extends Component {
         super(props);
 
         this.state = {
-            user: this.props.user,
+            user: {},
             defaultImg: 'https://hostpapasupport.com/knowledgebase/wp-content/uploads/2018/04/1-13.png',
             userImg: undefined,
             ratesAvg: 0
@@ -17,11 +17,22 @@ class UserHeader extends Component {
         this.getAverageOfRatings = this.getAverageOfRatings.bind(this);
         this.getProfileImage = this.getProfileImage.bind(this);
         this.handleProfileImage = this.handleProfileImage.bind(this);
+        this.getUser = this.getUser.bind(this);
     }
 
     componentDidMount() {
+        this.getUser();
         this.getProfileImage();
         this.getAverageOfRatings();
+    }
+
+    async getUser() {
+        const url = (`${window.location.href}`).split("/"),
+            userName = url[url.length -1];
+        await axios.get(`http://localhost:3000/api/username/${userName}`)
+            .then(result => {
+                this.setState({user: result.data});
+            });
     }
 
     async getProfileImage() {
@@ -47,17 +58,18 @@ class UserHeader extends Component {
     }
 
     render() {
-        const {user, defaultImg, userImg} = this.state;
+        const {user, defaultImg, userImg, loading} = this.state;
 
         return (
             <>
                 <div className={styles["bg_image"]}>
-                    <div className={`${styles["block"]} ${styles["header"]} ${styles["gradient"]} ${styles[user.color]}`}>
+                    <div
+                        className={`${styles["block"]} ${styles["header"]} ${styles["gradient"]} ${styles[user.color]}`}>
                         <div className={styles["inner_content"]}>
                             <div className={styles["content"]}>
 
                               <span className={styles["avatar"]}>
-                                <a href={"/u/"+user.name}>
+                                <a href={"/u/" + user.name}>
                                     {userImg === undefined &&
                                     <img className={styles["avatar"]}
                                          src={defaultImg}
@@ -75,7 +87,7 @@ class UserHeader extends Component {
                                 <div>
                                     <div className={styles["about"]}>
                                         <div className={`${styles["content_wrapper"]} ${styles["flex"]}`}>
-                                            <h2><a href={"/u/"+user.name}>{user.name}</a></h2>
+                                            <h2><a href={"/u/" + user.name}>{user.name}</a></h2>
                                             <h3>Member since {moment(user.registrationDate).format('LL')}</h3>
                                         </div>
                                         <div className={`${styles["content_wrapper"]} ${styles["flex"]}`}>
@@ -89,7 +101,8 @@ class UserHeader extends Component {
                                                         <div className={styles["user_score_chart"]} data-percent="0"
                                                              data-track-color="#666666" data-bar-color="#d4d4d4">
                                                             <div className={styles["percent"]}>
-                                                                <span className={`icon icon-r${this.state.ratesAvg}`}/>
+                                                                <span
+                                                                    className={`icon icon-r${this.state.ratesAvg}`}/>
                                                             </div>
                                                             <canvas height="60" width="60"/>
                                                         </div>
@@ -106,7 +119,8 @@ class UserHeader extends Component {
                 </div>
                 <div className={styles["block"]}>
                     <div className={styles["inner_content"]}>
-                        <div className={`${styles["scroller_warp"]} ${styles["shortcut_bar_wrapper"]} ${styles["is_fading"]}`}>
+                        <div
+                            className={`${styles["scroller_warp"]} ${styles["shortcut_bar_wrapper"]} ${styles["is_fading"]}`}>
                             <ul className={`${styles["dropdown_menu"]} 
                                             ${styles["silver"]} 
                                             ${styles["scroller"]} 
@@ -126,8 +140,9 @@ class UserHeader extends Component {
                                                 ${styles["k-first"]}`}
                                     aria-haspopup={"true"}
                                     role={"menuitem"}
-                                    style={{zIndex:"auto"}}>
-                                    <a href={`/u/${this.state.user.name}/favorites`} className={`${styles["k-link"]} ${styles["k-menu-link"]}`}>
+                                    style={{zIndex: "auto"}}>
+                                    <a href={`/u/${this.state.user.name}/favorites`}
+                                       className={`${styles["k-link"]} ${styles["k-menu-link"]}`}>
                                         Favorites
                                     </a>
                                 </li>
@@ -154,7 +169,8 @@ class UserHeader extends Component {
                                                 ${styles["k-menu-item"]} 
                                                 ${styles["k-state-default"]}`}
                                     role={"menuitem"}>
-                                    <a href={`/u/${this.state.user.name}/watchlist`} className={`${styles["k-link"]} ${styles["k-menu-link"]}`}>
+                                    <a href={`/u/${this.state.user.name}/watchlist`}
+                                       className={`${styles["k-link"]} ${styles["k-menu-link"]}`}>
                                         Watchlist
                                     </a>
                                 </li>
@@ -163,7 +179,8 @@ class UserHeader extends Component {
                                                 ${styles["k-menu-item"]} 
                                                 ${styles["k-state-default"]}`}
                                     role={"menuitem"}>
-                                    <a href={"/settings/profile"} className={`${styles["k-link"]} ${styles["k-menu-link"]}`}>
+                                    <a href={"/settings/profile"}
+                                       className={`${styles["k-link"]} ${styles["k-menu-link"]}`}>
                                         Profile
                                     </a>
                                 </li>

@@ -30,6 +30,11 @@ public class UserController {
         return us.getUserById(userId);
     }
 
+    @GetMapping("username/{userName}")
+    UserModel getUserByName(@PathVariable(value = "userName") String userName) {
+        return us.getUserByName(userName);
+    }
+
     @DeleteMapping("delete_user/{userId}")
     void deleteUser(@PathVariable(value = "userId") Integer userId) throws SQLException {
         us.deleteUser(userId);

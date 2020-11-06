@@ -36,6 +36,13 @@ public class UserService {
                 .orElse(null);
     }
 
+    public UserModel getUserByName(String name) {
+        return getAllUser().stream()
+                .filter(p -> name.equals(p.getName()))
+                .findAny()
+                .orElse(null);
+    }
+
     public void basicSettings(Integer uid, String name, String color, String description, String language, String region) throws SQLException {
         uds.basicSettings(uid, name, color, description, language, region);
         getUserById(uid).update(name, color, language, region);
