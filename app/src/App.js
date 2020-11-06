@@ -35,7 +35,7 @@ class App extends Component {
       image_pre: "https://image.tmdb.org/t/p/w500",
 
       loggedInStatus: "NOT_LOGGED_IN",
-      user: {},
+      user: undefined,
 
       apiData: {
         key: "04a30d5152c77afe4a81783d17e20316",
@@ -91,6 +91,7 @@ class App extends Component {
       await axios.get("http://localhost:3000/api/users")
       .then(resp => {
         all = resp.data
+        console.log(all);
       });
 
       for (let i = 0; i < all.length; i++) {

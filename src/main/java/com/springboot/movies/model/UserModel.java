@@ -89,4 +89,11 @@ public class UserModel implements Cloneable {
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
+
+    public void update(String name, String color, String language, String region) {
+        this.name = name;
+        this.color = color;
+        this.language = language;
+        this.region = region;
+    }
 }

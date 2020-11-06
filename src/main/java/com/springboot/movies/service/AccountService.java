@@ -100,4 +100,21 @@ public class AccountService {
             }
         }
     }
+
+    public void changeCookieName(String _old, String _new, HttpServletResponse response, HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getValue().equals(_old)) {
+                cookie.setMaxAge(0);
+                cookie.setValue(null);
+                cookie.setPath("/");
+                response.addCookie(cookie);
+                break;
+            }
+        }
+        Cookie cookie = new Cookie("username", _new);
+        cookie.setMaxAge(3600);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+    }
 }

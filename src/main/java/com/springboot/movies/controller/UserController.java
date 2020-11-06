@@ -4,8 +4,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.springboot.movies.model.UserModel;
+import com.springboot.movies.service.AccountService;
 import com.springboot.movies.service.UserService;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -31,13 +35,22 @@ public class UserController {
         us.deleteUser(userId);
     }
 
-    @PutMapping("basic_settings/{userId}/{name}/{color}/{description}/{language}/{region}")
+    @PutMapping("basic_settings/{userId}/{oldName}/{newName}/{color}/{description}/{language}/{region}")
     void basicSettings(@PathVariable(value = "userId") Integer userId,
-                       @PathVariable(value = "name") String name,
+                       @PathVariable(value = "oldName") String oldName,
+                       @PathVariable(value = "newName") String newName,
                        @PathVariable(value = "color") String color,
                        @PathVariable(value = "description") String description,
                        @PathVariable(value = "language") String language,
-                       @PathVariable(value = "region") String region) throws SQLException {
-        us.basicSettings(userId, name, color, description, language, region);
+                       @PathVariable(value = "region") String region,
+                       HttpServletResponse response,
+                       HttpServletRequest request) throws SQLException {
+        us.basicSettings(userId, newName, color, description, language, region);
+        new AccountService().changeCookieName(
+                oldName,
+                newName,
+                response,
+                request
+        );
     }
 }
