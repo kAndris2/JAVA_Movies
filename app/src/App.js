@@ -303,7 +303,9 @@ class App extends Component {
               </Route>
 
               <Route exact path={"/u/:name"}>
-                <UserHeader></UserHeader>
+                <UserHeader
+                  guestID={this.state.user.id}
+                ></UserHeader>
                 <UserProfile
                     user={this.state.user}
                     getCurrentTitle={this.getCurrentTitle}
