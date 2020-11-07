@@ -17,13 +17,11 @@ import Upload from "./components/Upload";
 import Movie from "./components/Movie";
 import Livetv from "./components/Livetv";
 import UserHeader from "./components/UserHeader";
-import UserProfile from "./components/UserProfile";
-import MyLists from "./components/MyLists";
 import Footer from "./components/Footer";
 import TvDetails from "./components/TvDetails";
-import GenericNotFound from "./components/GenericNotFound";
 import ProfileSettings from "./components/ProfileSettings";
 import { Helmet } from 'react-helmet';
+import InvalidPage from "./components/InvalidPage";
 
 class App extends Component {
   constructor() {
@@ -305,46 +303,58 @@ class App extends Component {
               <Route exact path={"/u/:name"}>
                 <UserHeader
                   guestID={this.state.user.id}
-                ></UserHeader>
-                <UserProfile
-                    user={this.state.user}
-                    getCurrentTitle={this.getCurrentTitle}
+                  children={"statistics"}
+                  getCurrentTitle={this.getCurrentTitle}
                 >
-                </UserProfile>
+                </UserHeader>
               </Route>
 
-              <Route exact path={`/u/${this.state.user.name}/watchlist`}>
-                <UserHeader user={this.state.user}></UserHeader>
-                <MyLists
-                    user={this.state.user}
-                    apiData={this.state.apiData}
-                    logged_in_status={loggedInStatus}
-                    type={"watchlist"}
-                    getCurrentTitle={this.getCurrentTitle}
-                >
-                </MyLists>
+              <Route exact path={"/u/:name/watchlist"}>
+                {loggedInStatus === "LOGGED_IN" &&
+                  <UserHeader
+                      guestID={this.state.user.id}
+                      children={"watchlist"}
+                      getCurrentTitle={this.getCurrentTitle}
+                      apiData={this.state.apiData}
+                  >
+                  </UserHeader>
+                }
+                {loggedInStatus === "NOT_LOGGED_IN" &&
+                    <InvalidPage mode={"no_account"}></InvalidPage>
+                }
               </Route>
 
-              <Route exact path={`/u/${this.state.user.name}/favorites`}>
-                <UserHeader user={this.state.user}></UserHeader>
-                <MyLists
-                    user={this.state.user}
-                    apiData={this.state.apiData}
-                    logged_in_status={loggedInStatus}
-                    type={"favorites"}
-                    getCurrentTitle={this.getCurrentTitle}
-                >
-                </MyLists>
+              <Route exact path={"/u/:name/favorites"}>
+                {loggedInStatus === "LOGGED_IN" &&
+                  <UserHeader
+                      guestID={this.state.user.id}
+                      children={"favorites"}
+                      getCurrentTitle={this.getCurrentTitle}
+                      apiData={this.state.apiData}
+                  >
+                  </UserHeader>
+                }
+                {loggedInStatus === "NOT_LOGGED_IN" &&
+                  <InvalidPage mode={"no_account"}></InvalidPage>
+                }
               </Route>
 
               <Route exact path={'/settings/profile'}>
-                <ProfileSettings
-                    user={this.state.user}
-                    updateUser={this.updateUser}
-                ></ProfileSettings>
+                {loggedInStatus === "LOGGED_IN" &&
+                  <ProfileSettings
+                      user={this.state.user}
+                      updateUser={this.updateUser}
+                  >
+                  </ProfileSettings>
+                }
+                {loggedInStatus === "NOT_LOGGED_IN" &&
+                  <InvalidPage mode={"no_account"}></InvalidPage>
+                }
               </Route>
 
-              <Route component={GenericNotFound} />
+              <Route>
+                <InvalidPage mode={"no_page"} />
+              </Route>
             </Switch>
           </Router>
 

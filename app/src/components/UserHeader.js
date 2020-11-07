@@ -2,6 +2,9 @@ import React, {Component} from "react";
 import styles from "../static/css/Account.module.css";
 import axios from "axios";
 import moment from "moment";
+import Statistics from "./Statistics";
+import MyLists from "./MyLists";
+import InvalidPage from "./InvalidPage";
 
 class UserHeader extends Component {
     constructor(props) {
@@ -19,6 +22,7 @@ class UserHeader extends Component {
         this.getProfileImage = this.getProfileImage.bind(this);
         this.handleProfileImage = this.handleProfileImage.bind(this);
         this.getUser = this.getUser.bind(this);
+        this.getNameFromUrl = this.getNameFromUrl.bind(this);
     }
 
     async componentDidMount() {
@@ -27,9 +31,17 @@ class UserHeader extends Component {
         await this.getAverageOfRatings();
     }
 
+    getNameFromUrl() {
+        const urlParts = (`${window.location.href}`).split("/");
+        for (let i = 0; i < urlParts.length; i++) {
+            if (urlParts[i] === "u") {
+                return urlParts[i+1];
+            }
+        }
+    }
+
     async getUser() {
-        const url = (`${window.location.href}`).split("/"),
-            userName = url[url.length -1];
+        const userName = this.getNameFromUrl();
         await axios.get(`http://localhost:3000/api/username/${userName}`)
             .then(result => {
                 this.setState({user: result.data});
@@ -63,6 +75,16 @@ class UserHeader extends Component {
 
     render() {
         const {user, defaultImg, userImg, loading} = this.state;
+        const lists = ["watchlist", "favorites"];
+
+        if (lists.includes(this.props.children) && this.props.guestID !== user.id) {
+            return (
+                <InvalidPage
+                    mode={"private_page"}
+                >
+                </InvalidPage>
+            );
+        }
 
         if (!loading) {
             return (
@@ -194,6 +216,22 @@ class UserHeader extends Component {
                             </div>
                         </div>
                     </div>
+                    }
+                    {this.props.children === "statistics" &&
+                        <Statistics
+                            user={user}
+                            getCurrentTitle={this.props.getCurrentTitle}
+                        >
+                        </Statistics>
+                    }
+                    {lists.includes(this.props.children) &&
+                        <MyLists
+                            user={user}
+                            apiData={this.props.apiData}
+                            type={this.props.children}
+                            getCurrentTitle={this.props.getCurrentTitle}
+                        >
+                        </MyLists>
                     }
                 </>
             );
