@@ -19,9 +19,41 @@ public class AccountService {
     public AccountService() throws SQLException {
     }
 
+    public AccountErrorModel checkData(String email, String password, String confirmPass, String userName) {
+        AccountErrorModel aem = new AccountErrorModel();
+        Integer count = 0;
+
+        for (UserModel user : idao.getUsers()) {
+            if (email.equals(user.getEmail())) {
+                aem.setState(false);
+                aem.setEmailError("Email is already taken");
+                count++;
+            }
+
+            if (userName.equals(user.getName())) {
+                aem.setState(false);
+                aem.setUsernameError("Username is already taken");
+                count++;
+            }
+
+            if (count == 2)
+                break;
+        }
+
+        if (password.length() < 4) {
+            aem.setState(false);
+            aem.setPasswordError("Password needs to be at least 4 characters long");
+        }
+        else if (!password.equals(confirmPass)) {
+            aem.setState(false);
+            aem.setPasswordError("Password and password confirmation do not match");
+        }
+
+        return aem;
+    }
+
     public AccountErrorModel validateUser(UserModel newUser, HttpServletResponse response) throws Exception {
         AccountErrorModel aem = new AccountErrorModel();
-        String originPass = newUser.getPassword();
 
         for (UserModel user : idao.getUsers()) {
             if (user.getEmail().equals(newUser.getEmail())) {
