@@ -12,10 +12,11 @@ class UserHeader extends Component {
 
         this.state = {
             loading: true,
-            user: {},
+            user: undefined,
             defaultImg: 'https://hostpapasupport.com/knowledgebase/wp-content/uploads/2018/04/1-13.png',
             userImg: undefined,
-            ratesAvg: 0
+            ratesAvg: 0,
+            invalidPage: false
         };
 
         this.getAverageOfRatings = this.getAverageOfRatings.bind(this);
@@ -44,13 +45,20 @@ class UserHeader extends Component {
         const userName = this.getNameFromUrl();
         await axios.get(`http://localhost:3000/api/username/${userName}`)
             .then(result => {
-                this.setState({user: result.data});
+                if (result.data.length == 0) {
+                    this.setState({invalidPage: true });
+                }
+                else {
+                    this.setState({user: result.data});
+                }
             });
     }
 
     async getProfileImage() {
-        await axios.get(`http://localhost:3000/api/profile_image/${this.state.user.id}`)
-            .then(this.handleProfileImage)
+        if (this.state.user !== undefined) {
+            await axios.get(`http://localhost:3000/api/profile_image/${this.state.user.id}`)
+                .then(this.handleProfileImage)
+        }
     }
 
     handleProfileImage(response) {
@@ -64,25 +72,30 @@ class UserHeader extends Component {
     }
 
     async getAverageOfRatings() {
-        await axios.get(`http://localhost:3000/api/avg_ratings/${this.state.user.id}`)
-            .then(result =>{
-                this.setState({
-                    ratesAvg: result.data,
-                    loading: false
+        if (this.state.user !== undefined) {
+            await axios.get(`http://localhost:3000/api/avg_ratings/${this.state.user.id}`)
+                .then(result => {
+                    this.setState({
+                        ratesAvg: result.data,
+                        loading: false
+                    })
                 })
-            })
+        }
     }
 
     render() {
-        const {user, defaultImg, userImg, loading} = this.state;
+        const {user, defaultImg, userImg, loading, invalidPage} = this.state;
         const lists = ["watchlist", "favorites"];
 
         if (lists.includes(this.props.children) && this.props.guestID !== user.id) {
             return (
-                <InvalidPage
-                    mode={"private_page"}
-                >
-                </InvalidPage>
+                <InvalidPage mode={"private_page"} />
+            );
+        }
+
+        if (invalidPage) {
+            return (
+                <InvalidPage mode={"no_page"} />
             );
         }
 
