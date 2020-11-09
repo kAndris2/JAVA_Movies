@@ -11,13 +11,15 @@ class Registration extends Component {
             password: "",
             password_confirm: "",
             username: "",
-
-            regErrors:""
+            regErrors: []
         }
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.checkData = this.checkData.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+        this.handleCheckData = this.handleCheckData.bind(this);
+        this.onRegister = this.onRegister.bind(this);
+        this.getErrors = this.getErrors.bind(this);
     }
 
     handleSuccessfulAuth(data){
@@ -25,8 +27,39 @@ class Registration extends Component {
         this.props.history.push('/');
     }
 
-    handleSubmit(event){
-        //destruct tho
+    checkData(){
+        const {
+            email,
+            password,
+            password_confirm,
+            username
+        } = this.state;
+
+        axios.post("http://localhost:3000/api/check/" +
+                        `${email}/${password}/${password_confirm}/${username}`
+        ).then(this.handleCheckData);
+    }
+
+    handleCheckData(response) {
+        const errors = [];
+        if (response.data.state === false) {
+            if (response.data.emailError !== null) {
+                errors.push(response.data.emailError);
+            }
+            if (response.data.passwordError !== null) {
+                errors.push(response.data.passwordError);
+            }
+            if (response.data.usernameError !== null) {
+                errors.push(response.data.usernameError);
+            }
+            this.setState({regErrors: errors});
+        }
+        else {
+            this.onRegister();
+        }
+    }
+
+    onRegister() {
         const {
             email,
             password,
@@ -34,19 +67,42 @@ class Registration extends Component {
         } = this.state;
 
         axios.post("http://localhost:3000/api/register", {
-            name: username,
-            email: email,
-            password: password
-        },
+                name: username,
+                email: email,
+                password: password
+            },
             {withCredentials: true}
         ).then(response => {
             if (response.data.state){
                 this.handleSuccessfulAuth(response.data);
             }
-        }).catch( error => {
-            console.log("reg error", error);
         })
-        event.preventDefault();
+    }
+
+    getErrors() {
+        if (this.state.regErrors.length !== 0) {
+            return (
+                <div className={"error_status_card"}>
+                    <div className={"carton"}>
+                        <a className={"open no_click"}>
+                            <h2 className={"background_color red"}>
+                                <span>
+                                    <span className={"glyphicons_v2 circle-alert svg invert"}></span>
+                                    There was an error processing your signup
+                                </span>
+                            </h2>
+                        </a>
+                        <div className={"content"}>
+                            <ul>
+                                {this.state.regErrors.map(error =>
+                                    <li>{error}</li>
+                                )}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
     }
 
     handleChange(event) {
@@ -104,9 +160,9 @@ class Registration extends Component {
                                                 Creating a user account is free and easy. Fill out the form below to get started. JavaScript is required to continue.
                                             </p>
 
+                                            {this.getErrors()}
 
-                                            <form className="k-form" onSubmit={this.handleSubmit}>
-
+                                            <form className="k-form">
 
                                                 <fieldset>
                                                     <label className="k-form-field" htmlFor="username">
@@ -160,8 +216,9 @@ class Registration extends Component {
                                                     agree to the TMDb terms of use and privacy policy.</p>
 
                                                 <div className="flex">
-                                                    <input type="submit" className="k-button k-primary"
-                                                           value="Registration" />
+                                                    <input type="button" className="k-button k-primary"
+                                                           value="Registration"
+                                                           onClick={this.checkData}/>
                                                     <p className="reset"><a href="/">Not at all</a></p>
                                                 </div>
                                             </form>

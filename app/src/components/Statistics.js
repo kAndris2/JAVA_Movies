@@ -3,7 +3,7 @@ import styles from "../static/css/Account.module.css";
 import {Helmet} from "react-helmet";
 import axios from "axios";
 
-class UserProfile extends Component {
+class Statistics extends Component {
     constructor(props) {
         super(props);
 
@@ -38,7 +38,7 @@ class UserProfile extends Component {
                         <div className={styles["inner_content"]}>
                             <div className={styles["content"]}>
 
-                                <h2>Stats</h2>
+                                <h2>Statistics</h2>
 
                                 <div className={styles["stats_blocks"]}>
                                     <div className={styles["stat_block"]}>
@@ -330,4 +330,4 @@ class UserProfile extends Component {
     }
 }
 
-export default UserProfile;
+export default Statistics;

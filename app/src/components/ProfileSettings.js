@@ -60,17 +60,18 @@ class ProfileSettings extends Component {
         this.setState({loading: true});
 
         const data = {
-            name: this.state.inName == undefined ? this.props.user.name : this.state.inName,
-            color: this.state.clicked == undefined ? this.props.user.color : this.state.clicked,
-            description: this.state.inDesc == undefined ? this.props.user.description : this.state.inDesc,
-            language: this.state.inLang == undefined ? this.props.user.language : this.state.inLang,
-            region: this.state.inRegion == undefined ? this.props.user.region : this.state.inRegion
+            name: this.state.inName === undefined ? this.props.user.name : this.state.inName,
+            color: this.state.clicked === undefined ? this.props.user.color : this.state.clicked,
+            description: this.state.inDesc === undefined ? this.props.user.description : this.state.inDesc,
+            language: this.state.inLang === undefined ? this.props.user.language : this.state.inLang,
+            region: this.state.inRegion === undefined ? this.props.user.region : this.state.inRegion
         };
 
         const Toast = this.getToast();
 
         axios.put("http://localhost:3000/api/basic_settings/" +
             `${this.props.user.id}/` +
+            `${this.props.user.name}/` +
             `${data.name}/` +
             `${data.color}/` +
             `${data.description}/` +

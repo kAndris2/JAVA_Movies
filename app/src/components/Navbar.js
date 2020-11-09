@@ -23,7 +23,8 @@ class Navbar extends Component {
             email:user.email,
             password: user.password
         }
-        axios.post("http://localhost:3000/api/logout",curr);
+        axios.post("http://localhost:3000/api/logout",curr)
+            .then(this.props.logout)
     }
 
     languageHungarian() {
@@ -133,7 +134,7 @@ class Navbar extends Component {
                                             <li><a className="dropdown-item" href={`/u/${this.props.pro.user.name}`}>{this.props.pro.user.name}</a></li>
                                             <li><a className="dropdown-item" href="/#">Leaderboard</a></li>
                                             <li><a className="dropdown-item" href="/#">Support</a></li>
-                                            <li><a className="dropdown-item" href={"/#"} onClick={this.handleLogout}>Logout</a></li>
+                                            <li><a className="dropdown-item" href={"/"} onClick={this.handleLogout}>Logout</a></li>
                                         </ul>
                                     </li>
                                     <li className="list-group-item" style={{border:"none", backgroundColor:"transparent",padding:"0 1.5rem"}}>

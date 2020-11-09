@@ -33,4 +33,12 @@ public class AccountController {
     void logout(@RequestBody UserModel user, HttpServletResponse response, HttpServletRequest request) {
         as.logout(user, response, request);
     }
+
+    @PostMapping("check/{email}/{password}/{confirmPass}/{userName}")
+    AccountErrorModel check(@PathVariable(value = "email") String email,
+                            @PathVariable(value = "password") String password,
+                            @PathVariable(value = "confirmPass") String confirmPass,
+                            @PathVariable(value = "userName") String userName) {
+        return as.checkData(email, password, confirmPass, userName);
+    }
 }

@@ -35,7 +35,6 @@ class SettingsHeader extends Component {
     }
 
     render() {
-        console.log(this.state.userImg)
         return (
             <div className={`${styles["block"]} ${styles["header"]} ${styles["gradient"]} ${styles[this.props.user.color]}`}>
                 <div className={`${styles["inner_content"]} ${styles["tight"]}`}>

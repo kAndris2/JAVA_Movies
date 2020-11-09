@@ -19,6 +19,39 @@ public class AccountService {
     public AccountService() throws SQLException {
     }
 
+    public AccountErrorModel checkData(String email, String password, String confirmPass, String userName) {
+        AccountErrorModel aem = new AccountErrorModel();
+        Integer count = 0;
+
+        for (UserModel user : idao.getUsers()) {
+            if (email.equals(user.getEmail())) {
+                aem.setState(false);
+                aem.setEmailError("Email is already taken");
+                count++;
+            }
+
+            if (userName.equals(user.getName())) {
+                aem.setState(false);
+                aem.setUsernameError("Username is already taken");
+                count++;
+            }
+
+            if (count == 2)
+                break;
+        }
+
+        if (password.length() < 4) {
+            aem.setState(false);
+            aem.setPasswordError("Password needs to be at least 4 characters long");
+        }
+        else if (!password.equals(confirmPass)) {
+            aem.setState(false);
+            aem.setPasswordError("Password and password confirmation do not match");
+        }
+
+        return aem;
+    }
+
     public AccountErrorModel validateUser(UserModel newUser, HttpServletResponse response) throws Exception {
         AccountErrorModel aem = new AccountErrorModel();
 
@@ -38,17 +71,21 @@ public class AccountService {
                     register(newUser)
             );
 
-            login(newUser, response);
+            login(
+                    newUser,
+                    response
+            );
         }
 
         return aem;
     }
 
     UserModel register(UserModel user) throws Exception {
-        user.setPassword(
-                ps.getSaltedHash(user.getPassword())
+        UserModel newUser = (UserModel) user.clone();
+        newUser.setPassword(
+                ps.getSaltedHash(newUser.getPassword())
         );
-        UserModel registeredUser = us.getUds().createUser(user);
+        UserModel registeredUser = us.getUds().createUser(newUser);
         idao.getUsers().add(registeredUser);
         return registeredUser;
     }
@@ -94,5 +131,22 @@ public class AccountService {
                 break;
             }
         }
+    }
+
+    public void changeCookieName(String _old, String _new, HttpServletResponse response, HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getValue().equals(_old)) {
+                cookie.setMaxAge(0);
+                cookie.setValue(null);
+                cookie.setPath("/");
+                response.addCookie(cookie);
+                break;
+            }
+        }
+        Cookie cookie = new Cookie("username", _new);
+        cookie.setMaxAge(3600);
+        cookie.setPath("/");
+        response.addCookie(cookie);
     }
 }

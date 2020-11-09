@@ -17,13 +17,11 @@ import Upload from "./components/Upload";
 import Movie from "./components/Movie";
 import Livetv from "./components/Livetv";
 import UserHeader from "./components/UserHeader";
-import UserProfile from "./components/UserProfile";
-import MyLists from "./components/MyLists";
 import Footer from "./components/Footer";
 import TvDetails from "./components/TvDetails";
-import GenericNotFound from "./components/GenericNotFound";
 import ProfileSettings from "./components/ProfileSettings";
 import { Helmet } from 'react-helmet';
+import InvalidPage from "./components/InvalidPage";
 
 class App extends Component {
   constructor() {
@@ -35,7 +33,7 @@ class App extends Component {
       image_pre: "https://image.tmdb.org/t/p/w500",
 
       loggedInStatus: "NOT_LOGGED_IN",
-      user: {},
+      user: undefined,
 
       apiData: {
         key: "04a30d5152c77afe4a81783d17e20316",
@@ -49,6 +47,7 @@ class App extends Component {
     this.getMovies = this.getMovies.bind(this);
     this.getCurrentTitle = this.getCurrentTitle.bind(this);
     this.updateUser = this.updateUser.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   async getMovies(language, region) {
@@ -154,6 +153,13 @@ class App extends Component {
     this.setState({user: newUser});
   }
 
+  logout() {
+    this.setState({
+      loggedInStatus: "NOT_LOGGED_IN",
+      user: {}
+    })
+  }
+
   getId(){
     let path = window.location.href;
     let id = String(path).split("/")[4];
@@ -201,6 +207,7 @@ class App extends Component {
               logged_in_status={loggedInStatus}
               languageChange={this.languageChange}
               langTitle={this.state.apiData.region}
+              logout={this.logout}
           />
 
           <Router>
@@ -293,47 +300,61 @@ class App extends Component {
                 </SearchResult>
               </Route>
 
-              <Route exact path={"/u/" + this.state.user.name}>
-                <UserHeader user={this.state.user}></UserHeader>
-                <UserProfile
-                    user={this.state.user}
-                    getCurrentTitle={this.getCurrentTitle}
+              <Route exact path={"/u/:name"}>
+                <UserHeader
+                  guestID={this.state.user.id}
+                  children={"statistics"}
+                  getCurrentTitle={this.getCurrentTitle}
                 >
-                </UserProfile>
+                </UserHeader>
               </Route>
 
-              <Route exact path={`/u/${this.state.user.name}/watchlist`}>
-                <UserHeader user={this.state.user}></UserHeader>
-                <MyLists
-                    user={this.state.user}
-                    apiData={this.state.apiData}
-                    logged_in_status={loggedInStatus}
-                    type={"watchlist"}
-                    getCurrentTitle={this.getCurrentTitle}
-                >
-                </MyLists>
+              <Route exact path={"/u/:name/watchlist"}>
+                {loggedInStatus === "LOGGED_IN" &&
+                  <UserHeader
+                      guestID={this.state.user.id}
+                      children={"watchlist"}
+                      getCurrentTitle={this.getCurrentTitle}
+                      apiData={this.state.apiData}
+                  >
+                  </UserHeader>
+                }
+                {loggedInStatus === "NOT_LOGGED_IN" &&
+                    <InvalidPage mode={"no_account"}></InvalidPage>
+                }
               </Route>
 
-              <Route exact path={`/u/${this.state.user.name}/favorites`}>
-                <UserHeader user={this.state.user}></UserHeader>
-                <MyLists
-                    user={this.state.user}
-                    apiData={this.state.apiData}
-                    logged_in_status={loggedInStatus}
-                    type={"favorites"}
-                    getCurrentTitle={this.getCurrentTitle}
-                >
-                </MyLists>
+              <Route exact path={"/u/:name/favorites"}>
+                {loggedInStatus === "LOGGED_IN" &&
+                  <UserHeader
+                      guestID={this.state.user.id}
+                      children={"favorites"}
+                      getCurrentTitle={this.getCurrentTitle}
+                      apiData={this.state.apiData}
+                  >
+                  </UserHeader>
+                }
+                {loggedInStatus === "NOT_LOGGED_IN" &&
+                  <InvalidPage mode={"no_account"}></InvalidPage>
+                }
               </Route>
 
               <Route exact path={'/settings/profile'}>
-                <ProfileSettings
-                    user={this.state.user}
-                    updateUser={this.updateUser}
-                ></ProfileSettings>
+                {loggedInStatus === "LOGGED_IN" &&
+                  <ProfileSettings
+                      user={this.state.user}
+                      updateUser={this.updateUser}
+                  >
+                  </ProfileSettings>
+                }
+                {loggedInStatus === "NOT_LOGGED_IN" &&
+                  <InvalidPage mode={"no_account"}></InvalidPage>
+                }
               </Route>
 
-              <Route component={GenericNotFound} />
+              <Route>
+                <InvalidPage mode={"no_page"} />
+              </Route>
             </Switch>
           </Router>
 
