@@ -84,14 +84,14 @@ class Registration extends Component {
             return (
                 <div className={"error_status_card"}>
                     <div className={"carton"}>
-                        <a className={"open no_click"}>
+                        <p className={"open no_click"}>
                             <h2 className={"background_color red"}>
                                 <span>
-                                    <span className={"glyphicons_v2 circle-alert svg invert"}></span>
+                                    <span className={"glyphicons_v2 circle-alert svg invert"}/>
                                     There was an error processing your signup
                                 </span>
                             </h2>
-                        </a>
+                        </p>
                         <div className={"content"}>
                             <ul>
                                 {this.state.regErrors.map(error =>
