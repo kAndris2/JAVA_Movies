@@ -87,19 +87,19 @@ class UserHeader extends Component {
         const {user, defaultImg, userImg, loading, invalidPage} = this.state;
         const lists = ["watchlist", "favorites"];
 
-        if (lists.includes(this.props.children) && this.props.guestID !== user.id) {
-            return (
-                <InvalidPage mode={"private_page"} />
-            );
-        }
-
-        if (invalidPage) {
-            return (
-                <InvalidPage mode={"no_page"} />
-            );
-        }
-
         if (!loading) {
+            if (lists.includes(this.props.children) && this.props.guestID !== user.id) {
+                return (
+                    <InvalidPage mode={"private_page"} />
+                );
+            }
+
+            if (invalidPage) {
+                return (
+                    <InvalidPage mode={"no_page"} />
+                );
+            }
+
             return (
                 <>
                     <div className={styles["bg_image"]}>
