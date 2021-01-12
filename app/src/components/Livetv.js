@@ -24,7 +24,7 @@ class Livetv extends Component {
         const response = await fetch("http://mradmin.hu:9981/api/channel/list",{
                 method: 'get',
                 headers: new Headers({
-                    'Authorization': 'Basic '+btoa('test:123qweAsD'),
+                    'Authorization': 'Basic '+btoa('user:pass'),
                 })}
         );
 
@@ -34,7 +34,7 @@ class Livetv extends Component {
         /*const response2 = await fetch("http://mradmin.hu:9981/api/epg/events/grid?limit=100",{
             method: 'get',
                 headers: new Headers({
-                'Authorization': 'Basic '+btoa('test:123qweAsD'),
+                'Authorization': 'Basic '+btoa('user:pass'),
             })}
         );
         const epg = await response2.json();*/
